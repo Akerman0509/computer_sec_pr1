@@ -1,0 +1,183 @@
+<h2>Login</h2>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<ul>
+    <h2>Open routes</h2>
+
+
+    <!-- Other navigation links -->
+    <hr>
+    <div id="welcome-section" style="display: none;">
+        <button id="logout-btn">Logout</button>
+    </div>
+      
+    <form id="jwt-login-form">
+        <p>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+        </p>
+        <p>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+        </p>
+        <button type="submit">Login</button>
+    </form>
+    
+      
+
+</ul>
+
+<h1>Result</h1>
+<div id="result"></div>
+
+
+
+<script>
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            console.log("!!! Cookie:", document.cookie);
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        else {
+            console.log("!!! No cookies found");
+        }
+        return cookieValue;
+    }
+// ---------------------------------------------
+
+    document.getElementById("jwt-login-form").addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const csrftoken = getCookie('csrftoken'); 
+        
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const baseURL = "http://127.0.0.1:8000/my_app";
+        
+        fetch(`${baseURL}/login/token/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrftoken
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        })
+        .then(async response => {
+            const data = await response.json();  // Always parse response JSON
+
+            // Show in UI
+            document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+
+            if (!response.ok) {
+                console.error("Error:", data);
+                alert("Login failed: " + (data.detail || data.message || "Unknown error"));
+                toggleLogin(false);
+                return;
+            } else{
+                access_token = data.access_token;
+                console.log("Access Token:", access_token);
+                localStorage.setItem("access_token", access_token);
+            }
+        });
+
+
+        toggleLogin(true);
+
+
+    });
+
+    function fetchWithToken(endpoint, isPublic = false) {
+        const protectedRoutes = ['Dependents', 'Employees', 'Jobs', 'Departments'];
+        const baseURL = "http://127.0.0.1:8000/my_app";
+        const token = localStorage.getItem("access_token");
+        console.log("Token:", token);
+        console.log("Endpoint:", endpoint);
+
+        const headers = {
+            'Content-Type': 'application/json'
+        }
+        if (token) {
+            console.log("!!! Token exists");
+            headers['Authorization'] = `Bearer ${token}`;
+        }
+        if (!isPublic) {
+            if (token) {
+                console.log("!!! Token exists");
+                headers['Authorization'] = `Bearer ${token}`;
+            }
+            else{
+                alert("You need to log in first.");
+                return;
+            }
+        }
+        console.log("Headers:", headers);
+
+
+        fetch(`${baseURL}/${endpoint}/`,{
+            method: "GET",
+            headers: headers,
+        })
+        .then(async res => {
+        if (!res.ok) {
+            if (res.status === 429) {
+                const errorData = await res.json();
+                alert(errorData.error + " Retry after " + errorData.retry_after_seconds + "s");
+                return;
+            } 
+            return res.json();
+        }
+        return res.json();
+        })
+        .then(data => {
+            console.log('Data fetched successfully:', data);
+            // console.log(data);
+            document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(error => {
+            console.log('Fetch error:', error);
+            document.getElementById('result').textContent = 'Error loading data.';
+        });
+    }
+
+
+    function toggleLogin(isLoggedIn) {
+        const loginForm = document.getElementById("jwt-login-form");
+        const welcomeSection = document.getElementById("welcome-section");
+        const userInfo = document.getElementById("user-info");
+        const logoutBtn = document.getElementById("logout-btn");
+
+        if (isLoggedIn) {
+            loginForm.style.display = "none";
+            welcomeSection.style.display = "block";
+            logoutBtn.addEventListener("click", () => {
+                localStorage.removeItem("access_token");
+                toggleLogin(false);
+            });
+        } else {
+            loginForm.style.display = "block";
+            welcomeSection.style.display = "none";
+        }
+    }
+
+    
+</script>

@@ -1,0 +1,7 @@
+__pycache__/
+migrations/
+my_stuff/
+
+.env
+
+staticfiles/

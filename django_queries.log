@@ -1,0 +1,281 @@
+[2025-06-26 16:00:47] DEBUG | (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None; alias=default
+
+[2025-06-26 16:00:47] DEBUG | (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+
+[2025-06-26 16:00:58] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:00:58.749765' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:00:58.749765', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:00:58] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:00:58] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_cart"; args=(); alias=default
+
+[2025-06-26 16:00:58] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_cart"; args=(); alias=default
+
+[2025-06-26 16:00:58] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name", "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_cart" INNER JOIN "my_app_customer" ON ("my_app_cart"."customer_id" = "my_app_customer"."id") ORDER BY "my_app_cart"."id" DESC; args=(); alias=default
+
+[2025-06-26 16:00:58] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:00:58.796567' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:00:58.796567', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:00:58] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:04] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:01:04.906090' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:01:04.906090', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:01:04] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:04] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_receiptitem"; args=(); alias=default
+
+[2025-06-26 16:01:04] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_receiptitem"; args=(); alias=default
+
+[2025-06-26 16:01:04] DEBUG | (0.000) SELECT "my_app_receiptitem"."id", "my_app_receiptitem"."receipt_id", "my_app_receiptitem"."product_id", "my_app_receiptitem"."quantity", "my_app_receiptitem"."unit_price", "my_app_receipt"."id", "my_app_receipt"."cart_id", "my_app_receipt"."total_amount", "my_app_receipt"."created_at", "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name", "my_app_customer"."id", "my_app_customer"."name", "my_app_product"."id", "my_app_product"."name", "my_app_product"."price", "my_app_product"."stock" FROM "my_app_receiptitem" INNER JOIN "my_app_receipt" ON ("my_app_receiptitem"."receipt_id" = "my_app_receipt"."id") INNER JOIN "my_app_cart" ON ("my_app_receipt"."cart_id" = "my_app_cart"."id") INNER JOIN "my_app_customer" ON ("my_app_cart"."customer_id" = "my_app_customer"."id") INNER JOIN "my_app_product" ON ("my_app_receiptitem"."product_id" = "my_app_product"."id") ORDER BY "my_app_receiptitem"."id" DESC; args=(); alias=default
+
+[2025-06-26 16:01:04] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:01:04.937249' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:01:04.937249', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:01:04] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:01:18.184795' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:01:18.184795', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_receipt"; args=(); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_receipt"; args=(); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "my_app_receipt"."id", "my_app_receipt"."cart_id", "my_app_receipt"."total_amount", "my_app_receipt"."created_at" FROM "my_app_receipt" ORDER BY "my_app_receipt"."id" DESC; args=(); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 2 LIMIT 21; args=(2,); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 2 LIMIT 21; args=(2,); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:01:18.223424' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:01:18.223424', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:01:18] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:27] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:01:27.512000' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:01:27.512000', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:01:27] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:01:27] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_cartitem"; args=(); alias=default
+
+[2025-06-26 16:01:27] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_cartitem"; args=(); alias=default
+
+[2025-06-26 16:01:27] DEBUG | (0.000) SELECT "my_app_cartitem"."id", "my_app_cartitem"."cart_id", "my_app_cartitem"."product_id", "my_app_cartitem"."quantity", "my_app_cartitem"."unit_price", "my_app_cartitem"."checkout_status", "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name", "my_app_customer"."id", "my_app_customer"."name", "my_app_product"."id", "my_app_product"."name", "my_app_product"."price", "my_app_product"."stock" FROM "my_app_cartitem" INNER JOIN "my_app_cart" ON ("my_app_cartitem"."cart_id" = "my_app_cart"."id") INNER JOIN "my_app_customer" ON ("my_app_cart"."customer_id" = "my_app_customer"."id") INNER JOIN "my_app_product" ON ("my_app_cartitem"."product_id" = "my_app_product"."id") ORDER BY "my_app_cartitem"."id" DESC; args=(); alias=default
+
+[2025-06-26 16:01:27] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:01:27.544244' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:01:27.544244', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:01:27] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:02:41] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:02:41.762024' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:02:41.762024', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:02:41] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:02:41] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_receiptitem"; args=(); alias=default
+
+[2025-06-26 16:02:41] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_receiptitem"; args=(); alias=default
+
+[2025-06-26 16:02:41] DEBUG | (0.000) SELECT "my_app_receiptitem"."id", "my_app_receiptitem"."receipt_id", "my_app_receiptitem"."product_id", "my_app_receiptitem"."quantity", "my_app_receiptitem"."unit_price", "my_app_receipt"."id", "my_app_receipt"."cart_id", "my_app_receipt"."total_amount", "my_app_receipt"."created_at", "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name", "my_app_customer"."id", "my_app_customer"."name", "my_app_product"."id", "my_app_product"."name", "my_app_product"."price", "my_app_product"."stock" FROM "my_app_receiptitem" INNER JOIN "my_app_receipt" ON ("my_app_receiptitem"."receipt_id" = "my_app_receipt"."id") INNER JOIN "my_app_cart" ON ("my_app_receipt"."cart_id" = "my_app_cart"."id") INNER JOIN "my_app_customer" ON ("my_app_cart"."customer_id" = "my_app_customer"."id") INNER JOIN "my_app_product" ON ("my_app_receiptitem"."product_id" = "my_app_product"."id") ORDER BY "my_app_receiptitem"."id" DESC; args=(); alias=default
+
+[2025-06-26 16:02:41] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:02:41.790962' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:02:41.790962', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:02:41] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:04:03.136702' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:04:03.136702', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_receiptitem"."id", "my_app_receiptitem"."receipt_id", "my_app_receiptitem"."product_id", "my_app_receiptitem"."quantity", "my_app_receiptitem"."unit_price" FROM "my_app_receiptitem" WHERE "my_app_receiptitem"."id" = 14 LIMIT 21; args=(14,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_product"."id", "my_app_product"."name", "my_app_product"."price", "my_app_product"."stock" FROM "my_app_product" WHERE "my_app_product"."id" = 89 LIMIT 21; args=(89,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'my_app' AND "django_content_type"."model" = 'receiptitem') LIMIT 21; args=('my_app', 'receiptitem'); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_receipt"."id", "my_app_receipt"."cart_id", "my_app_receipt"."total_amount", "my_app_receipt"."created_at" FROM "my_app_receipt"; args=(); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 2 LIMIT 21; args=(2,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 2 LIMIT 21; args=(2,); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "my_app_product"."id", "my_app_product"."name", "my_app_product"."price", "my_app_product"."stock" FROM "my_app_product"; args=(); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:04:03.185286' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:04:03.185286', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:04:03] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:04] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:04:04.879318' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:04:04.879318', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:04:04] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:04] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_receiptitem"; args=(); alias=default
+
+[2025-06-26 16:04:04] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_receiptitem"; args=(); alias=default
+
+[2025-06-26 16:04:04] DEBUG | (0.000) SELECT "my_app_receiptitem"."id", "my_app_receiptitem"."receipt_id", "my_app_receiptitem"."product_id", "my_app_receiptitem"."quantity", "my_app_receiptitem"."unit_price", "my_app_receipt"."id", "my_app_receipt"."cart_id", "my_app_receipt"."total_amount", "my_app_receipt"."created_at", "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name", "my_app_customer"."id", "my_app_customer"."name", "my_app_product"."id", "my_app_product"."name", "my_app_product"."price", "my_app_product"."stock" FROM "my_app_receiptitem" INNER JOIN "my_app_receipt" ON ("my_app_receiptitem"."receipt_id" = "my_app_receipt"."id") INNER JOIN "my_app_cart" ON ("my_app_receipt"."cart_id" = "my_app_cart"."id") INNER JOIN "my_app_customer" ON ("my_app_cart"."customer_id" = "my_app_customer"."id") INNER JOIN "my_app_product" ON ("my_app_receiptitem"."product_id" = "my_app_product"."id") ORDER BY "my_app_receiptitem"."id" DESC; args=(); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:04:29.673717' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:04:29.673717', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_receipt"; args=(); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_receipt"; args=(); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "my_app_receipt"."id", "my_app_receipt"."cart_id", "my_app_receipt"."total_amount", "my_app_receipt"."created_at" FROM "my_app_receipt" ORDER BY "my_app_receipt"."id" DESC; args=(); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 2 LIMIT 21; args=(2,); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 2 LIMIT 21; args=(2,); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name" FROM "my_app_cart" WHERE "my_app_cart"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "my_app_customer"."id", "my_app_customer"."name" FROM "my_app_customer" WHERE "my_app_customer"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:04:29.709020' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:04:29.709020', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:04:29] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:31] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:04:31.521409' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:04:31.521409', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:04:31] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:31] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_receiptitem"; args=(); alias=default
+
+[2025-06-26 16:04:31] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_receiptitem"; args=(); alias=default
+
+[2025-06-26 16:04:31] DEBUG | (0.000) SELECT "my_app_receiptitem"."id", "my_app_receiptitem"."receipt_id", "my_app_receiptitem"."product_id", "my_app_receiptitem"."quantity", "my_app_receiptitem"."unit_price", "my_app_receipt"."id", "my_app_receipt"."cart_id", "my_app_receipt"."total_amount", "my_app_receipt"."created_at", "my_app_cart"."id", "my_app_cart"."customer_id", "my_app_cart"."name", "my_app_customer"."id", "my_app_customer"."name", "my_app_product"."id", "my_app_product"."name", "my_app_product"."price", "my_app_product"."stock" FROM "my_app_receiptitem" INNER JOIN "my_app_receipt" ON ("my_app_receiptitem"."receipt_id" = "my_app_receipt"."id") INNER JOIN "my_app_cart" ON ("my_app_receipt"."cart_id" = "my_app_cart"."id") INNER JOIN "my_app_customer" ON ("my_app_cart"."customer_id" = "my_app_customer"."id") INNER JOIN "my_app_product" ON ("my_app_receiptitem"."product_id" = "my_app_product"."id") ORDER BY "my_app_receiptitem"."id" DESC; args=(); alias=default
+
+[2025-06-26 16:04:31] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:04:31.551013' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:04:31.551013', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:04:31] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:32] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:04:32.905982' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:04:32.905982', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:04:32] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:32] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_publisher"; args=(); alias=default
+
+[2025-06-26 16:04:32] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_publisher"; args=(); alias=default
+
+[2025-06-26 16:04:32] DEBUG | (0.000) SELECT "my_app_publisher"."id", "my_app_publisher"."name", "my_app_publisher"."address" FROM "my_app_publisher" ORDER BY "my_app_publisher"."id" DESC; args=(); alias=default
+
+[2025-06-26 16:04:32] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:04:32.934763' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:04:32.934763', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:04:32] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:33] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:04:33.374983' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:04:33.374983', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:04:33] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:04:33] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_product"; args=(); alias=default
+
+[2025-06-26 16:04:33] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_product"; args=(); alias=default
+
+[2025-06-26 16:04:33] DEBUG | (0.000) SELECT "my_app_product"."id", "my_app_product"."name", "my_app_product"."price", "my_app_product"."stock" FROM "my_app_product" ORDER BY "my_app_product"."id" DESC; args=(); alias=default
+
+[2025-06-26 16:04:33] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:04:33.410665' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:04:33.410665', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:04:33] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:17:07] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:17:07.786820' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:17:07.786820', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:17:07] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:17:07] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_product" WHERE "my_app_product"."name" LIKE '%weath%' ESCAPE '\'; args=('%weath%',); alias=default
+
+[2025-06-26 16:17:07] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_product"; args=(); alias=default
+
+[2025-06-26 16:17:07] DEBUG | (0.000) SELECT "my_app_product"."id", "my_app_product"."name", "my_app_product"."price", "my_app_product"."stock" FROM "my_app_product" WHERE "my_app_product"."name" LIKE '%weath%' ESCAPE '\' ORDER BY "my_app_product"."id" DESC; args=('%weath%',); alias=default
+
+[2025-06-26 16:17:07] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:17:07.817543' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:17:07.817543', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:17:07] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:17:12] DEBUG | (0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2025-06-26 09:17:12.401234' AND "django_session"."session_key" = 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf') LIMIT 21; args=('2025-06-26 09:17:12.401234', 'iwx9ooffm9bw7h9qd8oczfjl2pek3ymf'); alias=default
+
+[2025-06-26 16:17:12] DEBUG | (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+
+[2025-06-26 16:17:12] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_product"; args=(); alias=default
+
+[2025-06-26 16:17:12] DEBUG | (0.000) SELECT COUNT(*) AS "__count" FROM "my_app_product"; args=(); alias=default
+
+[2025-06-26 16:17:12] DEBUG | (0.000) SELECT "my_app_product"."id", "my_app_product"."name", "my_app_product"."price", "my_app_product"."stock" FROM "my_app_product" ORDER BY "my_app_product"."id" DESC; args=(); alias=default
+
