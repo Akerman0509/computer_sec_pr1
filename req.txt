@@ -5,5 +5,4 @@ django-extensions==4.1
 django-redis==5.4.0
 djangorestframework==3.16.0
 djangorestframework_simplejwt==5.5.0
-social-auth-app-django==5.4.3
 mysqlclient

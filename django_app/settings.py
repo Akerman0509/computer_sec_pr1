@@ -99,10 +99,6 @@ SECRET_KEY = "supersupersecretkey"
 
 
 
-AWS_STORAGE_BUCKET_NAME=os.getenv("AWS_STORAGE_BUCKET_NAME","default_bucket_name")
-AWS_S3_REGION_NAME="ap-southeast-1"
-AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com"
-
 
 # # AWS_QUEYSTRING_AUTH = False
 # STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'

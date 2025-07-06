@@ -18,6 +18,7 @@ from datetime import datetime
 from django.conf import settings
 from django.core.mail import send_mail
 
+# SHA - 256
 def hash_passphrase(passphrase: str, salt: bytes | str = b''):
     # 1. If salt is a string (e.g., from DB), decode it
     if isinstance(salt, str):
