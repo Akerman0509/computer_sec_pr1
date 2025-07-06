@@ -49,7 +49,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         "DIRS": [os.path.join(BASE_DIR, "templates"), ],
-        # "DIRS":[],
+        #"DIRS": [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,3 +125,44 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'ngthequan.work@gmail.com' 
+EMAIL_HOST_PASSWORD = 'bcekyujqxqaavjaw'
+# Create folders for logs
+LOG_DIR = os.path.join(BASE_DIR, 'data/logs')
+if not os.path.exists(LOG_DIR):
+    os.makedirs(LOG_DIR)
+
+# Logging configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'detailed': {
+            'format': '[%(asctime)s] %(levelname)s [%(name)s] %(message)s',
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(LOG_DIR, 'security.log'),
+            'formatter': 'detailed',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
+
+

@@ -1,0 +1,5 @@
+[2025-07-06 20:29:23] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-06 20:29:31] INFO [applications.my_app.views] [Login] Received data: {'email': 'ngthequan.relax@gmail.com', 'passphrase': '12345678qQ@'}
+[2025-07-06 20:29:31] INFO [applications.commons.utils] [OTP] Generated OTP for ngthequan.relax@gmail.com
+[2025-07-06 20:29:35] INFO [applications.commons.utils] [OTP] Sent OTP to ngthequan.relax@gmail.com
+[2025-07-06 20:29:54] INFO [applications.my_app.views] [OTP] Successful login for ngthequan.relax@gmail.com
