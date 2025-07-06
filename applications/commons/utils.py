@@ -10,6 +10,7 @@ from Crypto.Util.Padding import pad,unpad
 from Crypto.PublicKey import RSA
 
 
+# SHA - 256
 def hash_passphrase(passphrase: str, salt: bytes | str = b''):
     # 1. If salt is a string (e.g., from DB), decode it
     if isinstance(salt, str):

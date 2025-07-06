@@ -60,7 +60,7 @@ class Key(models.Model):
     
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     public_key = models.TextField()  # Base64 encoded
-    private_key_enc = models.TextField()  # Base64 encoded
+    private_key_enc = models.TextField() # JSON-encoded {iv, ciphertext}, both base64
     created_at = models.DateTimeField(default=timezone.now)
     expires_at = models.DateTimeField(default=get_default_expiration)
     

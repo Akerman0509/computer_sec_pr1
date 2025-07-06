@@ -5,3 +5,7 @@ my_stuff/
 .env
 
 staticfiles/
+
+
+
+*.sql

@@ -8,12 +8,12 @@ POST {{baseUrl}}/register/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Yukino Shita",
+    "name": "Chitoge Kirisaki",
     "birth_day": "2004-01-01",
-    "email": "Yukino@gmail.com",
+    "email": "Chitoge@gmail.com",
     "address": "123 Main St, Springfield",
     "phone_number": "123-456-7890",
-    "passphrase":"12345678qQ@"
+    "passphrase":"12345678aA@"
 }
 
 
@@ -23,26 +23,18 @@ POST {{baseUrl}}/login/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "Yukino@gmail.com",
-    "passphrase":"12345678qQ@"
+    "email": "Chitoge@gmail.com",
+    "passphrase":"12345678aA@"
 
 }
 
 ###
 
-curl -X GET http://127.0.0.1:8000/myapp/books/
-
-
-curl -X GET http://127.0.0.1:8000/myapp/publishers/ \
-    -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ3OTczMzk1LCJpYXQiOjE3NDc5Njk3OTUsImp0aSI6IjMxMjU3YzBmYWY0NzQyMWE4OWJjMjQ3YTM3MjU2NmQzIiwidXNlcl9pZCI6MX0.VEtA9Zf8jEjVgsUnCx_19pcDIrqvgPs6WZeSvfCVTMc"
-
-###
-
-POST {{baseUrl}}/login/token/ HTTP/1.1
+POST {{baseUrl}}/create_rsa_pair/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "akerman0509",
-    "password": "1111"
+    "user_id": 4,
+    "passphrase": "12345678aA@"
 }
 ###
