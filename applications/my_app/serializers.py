@@ -7,9 +7,6 @@ from applications.commons.utils import validate_passphrase_email, hash_passphras
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     passphrase = serializers.CharField(write_only=True, required=True, min_length=8, max_length=128)
-    
-    
-
     class Meta:
         model = User
         # Fields to be used for serialization/deserialization

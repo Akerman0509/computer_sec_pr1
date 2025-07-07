@@ -14,6 +14,9 @@ urlpatterns = [
     
     path('login/', views.api_login, name='login_url'),
     path('register/', views.api_register, name='public_key_view'),
+    
+    # update user profile
+    path('user/update/', views.api_update_user, name='update_user'),
 
     # create RSA key pair
     path ('create_rsa_pair/', views.api_create_RSA_pair, name='create_rsa_pair'),

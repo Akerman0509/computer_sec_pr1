@@ -8,22 +8,20 @@ from Crypto.Cipher import AES
 from base64 import b64encode,b64decode
 from Crypto.Util.Padding import pad,unpad
 from Crypto.PublicKey import RSA
+from Crypto.Protocol.KDF import PBKDF2
+
 
 
 # SHA - 256
 def hash_passphrase(passphrase: str, salt: bytes | str = b''):
     # 1. If salt is a string (e.g., from DB), decode it
-    if isinstance(salt, str):
-        try:
-            salt = b64decode(salt)
-        except Exception as e:
-            raise ValueError("Invalid salt format. Expected base64-encoded string.") from e
-
+    print (f"[hash_passphrase] Received salt=======================================================: {salt}")
+    salt = b64decode(salt) if isinstance(salt, str) else salt
     # 2. Generate salt if not provided
     if not salt:
         print("[hash_passphrase] No salt provided, generating new salt.")
         salt = os.urandom(16)
-        
+    
     combined = salt + passphrase.encode('utf-8')
     
     # 3. Hash bằng SHA-256
@@ -66,8 +64,7 @@ def validate_passphrase_email(passphrase: str, email: str):
 class AESCipher:
     def __init__(self, key: bytes):
         self.key = key
-
-    
+        
     def encrypt(self, data: bytes) -> str:
         cipher = AES.new(self.key, AES.MODE_CBC)
         ct_bytes = cipher.encrypt(pad(data, AES.block_size))
@@ -83,12 +80,18 @@ class AESCipher:
             iv = b64decode(b64['iv'])
             ct = b64decode(b64['ciphertext'])
             cipher = AES.new(self.key, AES.MODE_CBC, iv) 
-            pt = unpad(cipher.decrypt(ct), AES.block_size)
-            # print("The message was: ", pt)
-        except (ValueError, KeyError):
-            print("Incorrect decryption")
-        
-        return pt
+            print (f"iv: {iv}")
+            print (f"ct: {ct}")
+            decrypted = cipher.decrypt(ct)
+            print (f"[decrypt] Decrypted bytes: {decrypted}")
+            print ("++++++++++++++++++++++++++++++++++++++++++++++++++")
+            pt = unpad(decrypted, AES.block_size)
+            print (f"[decrypt] Unpadded plaintext: {pt}")
+            
+            return pt
+        except (ValueError, KeyError) as e:
+            print(f"[decrypt] Decryption error: {e}")
+            return None
 
 
 
@@ -105,3 +108,40 @@ def generate_rsa_keys():
     private_key_pem = key.export_key('PEM')
     public_key_pem = key.publickey().export_key('PEM')
     return private_key_pem, public_key_pem
+
+
+def derive_aes_key(passphrase: str, salt: bytes, key_len=32) -> bytes:
+    """Derive a fixed-length AES key from passphrase using PBKDF2."""
+    return PBKDF2(passphrase, salt, dkLen=key_len, count=100_000)
+
+def encrypt_private_with_passphrase(private_key_pem: bytes, passphrase: str, salt: bytes
+) -> str:
+    """Encrypt the private key with the given passphrase and salt."""
+    
+    print (f"[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : {salt}")
+    try :
+        key = derive_aes_key(passphrase, salt)
+        aes_agent = AESCipher(key)
+        res = aes_agent.encrypt(private_key_pem)
+        return res
+    except Exception as e:
+        print(f"[encrypt_private_with_passphrase] Error encrypting private key: {e}")
+        return None
+
+
+
+def decrypt_private_with_passphrase(
+    encrypted_private_key: str, passphrase: str, salt: bytes
+) -> bytes:
+    try:
+        key = derive_aes_key(passphrase, salt)
+        aes_agent = AESCipher(key)
+        decrypted_private_key = aes_agent.decrypt(encrypted_private_key)
+        
+        if decrypted_private_key is None:
+            raise ValueError("Decryption failed, invalid passphrase or encrypted data.")
+        
+        return decrypted_private_key
+    except Exception as e:
+        print(f"[decrypt_private_with_passphrase] Error decrypting private key: {e}")
+        return None

@@ -24,9 +24,9 @@ Content-Type: application/json
 
 {
     "email": "Chitoge@gmail.com",
-    "passphrase":"12345678aA@"
+    "passphrase":"87654321aA@"
 
-}
+} 
 
 ###
 
@@ -34,7 +34,27 @@ POST {{baseUrl}}/create_rsa_pair/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "user_id": 4,
-    "passphrase": "12345678aA@"
+    "user_id": 10,
+    "passphrase": "87654321aA@"
 }
+### 
+POST {{baseUrl}}/user/update/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "user_id": 10,
+    "name": "Chitoge Kirisaki hihi",
+    "current_passphrase": "87654321aA@",
+    "new_passphrase": "12345678aA@"
+
+}
+
+
+
 ###
+
+12345678aA
+87654321aA
+
+UWMqQghaJXqZZUscXNB78A==
++v2Cyi0fR3mzhO/NQ+gPwtFARZ3sYaxHl6Ha8KrpDQ4=

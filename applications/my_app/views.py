@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 from .models import User, Key
 from .serializers import UserRegistrationSerializer, UserLoginSerializer
-from applications.commons.utils import hash_passphrase, generate_rsa_keys, AESCipher
+from applications.commons.utils import hash_passphrase, generate_rsa_keys, AESCipher,derive_aes_key, encrypt_private_with_passphrase, decrypt_private_with_passphrase
 # import redis
 import json
 from django.conf import settings
@@ -81,10 +81,7 @@ def api_register(request):
     
 
 
-from Crypto.Protocol.KDF import PBKDF2
-def derive_aes_key(passphrase: str, salt: bytes, key_len=32) -> bytes:
-    """Derive a fixed-length AES key from passphrase using PBKDF2."""
-    return PBKDF2(passphrase, salt, dkLen=key_len, count=100_000)
+
 @api_view(['POST'])
 def api_create_RSA_pair(request):
     
@@ -109,12 +106,7 @@ def api_create_RSA_pair(request):
         return Response({"message": "Invalid credentials"}, status=401)
     
     # AES cipher private key
-    passphrase_32bytes = derive_aes_key(input_passphrase, user.passphrase_salt.encode('utf-8'))
-    
-    aes_agent = AESCipher(passphrase_32bytes)
-    
-    
-    private_key_enc = aes_agent.encrypt(private_key_pem)
+    private_key_enc = encrypt_private_with_passphrase(private_key_pem, input_passphrase, user.passphrase_salt.encode('utf-8'))
     public_key_pem_b64 = b64encode(public_key_pem).decode('utf-8')
     # Create Key object
     key = Key.objects.create(
@@ -133,3 +125,119 @@ def api_create_RSA_pair(request):
         "expires_at": key.expires_at.isoformat()
     }, status=201)
     
+
+
+
+@api_view(['POST'])
+def api_update_user(request):
+    """
+    This is a simple view that handles user update.
+    """
+    logger.info("[Update User] Received data: %s", request.data)
+
+    user_id = request.data.get('user_id')
+    name = request.data.get('name')
+    phone_number = request.data.get('phone_number')
+    address = request.data.get('address')
+    birth_day = request.data.get('birth_day')
+
+    user = User.objects.filter(pk=user_id).first()
+    if not user:
+        logger.warning("[Update User] User with id %s does not exist", user_id)
+        return Response({"message": "User does not exist"}, status=404)
+
+    if name:
+        user.name = name
+    if phone_number:
+        user.phone_number = phone_number
+    if address:
+        user.address = address
+    if birth_day:
+        try:
+            user.birth_day = datetime.strptime(birth_day, '%Y-%m-%d').replace(tzinfo=timezone.utc)
+        except ValueError:
+            logger.error("[Update User] Invalid date format for birth_day: %s", birth_day)
+            return Response({"message": "Invalid date format for birth_day"}, status=400)
+    
+    user.save()
+    logger.info("[Update User] User updated successfully: %s", user.email)
+    res = {
+            "message": "User updated successfully",
+            "user_id": user.id,
+            "name": user.name,
+            "email": user.email,
+            "phone_number": user.phone_number,
+            "address": user.address,
+        }
+    
+
+    # handle passphrase change if provided
+    curr_passphrase = request.data.get('current_passphrase')
+    new_passphrase = request.data.get('new_passphrase')
+    if curr_passphrase and new_passphrase:
+        response = handle_passphrase_change(user_id, curr_passphrase, new_passphrase)
+        print (f"[api_update_user] response: {response}")
+        
+        if response!= 1:
+            return response
+        else:
+            res['message'] += " and passphrase changed successfully"
+
+    
+    
+    return Response(res, status=200)
+    
+    
+def handle_passphrase_change(user_id, input_passphrase, new_passphrase):
+    
+    user = User.objects.filter(pk=user_id).first()
+    if not user:
+        logger.warning("[handle_passphrase_change] User with id %s does not exist", user_id)
+        return Response({"message": "User does not exist"}, status=404)
+    
+    # check if passphrase is correct
+    new_passphrase_data = hash_passphrase(input_passphrase, user.passphrase_salt)
+    # print (f"[handle_passphrase_change] new_passphrase_data: {new_passphrase_data}")
+    # print (f"[handle_passphrase_change] user.passphrase_hash: {user.passphrase_hash}")
+    if new_passphrase_data['hash'] != user.passphrase_hash:
+        logger.warning("[handle_passphrase_change] Invalid passphrase for user_id: %s", user_id)
+        return Response({"message": "Invalid credentials"}, status=401)
+    
+    # decrypt all private keys of the user
+    keys = Key.objects.filter(user=user)
+    if not keys:
+        logger.warning("[handle_passphrase_change] No keys found for user_id: %s", user_id)
+        return Response({"message": "No keys found for user"}, status=404)
+    
+    # AES cipher private key
+    
+    new_salt = os.urandom(16)
+    new_salt = b64encode(new_salt).decode('utf-8')  # Base64 encode the new salt | 5h for this shit
+    print (f"[handle_passphrase_change+++++] new_salt: {new_salt}")
+    for key in keys:
+        try:
+            decrypt = decrypt_private_with_passphrase(key.private_key_enc, input_passphrase, user.passphrase_salt.encode('utf-8'))
+            if decrypt is None:
+                logger.error(f"[handle_passphrase_change] Failed to decrypt private key for user_id {user_id}")
+                return Response({"error": "Error decrypting private keys"}, status=400)
+            
+            # Re-encrypt with new passphrase
+            
+            key.private_key_enc  = encrypt_private_with_passphrase(decrypt, new_passphrase, new_salt)
+            key.save()
+        except Exception as e:
+            logger.error("[handle_passphrase_change] Error decrypting private key for user_id %s: %s", user_id, str(e))
+            return Response({"message": "Error decrypting private keys"}, status=500)
+        
+    # Update user's passphrase salt and hash
+    passphrase_data = hash_passphrase(new_passphrase, new_salt)
+    user.passphrase_salt = passphrase_data['salt']
+    user.passphrase_hash = passphrase_data['hash']
+    # print (f"[handle_passphrase_change] user.passphrase_salt: {user.passphrase_salt}")
+    # print (f"[handle_passphrase_change] user.passphrase_hash: {user.passphrase_hash}")
+    
+    
+    
+    user.save()
+
+    return 1
