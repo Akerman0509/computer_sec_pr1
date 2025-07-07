@@ -1,0 +1,34 @@
+[2025-07-06 20:29:23] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-06 20:29:31] INFO [applications.my_app.views] [Login] Received data: {'email': 'ngthequan.relax@gmail.com', 'passphrase': '12345678qQ@'}
+[2025-07-06 20:29:31] INFO [applications.commons.utils] [OTP] Generated OTP for ngthequan.relax@gmail.com
+[2025-07-06 20:29:35] INFO [applications.commons.utils] [OTP] Sent OTP to ngthequan.relax@gmail.com
+[2025-07-06 20:29:54] INFO [applications.my_app.views] [OTP] Successful login for ngthequan.relax@gmail.com
+[2025-07-06 20:42:05] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-06 20:42:08] WARNING [django.request] Not Found: /
+[2025-07-06 20:42:08] WARNING [django.request] Not Found: /favicon.ico
+[2025-07-06 20:42:08] WARNING [django.request] Not Found: /favicon.ico
+[2025-07-06 20:44:14] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-06 20:44:18] WARNING [django.request] Not Found: /my_app/api/login/
+[2025-07-06 20:44:54] INFO [django.utils.autoreload] /home/ngthequan/Documents/Project1/computer_sec_pr1/applications/my_app/urls.py changed, reloading.
+[2025-07-06 20:44:55] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-06 20:44:59] INFO [django.utils.autoreload] /home/ngthequan/Documents/Project1/computer_sec_pr1/applications/my_app/urls.py changed, reloading.
+[2025-07-06 20:44:59] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-06 20:45:05] INFO [applications.my_app.views] [Login] Received data: {'email': 'ngthequan.relax@gmail.com', 'passphrase': '12345678qQ@'}
+[2025-07-06 20:45:05] INFO [applications.commons.utils] [OTP] Generated OTP for ngthequan.relax@gmail.com
+[2025-07-06 20:45:09] INFO [applications.commons.utils] [OTP] Sent OTP to ngthequan.relax@gmail.com
+[2025-07-06 20:45:26] INFO [applications.my_app.views] [OTP] Successful login for ngthequan.relax@gmail.com
+[2025-07-07 17:02:41] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-07 17:07:44] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/urls.py changed, reloading.
+[2025-07-07 17:07:44] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-07 17:08:15] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-07 17:08:15] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-07 17:08:43] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-07 17:08:43] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-07 17:08:50] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-07 17:08:51] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-07 17:09:02] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-07 17:09:02] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-07 17:09:55] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-07 17:09:56] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-07 17:11:07] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-07 17:11:07] INFO [django.utils.autoreload] Watching for file changes with StatReloader

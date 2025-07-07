@@ -7,15 +7,19 @@ from base64 import b64encode,b64decode
 from django.http import HttpResponse
 logger = logging.getLogger(__name__)
 
-from .models import User, Key
-from .serializers import UserRegistrationSerializer, UserLoginSerializer
+from .models import User, Key, OTP
+from .serializers import UserRegistrationSerializer, UserLoginSerializer, OTPVerifySerializer
 from applications.commons.utils import hash_passphrase, generate_rsa_keys, AESCipher,derive_aes_key, encrypt_private_with_passphrase, decrypt_private_with_passphrase
+
 # import redis
 import json
 from django.conf import settings
 from datetime import datetime, timezone
+from django.utils.timezone import now
 import os
-
+from applications.commons.utils import send_otp, generate_otp
+from datetime import timedelta
+from django.middleware.csrf import get_token
 # Initialize Redis connection
 # r = redis.Redis(host='localhost', port=6379, db=1)
 
@@ -50,11 +54,16 @@ def api_login(request):
         logger.warning("[login] Invalid passphrase for user: %s", email)
         return Response({"message": "Invalid credentials"}, status=401)
     
-    return Response({
-            "messsage": "Login successful", 
-            "user_id": user.id,
-            "name": user.name,
-    }, status=200)
+    # Send OTP to user's email
+    otp = generate_otp(email)
+    if not send_otp(email, otp):
+        return Response({"message": "Failed to send OTP"}, status=500)
+
+    # Lưu email vào session
+    request.session['login_email'] = email
+    request.session.set_expiry(300)  # Session expires after 5 minutes
+
+    return Response({"message": "OTP sent to your email", "email": email}, status=200)
     
     
 @api_view(['POST'])
@@ -125,6 +134,84 @@ def api_create_RSA_pair(request):
         "expires_at": key.expires_at.isoformat()
     }, status=201)
     
+
+@api_view(['POST'])
+def api_otp_verify(request):
+    serializer = OTPVerifySerializer(data=request.data)
+    if not serializer.is_valid():
+        logger.error("[OTP] Invalid data: %s", serializer.errors)
+        return Response(serializer.errors, status=400)
+
+    email = serializer.validated_data['email']
+    otp = serializer.validated_data['otp']
+
+    # Check session (comment when testing)
+    if email != request.session.get('login_email'):
+        logger.warning("[OTP] Invalid session for %s", email)
+        return Response({"message": "Invalid session"}, status=401)
+
+    # Check OTP in database
+    latest_otp = OTP.objects.filter(email=email).order_by('-otp_created').first()
+    if not latest_otp:
+        logger.warning("[OTP] No OTP found for %s", email)
+        return Response({"message": "No OTP found"}, status=404)
+
+    if now() > latest_otp.otp_expires:
+        logger.warning("[OTP] Expired OTP for %s", email)
+        return Response({"message": "OTP expired"}, status=401)
+
+
+    # Delete OTP and session
+    del request.session['login_email']
+    latest_otp.delete()
+
+    user = User.objects.get(email=email)
+    logger.info("[OTP] Successful login for %s", email)
+    return Response({
+        "message": "Login successful",
+        "user_id": user.id,
+        "name": user.name
+    }, status=200)
+
+
+@api_view(['POST'])
+def api_otp_verify(request):
+    serializer = OTPVerifySerializer(data=request.data)
+    if not serializer.is_valid():
+        logger.error("[OTP] Invalid data: %s", serializer.errors)
+        return Response(serializer.errors, status=400)
+
+    email = serializer.validated_data['email']
+    otp = serializer.validated_data['otp']
+
+    # Check session (comment when testing)
+    if email != request.session.get('login_email'):
+        logger.warning("[OTP] Invalid session for %s", email)
+        return Response({"message": "Invalid session"}, status=401)
+
+    # Check OTP in database
+    latest_otp = OTP.objects.filter(email=email).order_by('-otp_created').first()
+    if not latest_otp:
+        logger.warning("[OTP] No OTP found for %s", email)
+        return Response({"message": "No OTP found"}, status=404)
+
+    if now() > latest_otp.otp_expires:
+        logger.warning("[OTP] Expired OTP for %s", email)
+        return Response({"message": "OTP expired"}, status=401)
+
+
+    # Delete OTP and session
+    del request.session['login_email']
+    latest_otp.delete()
+
+    user = User.objects.get(email=email)
+    logger.info("[OTP] Successful login for %s", email)
+    return Response({
+        "message": "Login successful",
+        "user_id": user.id,
+        "name": user.name
+    }, status=200)
+
 
 
 

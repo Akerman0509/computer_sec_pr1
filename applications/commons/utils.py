@@ -3,13 +3,21 @@ import re
 import os
 import hashlib
 import json
+import smtplib
+import logging
+import random
+from datetime import timedelta
+from applications.my_app.models import OTP
 from rest_framework import serializers
 from Crypto.Cipher import AES
 from base64 import b64encode,b64decode
 from Crypto.Util.Padding import pad,unpad
 from Crypto.PublicKey import RSA
+from email.mime.text import MIMEText
+from datetime import datetime
+from django.conf import settings
+from django.core.mail import send_mail
 from Crypto.Protocol.KDF import PBKDF2
-
 
 
 # SHA - 256
@@ -109,6 +117,38 @@ def generate_rsa_keys():
     public_key_pem = key.publickey().export_key('PEM')
     return private_key_pem, public_key_pem
 
+
+logging.basicConfig(filename='data/logs/security.log', level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+def send_otp(email, otp):
+    """Gửi OTP qua email."""
+    try:
+        send_mail(
+            subject='Your OTP Code',
+            message=f'Your OTP is: {otp}\nExpires in 5 minutes.',
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[email],
+            fail_silently=False,
+        )
+        logger.info("[OTP] Sent OTP to %s", email)
+        return True
+    except Exception as e:
+        logger.error("[OTP] Failed to send OTP to %s: %s", email, str(e))
+        return False
+
+def generate_otp(email):
+    otp = str(random.randint(100000, 999999))
+    created_at = datetime.now()
+    expires_at = created_at + timedelta(minutes=5)
+    OTP.objects.create(
+        email=email,
+        otp=otp,
+        otp_created=created_at,
+        otp_expires=expires_at,
+    )
+    logger.info("[OTP] Generated OTP for %s", email)
+    return otp
 
 def derive_aes_key(passphrase: str, salt: bytes, key_len=32) -> bytes:
     """Derive a fixed-length AES key from passphrase using PBKDF2."""

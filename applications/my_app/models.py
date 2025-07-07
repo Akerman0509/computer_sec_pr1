@@ -79,3 +79,10 @@ class Key(models.Model):
             return 0
         return (self.expires_at - timezone.now()).days
     
+
+#OTP
+class OTP(models.Model):
+    email = models.EmailField()
+    otp = models.CharField(max_length=6)
+    otp_created = models.DateTimeField()
+    otp_expires = models.DateTimeField()
