@@ -65,10 +65,31 @@ Content-Type: application/json
 ### Verify OTP
 POST http://127.0.0.1:8000/my_app/api/otp/verify/
 Content-Type: application/json
-Cookie: sessionid=it3o62w34m0bcxvhtz0qfdt3a8kyaakk
+Cookie: sessionid=56xv2mcpkhhukutwx8pq6zl4ahdv0b11
 
 {
     "email": "ngthequan.relax@gmail.com",
-    "otp": "114795"
+    "otp": "214421"
 }
+
+#### Create RSA Pair
+POST {{baseUrl}}/create_rsa_pair/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "user_id": 5,
+    "passphrase": "12345678qQ@"
+}
+
+### Create QR
+POST http://127.0.0.1:8000/my_app/api/generate_qr/
+Content-Type: application/json
+
+{
+    "user_id": 5,
+    "passphrase": "12345678qQ@"
+}
+
+
+
 

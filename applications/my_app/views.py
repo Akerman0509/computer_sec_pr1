@@ -15,11 +15,21 @@ from applications.commons.utils import hash_passphrase, generate_rsa_keys, AESCi
 import json
 from django.conf import settings
 from datetime import datetime, timezone
+from django.utils import timezone  
 from django.utils.timezone import now
 import os
 from applications.commons.utils import send_otp, generate_otp
 from datetime import timedelta
 from django.middleware.csrf import get_token
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+import qrcode
+import io
+import base64
+from django.core.files.base import ContentFile
+from django.core.files.storage import FileSystemStorage
+from PIL import Image
+from pyzbar.pyzbar import decode
 # Initialize Redis connection
 # r = redis.Redis(host='localhost', port=6379, db=1)
 
@@ -146,9 +156,9 @@ def api_otp_verify(request):
     otp = serializer.validated_data['otp']
 
     # Check session (comment when testing)
-    if email != request.session.get('login_email'):
-        logger.warning("[OTP] Invalid session for %s", email)
-        return Response({"message": "Invalid session"}, status=401)
+    # if email != request.session.get('login_email'):
+    #     logger.warning("[OTP] Invalid session for %s", email)
+    #     return Response({"message": "Invalid session"}, status=401)
 
     # Check OTP in database
     latest_otp = OTP.objects.filter(email=email).order_by('-otp_created').first()
@@ -185,9 +195,9 @@ def api_otp_verify(request):
     otp = serializer.validated_data['otp']
 
     # Check session (comment when testing)
-    if email != request.session.get('login_email'):
-        logger.warning("[OTP] Invalid session for %s", email)
-        return Response({"message": "Invalid session"}, status=401)
+    # if email != request.session.get('login_email'):
+    #     logger.warning("[OTP] Invalid session for %s", email)
+    #     return Response({"message": "Invalid session"}, status=401)
 
     # Check OTP in database
     latest_otp = OTP.objects.filter(email=email).order_by('-otp_created').first()
@@ -328,3 +338,96 @@ def handle_passphrase_change(user_id, input_passphrase, new_passphrase):
     user.save()
 
     return 1
+
+
+@api_view(['POST'])
+#@login_required
+def generate_qr_code(request):
+    user_id = request.data.get("user_id")
+    input_passphrase = request.data.get("passphrase")
+
+    if not user_id or not input_passphrase:
+        return Response({"message": "Missing user_id or passphrase"}, status=400)
+
+    user = User.objects.filter(id=user_id).first()
+    if not user:
+        return Response({"message": "User not found"}, status=404)
+
+    passphrase_data = hash_passphrase(input_passphrase, user.passphrase_salt)
+    if passphrase_data['hash'] != user.passphrase_hash:
+        return Response({"message": "Invalid passphrase"}, status=401)
+
+    key = Key.objects.filter(user=user, expires_at__gt=timezone.now()).order_by('-created_at').first()
+
+    if not key:
+        private_key_pem, public_key_pem = generate_rsa_keys()
+        public_key_b64 = base64.b64encode(public_key_pem).decode('utf-8')
+        private_key_enc = encrypt_private_with_passphrase(private_key_pem, input_passphrase, user.passphrase_salt.encode('utf-8'))
+
+        key = Key.objects.create(
+            user=user,
+            public_key=public_key_b64,
+            private_key_enc=private_key_enc,
+            expires_at=timezone.now() + timedelta(days=90)
+        )
+
+    qr_data = json.dumps({
+        "email": user.email,
+        "creation_date": key.created_at.strftime("%Y-%m-%d"),
+        "public_key": key.public_key
+    })
+
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4
+    )
+    qr.add_data(qr_data)
+    qr.make(fit=True)
+    img = qr.make_image(fill_color="black", back_color="white")
+
+    img_byte_arr = io.BytesIO()
+    img.save(img_byte_arr, format='PNG')
+    img_file = ContentFile(img_byte_arr.getvalue(), name=f"qr_{user.email}.png")
+
+    key.qr_code = img_file
+    key.save()
+
+    return Response({
+        "message": "QR code generated successfully",
+        "qr_code_url": key.qr_code.url
+    }, status=200)
+
+@api_view(['POST'])
+# @login_required
+def read_qr_code(request):
+    if request.method == 'POST' and request.FILES.get('qr_image'):
+        qr_image = request.FILES['qr_image']
+        fs = FileSystemStorage(location='applications/data/uploaded_qr/')
+        filename = fs.save(qr_image.name, qr_image)
+        file_path = fs.path(filename)
+
+        image = Image.open(file_path)
+        decoded_objects = decode(image)
+        qr_data = {}
+        message = "Failed to read QR code."
+
+        if decoded_objects:
+            qr_content = decoded_objects[0].data.decode('utf-8')
+            try:
+                qr_data = json.loads(qr_content)
+                message = f"QR code read successfully for {qr_data['email']}."
+                logger.info(f"QR code read successfully for {qr_data['email']}")
+            except json.JSONDecodeError:
+                message = "Invalid QR code format."
+                logger.error("Invalid QR code format")
+
+        return Response({
+            "message": message,
+            "qr_data": qr_data
+        })
+
+    return Response({
+        "message": "No file uploaded or incorrect key name. Use 'qr_image'."
+    }, status=400)
