@@ -15,14 +15,16 @@ urlpatterns = [
     # update user profile
     path('user/update/', views.api_update_user, name='update_user'),
 
-    # create RSA key pair
-    path ('create_rsa_pair/', views.api_create_RSA_pair, name='create_rsa_pair'),
+    # RSA key pair
+    path('create_rsa_pair/', views.api_create_RSA_pair, name='create_rsa_pair'),
 
     path ('send_encrypted_file/', views.api_send_encrypted_file, name='send_encrypted_file'),
     path ('decrypt_file/', views.api_decrypt_file, name='send_encrypted_file'),
     
+    # QR Code
+    path('api/generate_qr/', views.generate_qr_code, name='generate_qr_code'),
+    path('api/scan_qr/', views.read_qr_code, name='read_qr_code'),
+
 ]
-
-
 
 

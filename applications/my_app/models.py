@@ -63,7 +63,7 @@ class Key(models.Model):
     private_key_enc = models.TextField() # JSON-encoded {iv, ciphertext}, both base64
     created_at = models.DateTimeField(default=timezone.now)
     expires_at = models.DateTimeField(default=get_default_expiration)
-    
+    qr_code = models.ImageField(upload_to='qr_codes/', blank=True, null=True)
     
     def get_default_expiration(self):
         return timezone.now() + datetime.timedelta(days=90)
@@ -86,3 +86,4 @@ class OTP(models.Model):
     otp = models.CharField(max_length=6)
     otp_created = models.DateTimeField()
     otp_expires = models.DateTimeField()
+

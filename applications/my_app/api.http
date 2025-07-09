@@ -86,3 +86,13 @@ Content-Type: application/json
     "file_path": "/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/img1.jpg.enc"
 
 }
+
+
+### Create QR
+POST http://127.0.0.1:8000/my_app/api/generate_qr/
+Content-Type: application/json
+
+{
+    "user_id": 5,
+    "passphrase": "12345678qQ@"
+}
