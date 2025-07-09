@@ -56,8 +56,6 @@ def get_default_expiration():
     """Returns the current time + 90 days."""
     return timezone.now() + datetime.timedelta(days=90)
 class Key(models.Model):
-    
-    
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='keys')
     public_key = models.TextField()  # Base64 encoded
     private_key_enc = models.TextField() # JSON-encoded {iv, ciphertext}, both base64

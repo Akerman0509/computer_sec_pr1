@@ -30,6 +30,7 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import FileSystemStorage
 from PIL import Image
 from pyzbar.pyzbar import decode
+from django.http import FileResponse
 # Initialize Redis connection
 # r = redis.Redis(host='localhost', port=6379, db=1)
 
@@ -516,3 +517,59 @@ def read_qr_code(request):
     return Response({
         "message": "No file uploaded or incorrect key name. Use 'qr_image'."
     }, status=400)
+    
+    
+    
+# 14
+# find public key by email
+
+# Hiển thị kết quả: email, QR code, ngày tạo, thời hạn còn lại/
+@api_view(['GET'])
+def api_public_key_by_email(request, email):
+    """
+    This view retrieves the public key for a given email.
+    """
+    logger.info("[Get Public Key] Received email: %s", email)
+    print (f"[Get Public Key] Received email: {email}")
+
+    user = User.objects.filter(email=email).first()
+    if not user:
+        logger.warning("[Get Public Key] User with email %s does not exist", email)
+        return Response({"message": "User does not exist"}, status=404)
+
+
+
+    keys = Key.objects.filter(user=user.id).order_by('-created_at')
+    if not keys:
+        logger.warning("[Get Public Key] User doesnt have any publickey %s", user.email)
+        return Response({"message": "User doesnt have any publickey"}, status=404)
+
+    res = {}
+    counter = 1
+    for key in keys:
+        status = "valid"
+        if key.is_expired():
+            logger.info("[Get Public Key] Key for user %s is expired", user.email)
+            status = "expired"
+        res_key = {
+            "public_key": key.public_key,
+            "created_at": key.created_at.strftime("%d/%m/%Y %H:%M"),
+            "expires_at": key.created_at.strftime("%d/%m/%Y %H:%M"),
+            "status":status,
+            "expiration_days": key.get_expiration_days()
+        }
+        res[f"public_key_{counter}"] = res_key
+        counter+=1
+
+    return Response(res, status=200)
+
+
+
+@api_view(['POST'])
+def serve_jpg(request):
+    file_path = request.data.get('file_path')
+    
+    print(f"[serve_jpg] Received file_path: {file_path}")
+    if os.path.exists(file_path):
+        return FileResponse(open(file_path, 'rb'), content_type='image/jpeg')
+    return Response({"error": "get image fail"}, status=404)

@@ -32,3 +32,207 @@
 [2025-07-07 17:09:56] INFO [django.utils.autoreload] Watching for file changes with StatReloader
 [2025-07-07 17:11:07] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
 [2025-07-07 17:11:07] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:17:57] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:17:59] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:18:00] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:18:27] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:18:27] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:18:32] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:18:32] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:18:35] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:18:36] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:18:40] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:18:40] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:18:50] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:18:50] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:19:02] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:19:03] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:19:16] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:19:16] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:19:34] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:19:34] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:19:40] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:19:41] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:20:02] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:20:03] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:20:22] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:20:22] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:20:25] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:20:25] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:20:36] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:20:37] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:20:52] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:20:52] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:21:04] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:21:04] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:21:26] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:21:27] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:21:33] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/models.py changed, reloading.
+[2025-07-09 16:21:33] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:21:54] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:21:54] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:22:06] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:22:07] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:22:09] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:22:09] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:22:18] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:22:18] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:22:45] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:22:46] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:22:57] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:22:58] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:23:07] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:23:07] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:23:16] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:23:16] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:23:29] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:23:30] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:23:41] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:23:41] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:24:09] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:24:09] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:24:26] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:24:26] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:24:35] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:24:36] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:24:39] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:24:39] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:24:42] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:24:43] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:24:46] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:24:46] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:27:14] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:27:45] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:32:00] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:38:30] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:38:47] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:42:41] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/urls.py changed, reloading.
+[2025-07-09 16:42:42] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:42:45] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/urls.py changed, reloading.
+[2025-07-09 16:42:45] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:42:57] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/urls.py changed, reloading.
+[2025-07-09 16:42:57] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:42:59] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/urls.py changed, reloading.
+[2025-07-09 16:43:00] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:43:34] INFO [applications.my_app.views] [Register] Received data: {'name': 'akerman0509', 'birth_day': '2004-01-01', 'email': 'Chitoge@gmail.com', 'address': '123 Main St, Springfield', 'phone_number': '123-456-7890', 'passphrase': '12345678aA@'}
+[2025-07-09 16:43:34] INFO [applications.my_app.views] [Register] User registered successfully: Chitoge@gmail.com
+[2025-07-09 16:44:53] INFO [applications.my_app.views] [Get Public Key] Received email: phhoangquan@gmail.com
+[2025-07-09 16:44:53] WARNING [applications.my_app.views] [Get Public Key] User doesnt have any publickey phhoangquan@gmail.com
+[2025-07-09 16:44:53] WARNING [django.request] Not Found: /api/public_key_by_email/phhoangquan@gmail.com/
+[2025-07-09 16:45:40] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:45:41] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:45:44] INFO [applications.my_app.views] [Get Public Key] Received email: phhoangquan@gmail.com
+[2025-07-09 16:45:45] WARNING [applications.my_app.views] [Get Public Key] User doesnt have any publickey phhoangquan@gmail.com
+[2025-07-09 16:45:45] WARNING [django.request] Not Found: /api/public_key_by_email/phhoangquan@gmail.com/
+[2025-07-09 16:46:04] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:46:05] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:46:06] INFO [applications.my_app.views] [Get Public Key] Received email: phhoangquan@gmail.com
+[2025-07-09 16:46:06] WARNING [applications.my_app.views] [Get Public Key] User doesnt have any publickey phhoangquan@gmail.com
+[2025-07-09 16:46:06] WARNING [django.request] Not Found: /api/public_key_by_email/phhoangquan@gmail.com/
+[2025-07-09 16:46:14] INFO [applications.my_app.views] [Get Public Key] Received email: phhoangquan@gmail.com
+[2025-07-09 16:46:14] WARNING [applications.my_app.views] [Get Public Key] User doesnt have any publickey phhoangquan@gmail.com
+[2025-07-09 16:46:14] WARNING [django.request] Not Found: /api/public_key_by_email/phhoangquan@gmail.com/
+[2025-07-09 16:47:22] INFO [applications.my_app.views] [Get Public Key] Received email: phhoangquan@gmail.com
+[2025-07-09 16:47:22] WARNING [applications.my_app.views] [Get Public Key] User doesnt have any publickey phhoangquan@gmail.com
+[2025-07-09 16:47:22] WARNING [django.request] Not Found: /api/public_key_by_email/phhoangquan@gmail.com/
+[2025-07-09 16:47:23] INFO [applications.my_app.views] [Get Public Key] Received email: phhoangquan@gmail.com
+[2025-07-09 16:47:23] WARNING [applications.my_app.views] [Get Public Key] User doesnt have any publickey phhoangquan@gmail.com
+[2025-07-09 16:47:23] WARNING [django.request] Not Found: /api/public_key_by_email/phhoangquan@gmail.com/
+[2025-07-09 16:47:24] INFO [applications.my_app.views] [Get Public Key] Received email: phhoangquan@gmail.com
+[2025-07-09 16:47:24] WARNING [applications.my_app.views] [Get Public Key] User doesnt have any publickey phhoangquan@gmail.com
+[2025-07-09 16:47:24] WARNING [django.request] Not Found: /api/public_key_by_email/phhoangquan@gmail.com/
+[2025-07-09 16:47:25] INFO [applications.my_app.views] [Get Public Key] Received email: phhoangquan@gmail.com
+[2025-07-09 16:47:25] WARNING [applications.my_app.views] [Get Public Key] User doesnt have any publickey phhoangquan@gmail.com
+[2025-07-09 16:47:25] WARNING [django.request] Not Found: /api/public_key_by_email/phhoangquan@gmail.com/
+[2025-07-09 16:49:47] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:49:48] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:49:50] INFO [applications.my_app.views] [Get Public Key] Received email: phhoangquan@gmail.com
+[2025-07-09 16:49:50] WARNING [applications.my_app.views] [Get Public Key] User doesnt have any publickey phhoangquan@gmail.com
+[2025-07-09 16:49:50] WARNING [django.request] Not Found: /api/public_key_by_email/phhoangquan@gmail.com/
+[2025-07-09 16:49:51] INFO [applications.my_app.views] [Get Public Key] Received email: phhoangquan@gmail.com
+[2025-07-09 16:49:51] WARNING [applications.my_app.views] [Get Public Key] User doesnt have any publickey phhoangquan@gmail.com
+[2025-07-09 16:49:51] WARNING [django.request] Not Found: /api/public_key_by_email/phhoangquan@gmail.com/
+[2025-07-09 16:50:00] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:50:00] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:50:36] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:50:37] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:50:41] INFO [applications.my_app.views] [Get Public Key] Received email: phhoangquan@gmail.com
+[2025-07-09 16:52:02] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:52:03] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:52:09] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:52:09] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:52:11] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:52:11] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:52:12] INFO [applications.my_app.views] [Get Public Key] Received email: phhoangquan@gmail.com
+[2025-07-09 16:52:21] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:52:22] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:52:59] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:52:59] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:53:12] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 16:53:13] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:53:15] INFO [applications.my_app.views] [Get Public Key] Received email: phhoangquan@gmail.com
+[2025-07-09 16:54:02] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/admin.py changed, reloading.
+[2025-07-09 16:54:02] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:54:08] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/admin.py changed, reloading.
+[2025-07-09 16:54:08] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:54:37] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/admin.py changed, reloading.
+[2025-07-09 16:54:37] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:54:54] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/admin.py changed, reloading.
+[2025-07-09 16:54:55] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:56:27] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/models.py changed, reloading.
+[2025-07-09 16:56:27] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:56:33] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/admin.py changed, reloading.
+[2025-07-09 16:56:34] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 16:56:35] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/admin.py changed, reloading.
+[2025-07-09 16:56:35] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:01:09] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 17:01:09] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:01:15] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 17:01:15] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:01:23] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 17:01:23] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:01:28] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 17:01:29] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:01:39] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 17:01:40] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:01:49] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 17:01:49] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:02:05] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 17:02:05] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:02:08] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 17:02:08] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:02:16] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 17:02:17] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:02:19] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 17:02:20] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:02:24] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 17:02:24] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:02:33] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/urls.py changed, reloading.
+[2025-07-09 17:02:33] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:02:36] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/urls.py changed, reloading.
+[2025-07-09 17:02:37] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:02:39] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/urls.py changed, reloading.
+[2025-07-09 17:02:39] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:02:49] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/urls.py changed, reloading.
+[2025-07-09 17:02:49] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:02:55] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/urls.py changed, reloading.
+[2025-07-09 17:02:55] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:02:57] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/urls.py changed, reloading.
+[2025-07-09 17:02:58] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:03:02] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/urls.py changed, reloading.
+[2025-07-09 17:03:03] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:03:04] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/urls.py changed, reloading.
+[2025-07-09 17:03:04] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:03:56] INFO [applications.my_app.views] [Decrypt File] Received data: {'file_path': '/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/img1.jpg'}
+[2025-07-09 17:03:56] WARNING [applications.my_app.views] [handle_passphrase_change] User with id None does not exist
+[2025-07-09 17:03:56] WARNING [django.request] Not Found: /api/decrypt_file/
+[2025-07-09 17:04:02] INFO [applications.my_app.views] [Decrypt File] Received data: {'file_path': '/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/img1.jpg'}
+[2025-07-09 17:04:02] WARNING [applications.my_app.views] [handle_passphrase_change] User with id None does not exist
+[2025-07-09 17:04:02] WARNING [django.request] Not Found: /api/decrypt_file/
+[2025-07-09 17:04:36] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 17:04:36] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-09 17:04:38] INFO [applications.my_app.views] [Decrypt File] Received data: {'file_path': '/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/img1.jpg'}
+[2025-07-09 17:04:38] WARNING [applications.my_app.views] [handle_passphrase_change] User with id None does not exist
+[2025-07-09 17:04:38] WARNING [django.request] Not Found: /api/decrypt_file/
+[2025-07-09 17:06:29] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-09 17:06:29] INFO [django.utils.autoreload] Watching for file changes with StatReloader

@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 from django.contrib.auth import views as auth_views
 
@@ -24,6 +24,18 @@ urlpatterns = [
     # QR Code
     path('api/generate_qr/', views.generate_qr_code, name='generate_qr_code'),
     path('api/scan_qr/', views.read_qr_code, name='read_qr_code'),
+    
+    
+    # search
+    re_path(r'^public_key_by_email/(?P<email>[^/]+)/$', views.api_public_key_by_email, name='public_key_by_email'),
+    
+    
+    
+    
+    
+    path('serve_jpg/', views.serve_jpg, name='serve_jpg'),
+
+    
 
 ]
 

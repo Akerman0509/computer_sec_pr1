@@ -8,7 +8,7 @@ POST {{baseUrl}}/register/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Chitoge Kirisaki",
+    "name": "akerman0509",
     "birth_day": "2004-01-01",
     "email": "Chitoge@gmail.com",
     "address": "123 Main St, Springfield",
@@ -44,7 +44,7 @@ POST {{baseUrl}}/create_rsa_pair/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "user_id": 15,
+    "user_id": 14,
     "passphrase": "12345678aA@"
 }
 ### 
@@ -95,4 +95,17 @@ Content-Type: application/json
 {
     "user_id": 5,
     "passphrase": "12345678qQ@"
+}
+
+
+### search public key
+GET {{baseUrl}}/public_key_by_email/phhoangquan@gmail.com HTTP/1.1
+
+
+###
+POST {{baseUrl}}/serve_jpg/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "file_path": "/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/img1.jpg"
 }
