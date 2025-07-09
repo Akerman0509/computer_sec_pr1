@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 from .models import User, Key, OTP
 from .serializers import UserRegistrationSerializer, UserLoginSerializer, OTPVerifySerializer
-from applications.commons.utils import hash_passphrase, generate_rsa_keys, AESCipher,derive_aes_key, encrypt_private_with_passphrase, decrypt_private_with_passphrase
+from applications.commons.utils import hash_passphrase, generate_rsa_keys, AESCipher,derive_aes_key, encrypt_private_with_passphrase, decrypt_private_with_passphrase,encrypt_file_with_metadata, decrypt_file
 
 # import redis
 import json
@@ -117,10 +117,18 @@ def api_create_RSA_pair(request):
     # AES cipher private key
     private_key_enc = encrypt_private_with_passphrase(private_key_pem, input_passphrase, user.passphrase_salt.encode('utf-8'))
     public_key_pem_b64 = b64encode(public_key_pem).decode('utf-8')
+    
+    # change public_key_pem to json, add created_at and email
+    public_key_pem_b64_final = json.dumps({
+        "public_key": public_key_pem_b64,
+        "created_at": now().isoformat(),
+        "email": user.email
+    })
+    
     # Create Key object
     key = Key.objects.create(
         user=user,
-        public_key=public_key_pem_b64,
+        public_key=public_key_pem_b64_final,
         private_key_enc=private_key_enc
     )
     key.save()
@@ -130,7 +138,7 @@ def api_create_RSA_pair(request):
         "message": "RSA key pair created successfully",
         "key_id": key.id,
         "user_id": user.id,
-        "public_key": public_key_pem_b64,
+        "public_key": public_key_pem_b64_final,
         "expires_at": key.expires_at.isoformat()
     }, status=201)
     
@@ -146,9 +154,9 @@ def api_otp_verify(request):
     otp = serializer.validated_data['otp']
 
     # Check session (comment when testing)
-    if email != request.session.get('login_email'):
-        logger.warning("[OTP] Invalid session for %s", email)
-        return Response({"message": "Invalid session"}, status=401)
+    # if email != request.session.get('login_email'):
+    #     logger.warning("[OTP] Invalid session for %s", email)
+    #     return Response({"message": "Invalid session"}, status=401)
 
     # Check OTP in database
     latest_otp = OTP.objects.filter(email=email).order_by('-otp_created').first()
@@ -276,7 +284,6 @@ def api_update_user(request):
     
     
 def handle_passphrase_change(user_id, input_passphrase, new_passphrase):
-    
     user = User.objects.filter(pk=user_id).first()
     if not user:
         logger.warning("[handle_passphrase_change] User with id %s does not exist", user_id)
@@ -284,8 +291,6 @@ def handle_passphrase_change(user_id, input_passphrase, new_passphrase):
     
     # check if passphrase is correct
     new_passphrase_data = hash_passphrase(input_passphrase, user.passphrase_salt)
-    # print (f"[handle_passphrase_change] new_passphrase_data: {new_passphrase_data}")
-    # print (f"[handle_passphrase_change] user.passphrase_hash: {user.passphrase_hash}")
     if new_passphrase_data['hash'] != user.passphrase_hash:
         logger.warning("[handle_passphrase_change] Invalid passphrase for user_id: %s", user_id)
         return Response({"message": "Invalid credentials"}, status=401)
@@ -297,10 +302,9 @@ def handle_passphrase_change(user_id, input_passphrase, new_passphrase):
         return Response({"message": "No keys found for user"}, status=404)
     
     # AES cipher private key
-    
     new_salt = os.urandom(16)
     new_salt = b64encode(new_salt).decode('utf-8')  # Base64 encode the new salt | 5h for this shit
-    print (f"[handle_passphrase_change+++++] new_salt: {new_salt}")
+    # print (f"[handle_passphrase_change+++++] new_salt: {new_salt}")
     for key in keys:
         try:
             decrypt = decrypt_private_with_passphrase(key.private_key_enc, input_passphrase, user.passphrase_salt.encode('utf-8'))
@@ -320,11 +324,92 @@ def handle_passphrase_change(user_id, input_passphrase, new_passphrase):
     passphrase_data = hash_passphrase(new_passphrase, new_salt)
     user.passphrase_salt = passphrase_data['salt']
     user.passphrase_hash = passphrase_data['hash']
-    # print (f"[handle_passphrase_change] user.passphrase_salt: {user.passphrase_salt}")
-    # print (f"[handle_passphrase_change] user.passphrase_hash: {user.passphrase_hash}")
-    
-    
-    
     user.save()
 
     return 1
+
+
+@api_view(['POST'])
+def api_send_encrypted_file(request):
+    """
+    This view handles sending an encrypted file to a recipient.
+    """
+    logger.info("[Send Encrypted File] Received data: %s", request.data)
+
+    file_path = request.data.get('file_path')
+    sender_email = request.data.get('sender_email')
+    recipient_email = request.data.get('recipient_email')
+    output_path = request.data.get('output_path', None)
+    mode = request.data.get('mode', "combined")
+
+    if not file_path or not os.path.exists(file_path):
+        logger.error("[Send Encrypted File] File does not exist: %s", file_path)
+        return Response({"message": "File does not exist"}, status=404)
+
+    if not sender_email or not recipient_email:
+        logger.error("[Send Encrypted File] Sender or recipient email is missing")
+        return Response({"message": "Sender or recipient email is missing"}, status=400)
+    
+    print (f"[Send Encrypted File] sender_email: {sender_email}, recipient_email: {recipient_email}, output_path: {output_path}, mode: {mode}, file_path: {file_path}")
+
+    try:
+        response = encrypt_file_with_metadata(file_path, sender_email, recipient_email, output_path=output_path, mode = mode)
+        print (f"[Send Encrypted File] Response from encrypt_file_with_metadata: {response}")
+        if response is None:
+            return Response({"message": "Error encrypting file"}, status=500)
+        
+        return response
+    
+    except Exception as e:
+        logger.exception("[Decrypt File] Unexpected error occurred")
+        return Response(
+            {"detail": "An error occurred while decrypting the file.", "error": str(e)},
+            status=500
+    )
+    
+@api_view(['POST'])
+def api_decrypt_file(request):
+    """
+    This view handles decrypting an encrypted file.
+    """
+    logger.info("[Decrypt File] Received data: %s", request.data)
+
+    encrypted_file_path = request.data.get('file_path')
+    output_path = request.data.get('output_file_path', None)
+    input_passphrase = request.data.get('passphrase', None)
+    user_id = request.data.get('user_id', None)
+    
+    # check passphrase
+    user = User.objects.filter(pk=user_id).first()
+    if not user:
+        logger.warning("[handle_passphrase_change] User with id %s does not exist", user_id)
+        return Response({"message": "User does not exist"}, status=404)
+    
+    # check if passphrase is correct
+    new_passphrase_data = hash_passphrase(input_passphrase, user.passphrase_salt)
+    if new_passphrase_data['hash'] != user.passphrase_hash:
+        logger.warning("[handle_passphrase_change] Invalid passphrase for user_id: %s", user_id)
+        return Response({"message": "Invalid credentials"}, status=401)
+    
+    
+    
+    print (f"[Decrypt File] encrypted_file_path: {encrypted_file_path}, output_path: {output_path}")
+    try :
+        if not encrypted_file_path or not os.path.exists(encrypted_file_path):
+            logger.error("[Decrypt File] Encrypted file does not exist: %s", encrypted_file_path)
+            return Response({"message": "Encrypted file does not exist"}, status=404)
+
+        response = decrypt_file(input_passphrase=input_passphrase ,f_input_enc=encrypted_file_path, f_output=output_path)
+        
+        if response is None:
+            return Response({"message": "Error decrypting file"}, status=500)
+        else:
+            logger.info("[Decrypt File] File decrypted successfully")
+            return response
+        
+    except Exception as e:
+        logger.exception("[Decrypt File] Unexpected error occurred")
+        return Response(
+            {"detail": "An error occurred while decrypting the file.", "error": str(e)},
+            status=500
+        )
