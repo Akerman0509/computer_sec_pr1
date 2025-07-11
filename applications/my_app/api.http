@@ -98,6 +98,17 @@ Content-Type: application/json
     "passphrase": "12345678aA@"
 }
 
+### Test read QR code 
+POST http://127.0.0.1:8000/api/scan_qr/
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="qr_image"; filename="qr_phhoangquangmail.com.png"
+Content-Type: image/png
+
+< ./applications/data/qr_codes/qr_phhoangquangmail.com.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
 
 ### search public key
 GET {{baseUrl}}/public_key_by_email/phhoangquan@gmail.com HTTP/1.1
