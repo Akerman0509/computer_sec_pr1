@@ -460,6 +460,7 @@ def generate_qr_code(request):
 
 @api_view(['POST'])
 # @login_required
+@permission_classes([AllowAny])
 def read_qr_code(request):
     if request.method == 'POST' and request.FILES.get('qr_image'):
         qr_image = request.FILES['qr_image']
