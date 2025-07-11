@@ -89,12 +89,12 @@ Content-Type: application/json
 
 
 ### Create QR
-POST http://127.0.0.1:8000/my_app/api/generate_qr/
+POST {{baseUrl}}/api/generate_qr/
 Content-Type: application/json
 
 {
-    "user_id": 5,
-    "passphrase": "12345678qQ@"
+    "user_id": 14,
+    "passphrase": "12345678aA@"
 }
 
 

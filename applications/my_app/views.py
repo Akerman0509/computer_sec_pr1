@@ -31,8 +31,11 @@ from django.core.files.storage import FileSystemStorage
 from PIL import Image
 from pyzbar.pyzbar import decode
 from django.http import FileResponse
+
 # Initialize Redis connection
-# r = redis.Redis(host='localhost', port=6379, db=1)
+import redis
+r = redis.Redis(host='localhost', port=6379, db=1)
+
 
 
 @api_view(['POST'])
