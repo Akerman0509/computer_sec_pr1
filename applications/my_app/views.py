@@ -2,15 +2,15 @@ from statistics import quantiles
 
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.permissions import AllowAny
 import logging
 from base64 import b64encode,b64decode
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 logger = logging.getLogger(__name__)
-
-from .models import User, Key, OTP
+from .models import User, Key, OTP, DigitalSignature, CustomToken
 from .serializers import UserRegistrationSerializer, UserLoginSerializer, OTPVerifySerializer
-from applications.commons.utils import hash_passphrase, generate_rsa_keys, AESCipher,derive_aes_key, encrypt_private_with_passphrase, decrypt_private_with_passphrase,encrypt_file_with_metadata, decrypt_file
-
+from applications.commons.utils import hash_passphrase, generate_rsa_keys, AESCipher,derive_aes_key, encrypt_private_with_passphrase, decrypt_private_with_passphrase,encrypt_file_with_metadata, decrypt_file, calculate_file_hash, sign_file_hash, create_signature_file, verify_signature_with_public_key
 # import redis
 import json
 from django.conf import settings
@@ -22,7 +22,7 @@ from applications.commons.utils import send_otp, generate_otp
 from datetime import timedelta
 from django.middleware.csrf import get_token
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 import qrcode
 import io
 import base64
@@ -31,7 +31,11 @@ from django.core.files.storage import FileSystemStorage
 from PIL import Image
 from pyzbar.pyzbar import decode
 from django.http import FileResponse
-
+from django.contrib import messages
+from rest_framework.authtoken.models import Token
+import secrets
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.backends import default_backend
 # Initialize Redis connection
 import redis
 r = redis.Redis(host='localhost', port=6379, db=1)
@@ -39,6 +43,7 @@ r = redis.Redis(host='localhost', port=6379, db=1)
 
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def api_login(request):
     """
     This is a simple view that handles user login.
@@ -155,9 +160,11 @@ def api_create_RSA_pair(request):
         "public_key": public_key_pem_b64_final,
         "expires_at": key.expires_at.isoformat()
     }, status=201)
-    
+
+
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def api_otp_verify(request):
     serializer = OTPVerifySerializer(data=request.data)
     if not serializer.is_valid():
@@ -187,46 +194,9 @@ def api_otp_verify(request):
     del request.session['login_email']
     latest_otp.delete()
 
-    user = User.objects.get(email=email)
-    logger.info("[OTP] Successful login for %s", email)
-    return Response({
-        "message": "Login successful",
-        "user_id": user.id,
-        "name": user.name
-    }, status=200)
-
-
-@api_view(['POST'])
-def api_otp_verify(request):
-    serializer = OTPVerifySerializer(data=request.data)
-    if not serializer.is_valid():
-        logger.error("[OTP] Invalid data: %s", serializer.errors)
-        return Response(serializer.errors, status=400)
-
-    email = serializer.validated_data['email']
-    otp = serializer.validated_data['otp']
-
-    # Check session (comment when testing)
-    # if email != request.session.get('login_email'):
-    #     logger.warning("[OTP] Invalid session for %s", email)
-    #     return Response({"message": "Invalid session"}, status=401)
-
-    # Check OTP in database
-    latest_otp = OTP.objects.filter(email=email).order_by('-otp_created').first()
-    if not latest_otp:
-        logger.warning("[OTP] No OTP found for %s", email)
-        return Response({"message": "No OTP found"}, status=404)
-
-    if now() > latest_otp.otp_expires:
-        logger.warning("[OTP] Expired OTP for %s", email)
-        return Response({"message": "OTP expired"}, status=401)
-
-
-    # Delete OTP and session
-    del request.session['login_email']
-    latest_otp.delete()
-
-    user = User.objects.get(email=email)
+    user = User.objects.filter(email=email).first()
+    if not user:
+        return Response({"message": "User not found"}, status=404)
     logger.info("[OTP] Successful login for %s", email)
     return Response({
         "message": "Login successful",
@@ -576,3 +546,242 @@ def serve_jpg(request):
     if os.path.exists(file_path):
         return FileResponse(open(file_path, 'rb'), content_type='image/jpeg')
     return Response({"error": "get image fail"}, status=404)
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def sign_file(request):
+    """API ký số tập tin"""
+    try:
+        if 'file' not in request.FILES:
+            logging.info(f"User: {getattr(request.user, 'email', 'AnonymousUser')} - Action: Sign file - Status: Failed - Error: No file provided")
+            return Response({"error": "Please provide file"}, status=status.HTTP_400_BAD_REQUEST)
+
+        uploaded_file = request.FILES['file']
+        passphrase = request.data.get('passphrase')
+
+        if not passphrase:
+            logging.info(f"User: {getattr(request.user, 'email', 'AnonymousUser')} - Action: Sign file - Status: Failed - Error: No passphrase provided")
+            return Response({"error": "Please provide passphrase"}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user_key = Key.objects.get(user=request.user)
+            if user_key.is_expired():
+                logging.info(f"User: {request.user.email} - Action: Sign file - Status: Failed - Error: Key expired")
+                return Response({"error": "Your key has expired"}, status=status.HTTP_400_BAD_REQUEST)
+        except Key.DoesNotExist:
+            logging.info(f"User: {request.user.email} - Action: Sign file - Status: Failed - Error: No RSA key")
+            return Response({"error": "You do not have an RSA key"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # read file and hash
+        file_content = uploaded_file.read()
+        file_hash = calculate_file_hash(file_content)
+
+        # decrypt private key with passphrase
+        try:
+            salt = user_key.user.passphrase_salt.encode('utf-8')
+            private_key_bytes = decrypt_private_with_passphrase(user_key.private_key_enc, passphrase, salt)
+            private_key = serialization.load_pem_private_key(private_key_bytes, password=None, backend=default_backend())
+        except ValueError as e:
+            logging.info(f"User: {request.user.email} - Action: Sign file - Status: Failed - Error: {str(e)}")
+            return Response({"error": f"Passphrase is incorrect: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Sign file hash
+        signature = sign_file_hash(file_hash, private_key)
+
+        # Generate signer name
+        first_name = getattr(request.user, 'first_name', '')
+        last_name = getattr(request.user, 'last_name', '')
+        username = getattr(request.user, 'username', '')
+        email = getattr(request.user, 'email', '')
+
+        signer_name = f"{first_name} {last_name}".strip() or username or email
+
+        # Create signature data
+        signature_data = {
+            'file_name': uploaded_file.name,
+            'file_hash': file_hash,
+            'signature': signature,
+            'signer_email': email,
+            'signer_name': signer_name,
+            'signed_at': timezone.now().isoformat(),
+            'algorithm': 'RSA-PSS with SHA-256'
+        }
+
+        # Create signature file
+        sig_dir = os.path.join(settings.BASE_DIR, 'applications', 'data', 'signatures')
+        sig_file_path = create_signature_file(uploaded_file.name, signature_data, sig_dir)
+
+        # Save digital signature to db
+        DigitalSignature.objects.create(
+            signer=request.user,
+            file_name=uploaded_file.name,
+            file_hash=file_hash,
+            signature=signature,
+            signature_file_path=sig_file_path
+        )
+
+        logging.info(f"User: {email} - Action: Sign file - Status: Success - File: {uploaded_file.name}")
+
+        return Response({
+            "message": "File signed successfully",
+            "signature_file": os.path.basename(sig_file_path),
+            "signature_data": signature_data
+        }, status=status.HTTP_200_OK)
+
+    except Exception as e:
+        email = getattr(request.user, 'email', 'AnonymousUser')
+        logging.info(f"User: {email} - Action: Sign file - Status: Failed - Error: {str(e)}")
+        return Response({"error": f"Error signing file: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def verify_signature(request):
+    try:
+        if hasattr(request, 'user') and hasattr(request.user, 'email'):
+            user_email = request.user.email
+        else:
+            user_email = 'AnonymousUser'
+
+        if 'original_file' not in request.FILES or 'signature_file' not in request.FILES:
+            logging.info(f"User: {user_email} - Action: Verify signature - Status: Failed - Error: Missing files")
+            return Response({"error": "Please provide both the original file and the signature file."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        original_file = request.FILES['original_file']
+        signature_file = request.FILES['signature_file']
+        
+        if not signature_file.name.endswith('.sig'):
+            logging.info(f"User: {user_email} - Action: Verify signature - Status: Failed - Error: Invalid signature file format")
+            return Response({"error": "The signature file must have an extension .sig"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        sig_content = signature_file.read().decode('utf-8')
+        signature_data = json.loads(sig_content)
+        
+        original_content = original_file.read()
+        original_hash = calculate_file_hash(original_content)
+        
+        if original_hash != signature_data['file_hash']:
+            logging.info(f"User: {user_email} - Action: Verify signature - Status: Failed - Error: Hash mismatch")
+            return Response({
+                "verification_result": "invalid",
+                "reason": "File has been modified"
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            signer = User.objects.get(email=signature_data['signer_email'])
+            signer_key = Key.objects.get(user=signer)
+        except (User.DoesNotExist, Key.DoesNotExist):
+            logging.info(f"User: {user_email} - Action: Verify signature - Status: Failed - Error: Public key not found")
+            return Response({
+                "verification_result": "invalid",
+                "reason": "Public key not found"
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        signer = User.objects.get(email=signature_data['signer_email'])
+        signer_key = Key.objects.get(user=signer)
+        print("Public Key in DB:")
+        print(repr(signer_key.public_key))
+        is_valid = verify_signature_with_public_key(signature_data['file_hash'], signature_data['signature'], signer_key.public_key)
+        
+        if is_valid:
+            signer_name = f"{getattr(signer, 'first_name', '')} {getattr(signer, 'last_name', '')}".strip()
+            if not signer_name:
+                signer_name = getattr(signer, 'email', 'Unknown')
+
+
+            logging.info(f"User: {user_email} - Action: Verify signature - Status: Success - File: {original_file.name}")
+            return Response({
+                "verification_result": "valid",
+                "signature_data": signature_data,
+                "signer_name": signer_name
+            }, status=status.HTTP_200_OK)
+        else:
+            logging.info(f"User: {user_email} - Action: Verify signature - Status: Failed - Error: Invalid signature")
+            return Response({
+                "verification_result": "invalid",
+                "reason": "Invalid signature"
+            }, status=status.HTTP_400_BAD_REQUEST)
+    
+    except json.JSONDecodeError:
+        if hasattr(request, 'user') and hasattr(request.user, 'email'):
+            user_email = request.user.email
+        else:
+            user_email = 'AnonymousUser'
+        logging.info(f"User: {user_email} - Action: Verify signature - Status: Failed - Error: Invalid signature file format")
+        return Response({"error": "Signature file is not in correct format."}, status=status.HTTP_400_BAD_REQUEST)
+    
+    except Exception as e:
+        if hasattr(request, 'user') and hasattr(request.user, 'email'):
+            user_email = request.user.email
+        else:
+            user_email = 'AnonymousUser'        
+        logging.info(f"User: {user_email} - Action: Verify signature - Status: Failed - Error: {str(e)}")
+        return Response({"error": f"Error while verifying signature: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    
+
+@login_required
+def my_signatures(request):
+    signatures = DigitalSignature.objects.filter(signer=request.user).order_by('-created_at')
+    return render(request, 'my_signatures.html', {'signatures': signatures})
+
+@login_required
+def download_signature(request, signature_id):
+    signature = get_object_or_404(DigitalSignature, id=signature_id, signer=request.user)
+    
+    if not os.path.exists(signature.signature_file_path):
+        raise Http404("Signature file does not exist")
+    
+    try:
+        with open(signature.signature_file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        response = HttpResponse(content, content_type='application/json')
+        response['Content-Disposition'] = f'attachment; filename="{os.path.basename(signature.signature_file_path)}"'
+        return response
+    except Exception as e:
+        raise Http404(f"Error while downloading file: {str(e)}")
+
+
+@login_required
+def delete_signature(request, signature_id):
+    if request.method == 'POST':
+        signature = get_object_or_404(DigitalSignature, id=signature_id, signer=request.user)
+        
+        if os.path.exists(signature.signature_file_path):
+            os.remove(signature.signature_file_path)
+        
+        signature.delete()
+        
+        #Ghi log
+        
+        messages.success(request, 'Signature deleted successfully!')
+    
+    return redirect('my_signatures')
+
+# Get email passphrase token
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def email_passphrase_token(request):
+    email = request.data.get('email')
+    passphrase = request.data.get('passphrase')
+
+    user = User.objects.filter(email=email).first()
+    if not user:
+        return Response({"error": "Email does not exist"}, status=404)
+
+    new_pass = hash_passphrase(passphrase, user.passphrase_salt)
+    if new_pass['hash'] != user.passphrase_hash:
+        return Response({"error": "Wrong passphrase"}, status=400)
+
+    CustomToken.objects.filter(user=user).delete()
+
+    token = CustomToken.objects.create(user=user, key=secrets.token_hex(20))
+
+    return Response({"token": token.key})
+
+
+
+

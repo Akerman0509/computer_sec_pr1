@@ -23,6 +23,12 @@ from rest_framework.response import Response
 
 from applications.my_app.models import User, Key
 
+from cryptography.hazmat.primitives.asymmetric import padding
+from cryptography.hazmat.primitives import hashes, serialization
+from cryptography.hazmat.backends import default_backend
+from cryptography.exceptions import InvalidSignature
+import base64
+
 
 
 # SHA - 256
@@ -371,3 +377,84 @@ def decrypt_file(input_passphrase: str, f_input_enc, f_output= None ):
         "output_file": f_output,
         "user_email": user_email
     }, status=200)
+
+#------- Signature functions -------#
+def calculate_file_hash(file_content):
+    sha256_hash = hashlib.sha256()
+    if isinstance(file_content, str):
+        file_content = file_content.encode('utf-8')
+    sha256_hash.update(file_content)
+    return sha256_hash.hexdigest()
+
+def sign_file_hash(file_hash, private_key):
+    try:
+        file_hash_bytes = bytes.fromhex(file_hash)
+        signature = private_key.sign(
+            file_hash_bytes,
+            padding.PSS(
+                mgf=padding.MGF1(hashes.SHA256()),
+                salt_length=padding.PSS.MAX_LENGTH
+            ),
+            hashes.SHA256()
+        )
+        return base64.b64encode(signature).decode('utf-8')
+    except Exception as e:
+        raise ValueError(f"Error signing file: {str(e)}")
+
+def fix_base64_padding(b64_string):
+    return b64_string + '=' * (-len(b64_string) % 4)
+
+def verify_signature_with_public_key(file_hash, signature_b64, public_key_raw):
+    try:
+        if isinstance(public_key_raw, str) and public_key_raw.strip().startswith("{"):
+            public_key_json = json.loads(public_key_raw)
+            public_key_base64 = public_key_json["public_key"]
+            public_key_pem = base64.b64decode(public_key_base64).decode("utf-8")
+        else:
+            public_key_pem = public_key_raw
+
+        public_key = serialization.load_pem_public_key(public_key_pem.encode())
+
+        signature_bytes = base64.b64decode(fix_base64_padding(signature_b64))
+        file_hash_bytes = bytes.fromhex(file_hash)
+
+        public_key.verify(
+            signature_bytes,
+            file_hash_bytes,
+            padding.PSS(
+                mgf=padding.MGF1(hashes.SHA256()),
+                salt_length=padding.PSS.MAX_LENGTH
+            ),
+            hashes.SHA256()
+        )
+
+        return True
+
+    except InvalidSignature:
+        return False
+    except Exception as e:
+        raise ValueError(f"Error while verifying signature: {str(e)}")
+
+
+
+def create_signature_file(file_name, signature_data, output_dir):
+    try:
+        os.makedirs(output_dir, exist_ok=True)
+        
+        base_name = os.path.splitext(file_name)[0]
+        sig_file_name = f"{base_name}.sig"
+        sig_file_path = os.path.join(output_dir, sig_file_name)
+        
+        with open(sig_file_path, 'w', encoding='utf-8') as f:
+            json.dump(signature_data, f, indent=2, ensure_ascii=False)
+        
+        return sig_file_path
+    except Exception as e:
+        raise ValueError(f"Error creating signature file: {str(e)}")
+
+# def read_signature_file(sig_file_path):
+#     try:
+#         with open(sig_file_path, 'r', encoding='utf-8') as f:
+#             return json.load(f)
+#     except Exception as e:
+#         raise ValueError(f"Lỗi khi đọc file chữ ký: {str(e)}")

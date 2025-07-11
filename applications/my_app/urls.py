@@ -1,6 +1,7 @@
 from django.urls import path, re_path
 from . import views
 from django.contrib.auth import views as auth_views
+from .views import email_passphrase_token
 
 
 app_name = "my_app"
@@ -22,15 +23,20 @@ urlpatterns = [
     path ('decrypt_file/', views.api_decrypt_file, name='send_encrypted_file'),
     
     # QR Code
-    path('api/generate_qr/', views.generate_qr_code, name='generate_qr_code'),
-    path('api/scan_qr/', views.read_qr_code, name='read_qr_code'),
+    path('generate_qr/', views.generate_qr_code, name='generate_qr_code'),
+    path('scan_qr/', views.read_qr_code, name='read_qr_code'),
     
     
     # search
     re_path(r'^public_key_by_email/(?P<email>[^/]+)/$', views.api_public_key_by_email, name='public_key_by_email'),
     
-    
-    
+    # Digital Signature
+    path('token/', email_passphrase_token),
+    path('sign-file/', views.sign_file, name='sign_file'),
+    path('verify-signature/', views.verify_signature, name='verify_signature'),
+    # path('my-signatures/', views.my_signatures, name='my_signatures'),
+    # path('download-signature/<int:signature_id>/', views.download_signature, name='download_signature'),
+    # path('delete-signature/<int:signature_id>/', views.delete_signature, name='delete_signature'),
     
     
     path('serve_jpg/', views.serve_jpg, name='serve_jpg'),

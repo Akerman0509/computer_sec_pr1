@@ -1,7 +1,10 @@
 from django.db import models
 from django.utils import timezone
 import datetime
-
+from datetime import timedelta
+import secrets
+from rest_framework.authentication import BaseAuthentication
+from rest_framework.exceptions import AuthenticationFailed
 
 # User
 
@@ -24,7 +27,7 @@ class User(models.Model):
     class Role(models.TextChoices):
         USER = 'USER', 'User'
         ADMIN = 'ADMIN', 'Admin'
-    email =  models.CharField(max_length=50)
+    email =  models.CharField(max_length=50, unique=True)
     name = models.CharField(max_length=50)
     birth_day = models.DateField() # YYYY-MM-DD
     phone_number = models.CharField(max_length=20)
@@ -85,3 +88,52 @@ class OTP(models.Model):
     otp_created = models.DateTimeField()
     otp_expires = models.DateTimeField()
 
+
+class DigitalSignature(models.Model):
+    signer = models.ForeignKey(User, on_delete=models.CASCADE)
+    file_name = models.CharField(max_length=255)
+    file_hash = models.CharField(max_length=64)  
+    signature = models.TextField()  
+    created_at = models.DateTimeField(auto_now_add=True)
+    signature_file_path = models.CharField(max_length=500, blank=True)
+    
+    def __str__(self):
+        return f"{self.file_name} - {self.signer.email} - {self.created_at}"
+
+
+#Token for test 
+class CustomToken(models.Model):
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    key = models.CharField(max_length=40, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField(default=get_default_expiration)
+
+    def is_expired(self):
+        return timezone.now() > self.expires_at
+
+    @staticmethod
+    def generate_token(user):
+        key = secrets.token_hex(20)
+        return CustomToken.objects.create(
+            user=user,
+            key=key,
+            expires_at=timezone.now() + timedelta(days=1) 
+        )
+    
+# Authentication for Signature
+
+class CustomTokenAuthentication(BaseAuthentication):
+    def authenticate(self, request):
+        auth_header = request.headers.get('Authorization')
+
+        if not auth_header or not auth_header.startswith('Token '):
+            return None
+
+        token_key = auth_header.split(' ')[1]
+
+        try:
+            token = CustomToken.objects.get(key=token_key)
+        except CustomToken.DoesNotExist:
+            raise AuthenticationFailed("Invalid token")
+
+        return (token.user, None)
