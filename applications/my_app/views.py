@@ -36,6 +36,7 @@ from rest_framework.authtoken.models import Token
 import secrets
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.backends import default_backend
+from urllib.parse import quote, unquote
 # Initialize Redis connection
 import redis
 r = redis.Redis(host='localhost', port=6379, db=1)
@@ -460,6 +461,7 @@ def api_decrypt_file(request):
 
 @api_view(['POST'])
 #@login_required
+@permission_classes([AllowAny])
 def generate_qr_code(request):
     user_id = request.data.get("user_id")
     input_passphrase = request.data.get("passphrase")
@@ -552,12 +554,13 @@ def read_qr_code(request):
     }, status=400)
     
     
-    
+
 # 14
 # find public key by email
 
 # Hiển thị kết quả: email, QR code, ngày tạo, thời hạn còn lại/
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def api_public_key_by_email(request, email):
     """
     This view retrieves the public key for a given email.
@@ -583,13 +586,20 @@ def api_public_key_by_email(request, email):
         status = "valid"
         if key.is_expired():
             logger.info("[Get Public Key] Key for user %s is expired", user.email)
-            status = "expired"
+            status = "expired"     
+        safe_email = user.email.replace("@", "")  # loại bỏ @
+        filename = f"qr_{safe_email}.png"
+        qr_path = os.path.join("applications", "data", "qr_codes", filename)
+        encoded_path = quote(qr_path)  
+        qr_url = request.build_absolute_uri(f"/api/serve_jpg/?file_path={encoded_path}")
         res_key = {
             "public_key": key.public_key,
             "created_at": key.created_at.strftime("%d/%m/%Y %H:%M"),
             "expires_at": key.created_at.strftime("%d/%m/%Y %H:%M"),
             "status":status,
-            "expiration_days": key.get_expiration_days()
+            "expiration_days": key.get_expiration_days(),
+            "qr_code_url": qr_url
+            
         }
         res[f"public_key_{counter}"] = res_key
         counter+=1
@@ -598,14 +608,21 @@ def api_public_key_by_email(request, email):
 
 
 
-@api_view(['POST'])
+@api_view(['GET'])
+@permission_classes([AllowAny])
 def serve_jpg(request):
-    file_path = request.data.get('file_path')
-    
-    print(f"[serve_jpg] Received file_path: {file_path}")
+    raw_path = request.GET.get('file_path')
+    print(f"[serve_jpg] Raw file_path: {raw_path}")
+
+    if not raw_path:
+        return Response({"error": "file_path is required"}, status=400)
+
+    file_path = unquote(raw_path)
+    print(f"[serve_jpg] Decoded file_path: {file_path}")
+
     if os.path.exists(file_path):
         return FileResponse(open(file_path, 'rb'), content_type='image/jpeg')
-    return Response({"error": "get image fail"}, status=404)
+    return Response({"error": f"File does not exist at path: {file_path}"}, status=404)
 
 
 @api_view(['POST'])
