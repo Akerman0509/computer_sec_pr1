@@ -27,6 +27,9 @@ class User(models.Model):
     class Role(models.TextChoices):
         USER = 'USER', 'User'
         ADMIN = 'ADMIN', 'Admin'
+    class AccountStatus(models.TextChoices):
+        ACTIVE = 'ACTIVE', 'Active'
+        BLOCKED = 'BLOCKED', 'Blocked'
     email =  models.CharField(max_length=50, unique=True)
     name = models.CharField(max_length=50)
     birth_day = models.DateField() # YYYY-MM-DD
@@ -40,20 +43,14 @@ class User(models.Model):
         choices=Role.choices,
         default=Role.USER
     )
+    account_status = models.CharField(
+        max_length=10,
+        choices=AccountStatus.choices,
+        default=AccountStatus.ACTIVE
+    )
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
     
-    
-
-
-# RSA_key
-
-# user_id
-# public_key
-# private_key_enc
-# created_at
-# expires_at
-
 
 def get_default_expiration():
     """Returns the current time + 90 days."""

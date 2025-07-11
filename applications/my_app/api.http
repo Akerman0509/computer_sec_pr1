@@ -181,3 +181,30 @@ Content-Type: application/octet-stream
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 
+#############------ADMIN-----------###############
+POST {{baseUrl}}/register/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Admin User",
+    "birth_day": "2004-01-01",
+    "email": "akerman0509@gmail.com",
+    "address": "123 Main St, Springfield",
+    "phone_number": "123-456-7890",
+    "passphrase":"12345678aA@", 
+    "role": "ADMIN"
+}
+
+### Get all account
+
+GET {{baseUrl}}/my_admin/17/list_account/ HTTP/1.1
+
+### block/unblock account
+POST {{baseUrl}}/my_admin/17/change_account_status/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "target_id":14,
+    "new_status": "BLOCKED" 
+}
+### BLOCKED / ACTIVE

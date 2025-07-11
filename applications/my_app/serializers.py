@@ -1,7 +1,7 @@
 # Serializers define the API representation.
 from rest_framework import serializers
 from .models import User, Key
-
+import hashlib
 from applications.commons.utils import validate_passphrase_email, hash_passphrase
 
 
@@ -28,9 +28,8 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         # create salt and hash for passphrase
         passphrase = validated_data.pop('passphrase')
         passphrase_data = hash_passphrase(passphrase)
+        # generate recovery code
         
-        # passphrase_salt = models.TextField()  # Base64 encoded
-        # passphrase_hash = models.TextField()  # SHA-256 hash
         validated_data['passphrase_salt'] = passphrase_data['salt']
         validated_data['passphrase_hash'] = passphrase_data['hash']
         
@@ -46,6 +45,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             
             passphrase_salt = validated_data['passphrase_salt'],
             passphrase_hash = validated_data['passphrase_hash'],
+            account_status = User.AccountStatus.ACTIVE,  # Default to ACTIVE
             
         )
         return user

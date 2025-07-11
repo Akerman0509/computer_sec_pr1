@@ -29,6 +29,9 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.exceptions import InvalidSignature
 import base64
 
+import secrets
+
+
 
 
 # SHA - 256
@@ -458,3 +461,16 @@ def create_signature_file(file_name, signature_data, output_dir):
 #             return json.load(f)
 #     except Exception as e:
 #         raise ValueError(f"Lỗi khi đọc file chữ ký: {str(e)}")
+
+
+
+def check_account_active(user):
+    """
+    Kiểm tra trạng thái tài khoản người dùng.
+    Trả về True nếu tài khoản hoạt động, False nếu không.
+    """
+    print (user.account_status)
+    if user.account_status == User.AccountStatus.BLOCKED:
+        return True
+    else:
+        return False

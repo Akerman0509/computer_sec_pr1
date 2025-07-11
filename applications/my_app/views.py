@@ -8,9 +8,9 @@ import logging
 from base64 import b64encode,b64decode
 from django.http import HttpResponse, Http404
 logger = logging.getLogger(__name__)
-from .models import User, Key, OTP, DigitalSignature, CustomToken
+from applications.my_app.models import User, Key, OTP, DigitalSignature, CustomToken
 from .serializers import UserRegistrationSerializer, UserLoginSerializer, OTPVerifySerializer
-from applications.commons.utils import hash_passphrase, generate_rsa_keys, AESCipher,derive_aes_key, encrypt_private_with_passphrase, decrypt_private_with_passphrase,encrypt_file_with_metadata, decrypt_file, calculate_file_hash, sign_file_hash, create_signature_file, verify_signature_with_public_key
+from applications.commons.utils import hash_passphrase, generate_rsa_keys, AESCipher,derive_aes_key, encrypt_private_with_passphrase, decrypt_private_with_passphrase,encrypt_file_with_metadata, decrypt_file, calculate_file_hash, sign_file_hash, create_signature_file, verify_signature_with_public_key,check_account_active
 # import redis
 import json
 from django.conf import settings
@@ -76,6 +76,7 @@ def api_login(request):
     """
     
     rate_limiter_status = rate_limiter_wrong_login(request.data.get('email', ''), 0)
+    
 
     print (f"[Login====] Rate limiter status: {rate_limiter_status}")
 
@@ -113,6 +114,11 @@ def api_login(request):
         logger.warning("[login] Invalid passphrase for user: %s", email)
         return Response({"message": "Invalid credentials"}, status=401)
     
+    # if account blocked
+    if check_account_active(user):
+        logger.warning("[login] Account for user %s is blocked", email)
+        return Response({"message": "Account is blocked, please contact ADMIN for more info "}, status=403)
+    
     # Send OTP to user's email
     otp = generate_otp(email)
     if not send_otp(email, otp):
@@ -131,10 +137,14 @@ def api_login(request):
     redis_key = f"rate_limit:{email}"
     r.delete(redis_key)  # Reset rate limit counter on successful login attempt
     
+    
+    
+    
     return Response(res, status=200)
     
     
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def api_register(request):
     """
     This is a simple view that handles user registration.
@@ -834,4 +844,58 @@ def email_passphrase_token(request):
 
 
 
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def api_list_accounts(request, user_id):
+    """
+    This view lists all accounts.
+    """
+    admin_user = User.objects.filter(id=user_id, role="Admin").first()
+    if not admin_user:
+        logger.warning("[List Accounts] User with id %s is not an admin", user_id)
+        return Response({"message": "You are not authorized to view this information"}, status=403)
+    
+    users = User.objects.all().order_by('-created_at')
+    res = []
+    for user in users:
+        res.append({
+            "id": user.id,
+            "email": user.email,
+            "name": user.name,
+            "phone_number": user.phone_number,
+            "address": user.address,
+            "birth_day": user.birth_day.strftime("%Y-%m-%d") if user.birth_day else None,
+            "created_at": user.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+            "role": user.role
+        })
+        
+    return Response(res, status=200)
 
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def api_change_account_status(request, user_id):
+    """
+    This view changes the status of an account.
+    """
+    target_id = request.data.get('target_id')
+    new_status = request.data.get('new_status')
+    
+    admin_user = User.objects.filter(id=user_id, role="Admin").first()
+    if not admin_user:
+        logger.warning("[Change Account Status] User with id %s is not an admin", user_id)
+        return Response({"message": "You are not authorized to change account status"}, status=403)
+        
+    if not target_id or not new_status:
+        return Response({"message": "Missing user_id or status"}, status=400)
+    
+    user = User.objects.filter(id=target_id).first()
+    if not user:
+        return Response({"message": "User does not exist"}, status=404)
+    
+    if new_status not in User.AccountStatus.__members__:
+        return Response({"message": "Invalid status"}, status=400)
+    
+    user.account_status = User.AccountStatus[new_status]
+    user.save()
+    
+    return Response({"message": f"User {user.email} status changed to {new_status}"}, status=200)

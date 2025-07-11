@@ -8,7 +8,7 @@ from .models import User, Key, OTP
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('id','email', 'name', 'birth_day', 'phone_number', 'address', 'role')
+    list_display = ('id','email', 'name', 'address', 'role', "account_status", 'created_at')
     search_fields = ('email', 'name')
     list_filter = ('role',)
     

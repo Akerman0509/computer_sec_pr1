@@ -43,6 +43,10 @@ urlpatterns = [
 
     
 
+    # ADMIN ROUTES
+    path('my_admin/<int:user_id>/list_account/', views.api_list_accounts, name='api_list_accounts'),
+    path('my_admin/<int:user_id>/change_account_status/', views.api_change_account_status, name='change_account_status'),
+
 ]
 
 
