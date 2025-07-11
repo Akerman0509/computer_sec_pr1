@@ -12,6 +12,4 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
     
     
-    
-    # 'applications.commons.middleware.RateLimiterMiddleware'
 ]

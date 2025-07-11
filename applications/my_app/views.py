@@ -42,12 +42,50 @@ r = redis.Redis(host='localhost', port=6379, db=1)
 
 
 
+
+def rate_limiter_wrong_login(email, counter=1):
+    rate_limit_seconds = 60*5 # 5 minutes for 5 wrong attempts
+    max_requests = 5
+    redis_key = f"rate_limit:{email}"
+        
+    if counter == 1:
+        r.incr(redis_key)
+        r.expire(name=redis_key, time=rate_limit_seconds, nx=True)
+    current = r.get(redis_key)
+
+    
+    time_left = r.ttl(redis_key)
+    # convert to minutes + seconds
+    time_format = "{:02}:{:02}".format(time_left // 60, time_left % 60) if time_left > 0 else "00:00"
+    # print (f"Current requests for {email}: {current}; Time left: {time_left} seconds")
+    if current and int(current) >= max_requests:
+            status = "blocked"
+    else :
+        status = "allowed"
+    return {
+        "status": status,
+        "time_left": time_format
+    }
+
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def api_login(request):
     """
     This is a simple view that handles user login.
     """
+    
+    rate_limiter_status = rate_limiter_wrong_login(request.data.get('email', ''), 0)
+
+    print (f"[Login====] Rate limiter status: {rate_limiter_status}")
+
+    if rate_limiter_status['status'] == "blocked":
+        logger.warning("[Login] Too many wrong attempts for email: %s", request.data.get('email', ''))
+        return Response({
+            "message": "Too many wrong attempts",
+            "Please try again after": rate_limiter_status['time_left']
+        }, status=429)
+    
     logger.info("[Login] Received data: %s", request.data)
 
     email = request.data.get('email')
@@ -64,12 +102,14 @@ def api_login(request):
     user = User.objects.filter(email=email).first()
     if not user:
         logger.warning("[login] User with email %s does not exist", email)
+        rate_limiter_wrong_login(email)
         return Response({"message": "User does not exist"}, status=404)
     # check if passphrase is correct
     new_passphrase_data = hash_passphrase(input_passphrase, user.passphrase_salt)
     print (f"[login] new_passphrase_data: {new_passphrase_data}")
     print (f"[login] user.passphrase_hash: {user.passphrase_hash}")
     if new_passphrase_data['hash'] != user.passphrase_hash:
+        rate_limiter_wrong_login(email)
         logger.warning("[login] Invalid passphrase for user: %s", email)
         return Response({"message": "Invalid credentials"}, status=401)
     
@@ -81,8 +121,17 @@ def api_login(request):
     # Lưu email vào session
     request.session['login_email'] = email
     request.session.set_expiry(300)  # Session expires after 5 minutes
-
-    return Response({"message": "OTP sent to your email", "email": email}, status=200)
+    
+    res = {
+        "message": "OTP sent to your email",
+        "email": email,
+        "otp_expires_in": 300  # OTP expires in 5 minutes
+    }
+    
+    redis_key = f"rate_limit:{email}"
+    r.delete(redis_key)  # Reset rate limit counter on successful login attempt
+    
+    return Response(res, status=200)
     
     
 @api_view(['POST'])

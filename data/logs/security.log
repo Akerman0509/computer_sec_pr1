@@ -236,3 +236,739 @@
 [2025-07-09 17:04:38] WARNING [django.request] Not Found: /api/decrypt_file/
 [2025-07-09 17:06:29] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
 [2025-07-09 17:06:29] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 14:36:41] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 14:36:46] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 14:36:47] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 14:38:10] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 14:38:24] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+[2025-07-11 14:38:24] INFO [applications.commons.utils] [OTP] Generated OTP for phhoangquan@gmail.com
+[2025-07-11 14:38:31] INFO [applications.commons.utils] [OTP] Sent OTP to phhoangquan@gmail.com
+[2025-07-11 14:38:37] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+[2025-07-11 14:38:37] INFO [applications.commons.utils] [OTP] Generated OTP for phhoangquan@gmail.com
+[2025-07-11 14:38:42] INFO [applications.commons.utils] [OTP] Sent OTP to phhoangquan@gmail.com
+[2025-07-11 14:38:43] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+[2025-07-11 14:38:43] INFO [applications.commons.utils] [OTP] Generated OTP for phhoangquan@gmail.com
+[2025-07-11 14:38:49] INFO [applications.commons.utils] [OTP] Sent OTP to phhoangquan@gmail.com
+[2025-07-11 14:38:49] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+[2025-07-11 14:38:49] INFO [applications.commons.utils] [OTP] Generated OTP for phhoangquan@gmail.com
+[2025-07-11 14:38:55] INFO [applications.commons.utils] [OTP] Sent OTP to phhoangquan@gmail.com
+[2025-07-11 14:38:56] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+[2025-07-11 14:38:56] INFO [applications.commons.utils] [OTP] Generated OTP for phhoangquan@gmail.com
+[2025-07-11 14:39:02] INFO [applications.commons.utils] [OTP] Sent OTP to phhoangquan@gmail.com
+[2025-07-11 14:39:04] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+[2025-07-11 14:39:04] INFO [applications.commons.utils] [OTP] Generated OTP for phhoangquan@gmail.com
+[2025-07-11 14:39:10] INFO [applications.commons.utils] [OTP] Sent OTP to phhoangquan@gmail.com
+[2025-07-11 14:39:11] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+[2025-07-11 14:39:11] INFO [applications.commons.utils] [OTP] Generated OTP for phhoangquan@gmail.com
+[2025-07-11 14:39:16] INFO [applications.commons.utils] [OTP] Sent OTP to phhoangquan@gmail.com
+[2025-07-11 14:39:54] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+[2025-07-11 14:39:54] INFO [applications.commons.utils] [OTP] Generated OTP for phhoangquan@gmail.com
+[2025-07-11 14:40:00] INFO [applications.commons.utils] [OTP] Sent OTP to phhoangquan@gmail.com
+[2025-07-11 14:40:12] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 14:40:12] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 14:40:15] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 14:40:15] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 14:40:21] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+[2025-07-11 14:40:21] INFO [applications.commons.utils] [OTP] Generated OTP for phhoangquan@gmail.com
+[2025-07-11 14:40:27] INFO [applications.commons.utils] [OTP] Sent OTP to phhoangquan@gmail.com
+[2025-07-11 14:42:03] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+[2025-07-11 14:42:03] INFO [applications.commons.utils] [OTP] Generated OTP for phhoangquan@gmail.com
+[2025-07-11 14:42:07] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+[2025-07-11 14:42:07] INFO [applications.commons.utils] [OTP] Generated OTP for phhoangquan@gmail.com
+[2025-07-11 14:42:08] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+[2025-07-11 14:42:08] INFO [applications.commons.utils] [OTP] Generated OTP for phhoangquan@gmail.com
+[2025-07-11 14:42:09] INFO [applications.commons.utils] [OTP] Sent OTP to phhoangquan@gmail.com
+[2025-07-11 14:42:11] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+[2025-07-11 14:42:11] INFO [applications.commons.utils] [OTP] Generated OTP for phhoangquan@gmail.com
+[2025-07-11 14:42:12] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+[2025-07-11 14:42:12] INFO [applications.commons.utils] [OTP] Generated OTP for phhoangquan@gmail.com
+[2025-07-11 14:42:13] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+[2025-07-11 14:42:13] INFO [applications.commons.utils] [OTP] Generated OTP for phhoangquan@gmail.com
+[2025-07-11 14:42:13] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+[2025-07-11 14:42:13] INFO [applications.commons.utils] [OTP] Generated OTP for phhoangquan@gmail.com
+[2025-07-11 14:42:13] INFO [applications.commons.utils] [OTP] Sent OTP to phhoangquan@gmail.com
+[2025-07-11 14:42:15] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+[2025-07-11 14:42:15] INFO [applications.commons.utils] [OTP] Generated OTP for phhoangquan@gmail.com
+[2025-07-11 14:42:15] INFO [applications.commons.utils] [OTP] Sent OTP to phhoangquan@gmail.com
+[2025-07-11 14:42:16] INFO [applications.commons.utils] [OTP] Sent OTP to phhoangquan@gmail.com
+[2025-07-11 14:42:17] INFO [applications.commons.utils] [OTP] Sent OTP to phhoangquan@gmail.com
+[2025-07-11 14:42:18] INFO [applications.commons.utils] [OTP] Sent OTP to phhoangquan@gmail.com
+[2025-07-11 14:42:19] INFO [applications.commons.utils] [OTP] Sent OTP to phhoangquan@gmail.com
+[2025-07-11 14:42:21] INFO [applications.commons.utils] [OTP] Sent OTP to phhoangquan@gmail.com
+[2025-07-11 14:42:34] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 14:42:35] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 14:42:37] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 14:42:38] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 14:42:50] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 14:42:50] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 14:42:59] ERROR [django.request] Internal Server Error: /api/login/
+Traceback (most recent call last):
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py", line 80, in api_login
+    rate_limiter_status = rate_limiter_wrong_login(request.data.get('email', ''), 0)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py", line 69, in rate_limiter_wrong_login
+    "current_requests": int(current)
+                        ^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-11 14:44:32] ERROR [django.request] Internal Server Error: /api/login/
+Traceback (most recent call last):
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py", line 80, in api_login
+    rate_limiter_status = rate_limiter_wrong_login(request.data.get('email', ''), 0)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py", line 69, in rate_limiter_wrong_login
+    "current_requests": int(current)
+                        ^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-11 14:45:13] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 14:45:13] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 14:45:30] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 14:45:30] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 14:45:38] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 14:45:38] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 14:45:41] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 14:45:42] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 14:45:50] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 14:45:51] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 14:45:56] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:45:57] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:45:57] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:45:59] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:45:59] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:45:59] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:46:00] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:46:00] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:46:00] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:46:00] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:46:00] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:46:00] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:46:02] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:46:02] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:46:02] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:46:04] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:46:04] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:46:04] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:46:08] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:46:08] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:46:13] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:46:13] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:46:14] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:46:14] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:48:04] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 14:48:35] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 14:48:35] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 14:48:46] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 14:48:46] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 14:49:16] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 14:49:17] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 14:49:25] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:49:25] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:49:26] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:49:26] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:49:27] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:49:27] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:49:27] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:49:27] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:49:27] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:49:27] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:49:27] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:49:27] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:49:27] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:49:27] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:49:28] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:49:28] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:49:28] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:49:28] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:49:28] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:49:28] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:49:28] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:49:28] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:49:28] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:49:28] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:49:28] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:49:28] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:50:19] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:50:19] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:50:19] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:50:20] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:50:20] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:50:20] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:50:20] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:50:20] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:50:20] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:50:23] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:50:23] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:50:23] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:50:25] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:50:25] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:50:25] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:50:28] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:50:28] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:50:28] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:50:42] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:50:42] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:51:41] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:51:41] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:51:41] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:51:50] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:51:50] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:51:50] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:51:52] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:51:52] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:51:52] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:52:07] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:52:07] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:52:07] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:53:12] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:53:12] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:53:12] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:53:12] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:53:12] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:53:12] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:53:13] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:53:13] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:53:16] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:53:16] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:53:16] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:53:16] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:53:16] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:53:16] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:53:17] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:53:17] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:53:17] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:53:17] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:53:17] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:53:17] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:53:17] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:53:17] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:53:17] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:53:17] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:53:17] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:53:17] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:53:18] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:53:18] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:53:18] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:53:18] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:53:18] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 14:53:18] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 14:53:54] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 14:53:54] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 14:54:18] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:54:18] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:54:18] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:54:35] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:54:35] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:54:35] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:54:44] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:54:44] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:54:44] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:54:45] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:54:45] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:54:45] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:54:46] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:54:46] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:54:46] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 14:55:12] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 14:55:12] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 14:55:12] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:02:08] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:02:08] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:03:32] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:03:32] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:03:41] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:03:41] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:03:44] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:03:44] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:03:55] ERROR [django.request] Internal Server Error: /api/login/
+Traceback (most recent call last):
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py", line 83, in api_login
+    rate_limiter_status = rate_limiter_wrong_login(request.data.get('email', ''), 0)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py", line 72, in rate_limiter_wrong_login
+    "current_requests": int(current)
+                        ^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-11 15:04:11] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:04:11] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:04:22] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:04:23] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:04:26] ERROR [django.request] Internal Server Error: /api/login/
+Traceback (most recent call last):
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py", line 84, in api_login
+    rate_limiter_status = rate_limiter_wrong_login(request.data.get('email', ''), 0)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py", line 73, in rate_limiter_wrong_login
+    "current_requests": int(current)
+                        ^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-11 15:04:36] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:04:37] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:04:41] ERROR [django.request] Internal Server Error: /api/login/
+Traceback (most recent call last):
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py", line 84, in api_login
+    rate_limiter_status = rate_limiter_wrong_login(request.data.get('email', ''), 0)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py", line 73, in rate_limiter_wrong_login
+    "current_requests": int(current)
+                        ^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-11 15:04:55] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:04:56] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:05:00] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:05:00] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:05:12] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:05:12] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:05:16] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:05:16] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:05:17] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:05:18] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:05:20] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:05:20] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:05:20] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:05:22] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:05:22] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:05:22] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:05:22] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:05:22] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:05:22] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:05:46] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:05:46] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:05:52] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:05:52] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:05:52] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:05:55] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:05:55] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:05:55] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:06:31] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:06:31] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:06:31] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:06:52] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:06:53] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:07:03] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 15:07:03] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:07:50] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:07:50] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:08:00] ERROR [django.request] Internal Server Error: /api/login/
+Traceback (most recent call last):
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py", line 84, in api_login
+    rate_limiter_status = rate_limiter_wrong_login(request.data.get('email', ''), 0)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py", line 64, in rate_limiter_wrong_login
+    print (int(current))
+           ^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+[2025-07-11 15:08:13] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:08:13] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:08:21] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:08:21] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:08:21] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:08:26] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:08:26] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:08:26] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:08:28] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:08:28] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:08:28] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:08:33] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:08:33] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:08:33] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:08:37] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:08:37] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:08:37] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:08:59] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:08:59] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:08:59] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:11:41] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:11:43] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:11:43] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:11:43] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:11:57] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:11:57] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:11:57] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:11:58] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:11:58] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:11:58] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:11:59] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:11:59] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:11:59] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:12:02] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:12:02] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:12:02] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:12:37] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:12:37] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:12:37] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:13:18] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:13:18] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:13:28] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:13:28] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:13:28] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:13:30] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:13:30] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:13:30] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:13:30] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:13:30] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:13:30] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:13:31] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:13:31] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:13:31] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:13:31] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:13:31] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:13:31] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:13:34] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:13:34] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:13:34] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:13:39] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 15:13:39] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:14:42] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:14:42] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:14:52] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:14:52] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:14:52] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:15:03] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:15:03] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:15:03] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:15:05] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:15:05] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:15:05] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:15:06] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:15:06] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:15:06] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:15:10] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:15:10] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:15:10] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:15:15] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:15:15] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:15:15] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:18:39] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 15:18:39] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:18:41] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 15:18:41] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:19:26] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:19:31] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:19:31] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:19:31] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:19:35] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:19:35] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:19:35] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:19:36] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:19:36] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:19:36] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:19:37] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:19:37] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:19:37] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:19:37] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:19:37] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:19:37] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:19:48] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:19:48] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:19:48] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:23:50] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:23:50] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:24:17] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:24:17] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:24:26] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:24:26] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:24:33] INFO [django.utils.autoreload] /home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+[2025-07-11 15:24:34] INFO [django.utils.autoreload] Watching for file changes with StatReloader
+[2025-07-11 15:25:05] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:25:05] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:25:05] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:25:06] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:25:06] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:25:06] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:25:07] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:25:07] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:25:07] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:25:08] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:25:08] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:25:08] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:25:09] INFO [applications.my_app.views] [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:25:09] WARNING [applications.my_app.views] [login] Invalid passphrase for user: phhoangquan@gmail.com
+[2025-07-11 15:25:09] WARNING [django.request] Unauthorized: /api/login/
+[2025-07-11 15:25:11] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 15:25:11] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:25:12] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 15:25:12] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:25:13] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 15:25:13] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:25:13] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 15:25:13] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:25:14] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 15:25:14] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:25:14] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 15:25:14] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:25:14] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 15:25:14] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:25:14] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 15:25:14] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:25:14] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 15:25:14] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:25:14] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 15:25:14] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:25:15] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 15:25:15] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:25:15] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+[2025-07-11 15:25:15] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:25:20] INFO [applications.my_app.views] [Login] Received data: {'email': 'pphhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:25:20] WARNING [applications.my_app.views] [login] User with email pphhoangquan@gmail.com does not exist
+[2025-07-11 15:25:20] WARNING [django.request] Not Found: /api/login/
+[2025-07-11 15:25:21] INFO [applications.my_app.views] [Login] Received data: {'email': 'pphhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:25:21] WARNING [applications.my_app.views] [login] User with email pphhoangquan@gmail.com does not exist
+[2025-07-11 15:25:21] WARNING [django.request] Not Found: /api/login/
+[2025-07-11 15:25:26] INFO [applications.my_app.views] [Login] Received data: {'email': 'pphhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:25:26] WARNING [applications.my_app.views] [login] User with email pphhoangquan@gmail.com does not exist
+[2025-07-11 15:25:26] WARNING [django.request] Not Found: /api/login/
+[2025-07-11 15:25:26] INFO [applications.my_app.views] [Login] Received data: {'email': 'pphhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+[2025-07-11 15:25:26] WARNING [applications.my_app.views] [login] User with email pphhoangquan@gmail.com does not exist
+[2025-07-11 15:25:26] WARNING [django.request] Not Found: /api/login/
+[2025-07-11 15:27:07] INFO [applications.my_app.views] [Login] Received data: {'email': 'pphhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+[2025-07-11 15:27:07] WARNING [applications.my_app.views] [login] User with email pphhoangquan@gmail.com does not exist
+[2025-07-11 15:27:07] WARNING [django.request] Not Found: /api/login/
+[2025-07-11 15:27:07] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:07] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:09] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:09] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:09] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:09] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:09] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:09] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:10] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:10] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:10] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:10] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:10] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:10] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:10] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:10] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:10] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:10] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:10] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:10] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:11] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:11] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:11] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:11] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:11] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:11] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:11] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:11] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:11] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:11] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:12] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:12] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:12] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:12] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:12] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:12] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:12] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:12] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:12] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:12] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:12] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:12] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:13] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:13] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:13] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:13] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:13] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:13] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:13] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:13] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:13] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:13] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:13] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:13] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:14] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:14] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:14] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:14] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:14] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:14] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:14] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:14] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:14] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:14] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:14] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:14] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:15] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:15] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:15] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:15] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:15] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:15] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:15] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:15] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:15] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:15] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:15] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:15] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:16] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:16] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:16] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:16] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:16] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:16] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:16] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:16] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:16] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:16] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:16] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:16] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:16] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:16] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:17] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:17] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:17] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:17] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:17] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:17] WARNING [django.request] Too Many Requests: /api/login/
+[2025-07-11 15:27:17] WARNING [applications.my_app.views] [Login] Too many wrong attempts for email: pphhoangquan@gmail.com
+[2025-07-11 15:27:17] WARNING [django.request] Too Many Requests: /api/login/

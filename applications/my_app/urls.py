@@ -11,7 +11,7 @@ urlpatterns = [
 
     
     path('login/', views.api_login, name='login_url'),
-    path('register/', views.api_register, name='public_key_view'),
+    path('register/', views.api_register, name='register'),
     path('otp/verify/', views.api_otp_verify, name='otp_verify'),    
     # update user profile
     path('user/update/', views.api_update_user, name='update_user'),
