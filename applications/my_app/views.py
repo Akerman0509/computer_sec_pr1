@@ -10,7 +10,7 @@ from django.http import HttpResponse, Http404
 logger = logging.getLogger(__name__)
 from applications.my_app.models import User, Key, OTP, DigitalSignature, CustomToken
 from .serializers import UserRegistrationSerializer, UserLoginSerializer, OTPVerifySerializer
-from applications.commons.utils import hash_passphrase, generate_rsa_keys, AESCipher,derive_aes_key, encrypt_private_with_passphrase, decrypt_private_with_passphrase,encrypt_file_with_metadata, decrypt_file, calculate_file_hash, sign_file_hash, create_signature_file, verify_signature_with_public_key,check_account_active, encrypt_large_file
+from applications.commons.utils import hash_passphrase, generate_rsa_keys, AESCipher,derive_aes_key, encrypt_private_with_passphrase, decrypt_private_with_passphrase,encrypt_file_with_metadata, decrypt_file, calculate_file_hash, sign_file_hash, create_signature_file, verify_signature_with_public_key,check_account_active, encrypt_large_file, renew_key, check_key_status
 # import redis
 import json
 from django.conf import settings
@@ -969,7 +969,33 @@ def api_encrypt_large_file(request):
             "message": "Error processing file",
             "error": str(e)
         }, status=500)
-    
+
+# 13
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def api_key_status(request, email):
+    status_data = check_key_status(email)
+    if status_data.get("status") == "Lỗi":
+        logger.error(f"[Key Status] Error checking lock status for {email}: {status_data.get('error')}")
+        return Response({"message": "Error checking lock status", "error": status_data.get("error")}, status=500)
+    logger.info(f"[Key Status] Lock status for {email}: {status_data['status']}")
+    return Response(status_data, status=200)
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def api_renew_key(request):
+    email = request.data.get('email')
+    passphrase = request.data.get('passphrase')
+    if not email or not passphrase:
+        logger.warning("[Renew Key] Missing email or passphrase")
+        return Response({"message": "Missing email or passphrase"}, status=400)
+
+    success = renew_key(email, passphrase)
+    if success:
+        logger.info(f"[Renew Key] Key renewal successful {email}")
+        return Response({"message": "Key renewal successful"}, status=200)
+    logger.error(f"[Renew Key] Key renewal failed for {email}")
+    return Response({"message": "Key renewal failed for"}, status=500)
     
     
     

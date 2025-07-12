@@ -224,3 +224,13 @@ Content-Type: application/octet-stream
 
 < /home/ngthequan/Documents/Project1/computer_sec_pr1/applications/data/EncryptLargeFile/Upload/5MB.pdf
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+
+### Check key status
+GET {{baseUrl}}/key-status/ngthequan.relax@gmail.com/ HTTP/1.1 Content-Type: application/json
+
+### Renew key
+POST {{baseUrl}}/renew-key/ HTTP/1.1 
+Content-Type: application/json
+
+{ "email": "ngthequan.relax@gmail.com", "passphrase": "12345678aA@" }

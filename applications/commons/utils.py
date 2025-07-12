@@ -20,7 +20,7 @@ from django.core.mail import send_mail
 from Crypto.Protocol.KDF import PBKDF2
 from Crypto.Cipher import PKCS1_OAEP
 from rest_framework.response import Response
-
+from django.utils import timezone
 from applications.my_app.models import User, Key
 
 from cryptography.hazmat.primitives.asymmetric import padding
@@ -529,3 +529,86 @@ def encrypt_large_file(file_path: str, email: str, session_key: bytes) -> dict:
     except Exception as e:
         logger.error(f"Error while encrypting file {file_path}: {str(e)} - {email}")
         return {"success": False, "error": str(e)}
+
+# 13  
+def check_key_status(email: str) -> dict:
+
+    try:
+        user = User.objects.filter(email=email).first()
+        if not user:
+            logger.warning(f"[check_key_status] User not found: {email}")
+            return {"status": "NOT_FOUND", "error": "User does not exist"}
+
+        key = user.keys.first() 
+        if not key:
+            logger.warning(f"[check_key_status] No key found for user: {email}")
+            return {"status": "NOT_FOUND", "error": "No RSA key found"}
+
+        now = timezone.now()
+        # Check key expiration
+        if hasattr(key, 'expires_at') and key.expires_at:
+            if key.expires_at <= now:
+                status = "Expired"
+                details = f"Key expired at {key.expires_at}"
+            elif key.expires_at <= now + timedelta(days=7):
+                status = "Near expiration date"
+                details = f"Key expires soon at {key.expires_at}"
+            else:
+                status = "Valid"
+                details = f"Key is valid until {key.expires_at}"
+        else:
+            status = "Valid"
+            details = "Key has no expiration"
+
+        logger.info(f"[check_key_status] Key status for {email}: {status}")
+        return {
+            "status": status,
+            "created_at": key.created_at if hasattr(key, 'created_at') else None,
+            "expires_at": key.expires_at if hasattr(key, 'expires_at') else None,
+            "details": details
+        }
+
+    except Exception as e:
+        logger.error(f"[check_key_status] Error checking key status for {email}: {str(e)}")
+        return {"status": "Error", "error": str(e)}
+
+def renew_key(email: str, passphrase: str) -> bool:
+
+    try:
+        user = User.objects.filter(email=email).first()
+        if not user:
+            logger.warning(f"User not found {email}")
+            return False
+
+        passphrase_data = hash_passphrase(passphrase, user.passphrase_salt)
+        if passphrase_data['hash'] != user.passphrase_hash:
+            logger.warning(f"Incorrect passphrase for {email}")
+            return False
+
+        private_key_pem, public_key_pem = generate_rsa_keys()
+        private_key_enc = encrypt_private_with_passphrase(
+            private_key_pem, passphrase, user.passphrase_salt.encode('utf-8')
+        )
+        public_key_b64 = b64encode(public_key_pem).decode('utf-8')
+        public_key_data = json.dumps({
+            "public_key": public_key_b64,
+            "created_at": timezone.now().isoformat(),
+            "email": email
+        })
+
+        Key.objects.update_or_create(
+            user=user,
+            defaults={
+                'public_key': public_key_data,
+                'private_key_enc': private_key_enc,
+                'created_at': timezone.now(),
+                'expires_at': timezone.now() + timedelta(days=90)
+            }
+        )
+
+        logger.info(f"RSA key successfully renewed/generated for {email}")
+        return True
+
+    except Exception as e:
+        logger.error(f"Error renewing/generating key for {email}: {str(e)}")
+        return False
