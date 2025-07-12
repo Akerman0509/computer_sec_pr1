@@ -208,3 +208,19 @@ Content-Type: application/json
     "new_status": "BLOCKED" 
 }
 ### BLOCKED / ACTIVE
+
+
+### Encrypt large file
+POST {{baseUrl}}/encrypt-large-file/ HTTP/1.1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="email"
+
+ngthequan.relax@gmail.com
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="5MB.pdf"
+Content-Type: application/octet-stream
+
+< /home/ngthequan/Documents/Project1/computer_sec_pr1/applications/data/EncryptLargeFile/Upload/5MB.pdf
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

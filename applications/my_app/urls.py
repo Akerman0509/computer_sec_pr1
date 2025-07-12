@@ -41,6 +41,8 @@ urlpatterns = [
     
     path('serve_jpg/', views.serve_jpg, name='serve_jpg'),
 
+    # File Encryption
+    path('encrypt-large-file/', views.api_encrypt_large_file, name='encrypt_large_file'),
     
 
     # ADMIN ROUTES
