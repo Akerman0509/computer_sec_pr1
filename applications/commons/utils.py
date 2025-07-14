@@ -474,3 +474,35 @@ def check_account_active(user):
         return True
     else:
         return False
+    
+    
+class MyLogger:
+    def __init__(self, name, filename):
+        self.logger = logging.getLogger(name)
+        self.logger.setLevel(logging.INFO)
+
+        # Prevent duplicate handlers when same logger name is reused
+        if not self.logger.handlers:
+            os.makedirs(os.path.dirname(filename), exist_ok=True)
+            handler = logging.FileHandler(filename)
+            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            handler.setFormatter(formatter)
+            self.logger.addHandler(handler)
+
+    def log(self, message):
+        self.logger.info(message)
+
+
+# --- Helper functions for specific logs ---
+
+def authLog(message):
+    logger = MyLogger("auth", "data/logs/auth.log")
+    logger.log(message)
+
+def keyLog(message):
+    logger = MyLogger("key", "data/logs/key.log")
+    logger.log(message)
+
+def profileLog(message):
+    logger = MyLogger("profile", "data/logs/profile.log")
+    logger.log(message)

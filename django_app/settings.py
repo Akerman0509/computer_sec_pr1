@@ -146,31 +146,31 @@ if not os.path.exists(LOG_DIR):
     os.makedirs(LOG_DIR)
 
 # Logging configuration
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'detailed': {
-            'format': '[%(asctime)s] %(levelname)s [%(name)s] %(message)s',
-            'datefmt': '%Y-%m-%d %H:%M:%S'
-        },
-    },
-    'handlers': {
-        'file': {
-            'level': 'INFO',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(LOG_DIR, 'security.log'),
-            'formatter': 'detailed',
-        },
-    },
-    'loggers': {
-        '': {
-            'handlers': ['file'],
-            'level': 'INFO',
-            'propagate': True,
-        },
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'detailed': {
+#             'format': '[%(asctime)s] %(levelname)s [%(name)s] %(message)s',
+#             'datefmt': '%Y-%m-%d %H:%M:%S'
+#         },
+#     },
+#     'handlers': {
+#         'file': {
+#             'level': 'INFO',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(LOG_DIR, 'security.log'),
+#             'formatter': 'detailed',
+#         },
+#     },
+#     'loggers': {
+#         '': {
+#             'handlers': ['file'],
+#             'level': 'INFO',
+#             'propagate': True,
+#         },
+#     },
+# }
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent

@@ -10,7 +10,7 @@ from django.http import HttpResponse, Http404
 logger = logging.getLogger(__name__)
 from applications.my_app.models import User, Key, OTP, DigitalSignature, CustomToken
 from .serializers import UserRegistrationSerializer, UserLoginSerializer, OTPVerifySerializer
-from applications.commons.utils import hash_passphrase, generate_rsa_keys, AESCipher,derive_aes_key, encrypt_private_with_passphrase, decrypt_private_with_passphrase,encrypt_file_with_metadata, decrypt_file, calculate_file_hash, sign_file_hash, create_signature_file, verify_signature_with_public_key,check_account_active
+from applications.commons.utils import hash_passphrase, generate_rsa_keys, AESCipher,derive_aes_key, encrypt_private_with_passphrase, decrypt_private_with_passphrase,encrypt_file_with_metadata, decrypt_file, calculate_file_hash, sign_file_hash, create_signature_file, verify_signature_with_public_key,check_account_active, MyLogger, authLog, keyLog, profileLog
 # import redis
 import json
 from django.conf import settings
@@ -74,27 +74,24 @@ def api_login(request):
     """
     This is a simple view that handles user login.
     """
-    
     rate_limiter_status = rate_limiter_wrong_login(request.data.get('email', ''), 0)
-    
-
-    print (f"[Login====] Rate limiter status: {rate_limiter_status}")
+    authLog (f"[Login] Rate limiter status: {rate_limiter_status}")
 
     if rate_limiter_status['status'] == "blocked":
-        logger.warning("[Login] Too many wrong attempts for email: %s", request.data.get('email', ''))
+        authLog(f"[Login] Too many wrong attempts for email: {request.data.get('email', '')}" )
         return Response({
             "message": "Too many wrong attempts",
             "Please try again after": rate_limiter_status['time_left']
         }, status=429)
     
-    logger.info("[Login] Received data: %s", request.data)
+    authLog(f"[Login] Received data: {request.data}")
 
     email = request.data.get('email')
     input_passphrase = request.data.get('passphrase')
 
     serializer = UserLoginSerializer(data=request.data)
     if not serializer.is_valid():
-        logger.error("[login] Invalid data: %s", serializer.errors)
+        authLog("[login] Invalid data: %s", serializer.errors)
         return Response(serializer.errors, status=400)
     
     
@@ -102,7 +99,7 @@ def api_login(request):
     # check if email exists in the database
     user = User.objects.filter(email=email).first()
     if not user:
-        logger.warning("[login] User with email %s does not exist", email)
+        authLog(f"[login] User with email {email} does not exist")
         rate_limiter_wrong_login(email)
         return Response({"message": "User does not exist"}, status=404)
     # check if passphrase is correct
@@ -111,12 +108,12 @@ def api_login(request):
     print (f"[login] user.passphrase_hash: {user.passphrase_hash}")
     if new_passphrase_data['hash'] != user.passphrase_hash:
         rate_limiter_wrong_login(email)
-        logger.warning("[login] Invalid passphrase for user: %s", email)
+        authLog(f"[login] Invalid passphrase for user: {email}")
         return Response({"message": "Invalid credentials"}, status=401)
     
     # if account blocked
     if check_account_active(user):
-        logger.warning("[login] Account for user %s is blocked", email)
+        authLog(f"[login] Account for user {email} is blocked" )
         return Response({"message": "Account is blocked, please contact ADMIN for more info "}, status=403)
     
     # Send OTP to user's email
@@ -149,16 +146,16 @@ def api_register(request):
     """
     This is a simple view that handles user registration.
     """
-    logger.info("[Register] Received data: %s", request.data)
+    authLog(f"[Register] Received data: {request.data}" )
 
     serializer = UserRegistrationSerializer(data=request.data)
     if not serializer.is_valid():
-        logger.error("[Register] Invalid data: %s", serializer.errors)
+        authLog(f"[Register] Invalid data: {serializer.errors}", )
         return Response(serializer.errors, status=400)
 
     user = serializer.save()
 
-    logger.info("[Register] User registered successfully: %s", user.email)
+    authLog(f"[Register] User registered successfully: {user.email}", )
     
     return Response({
             "message": "User registered successfully",
@@ -181,15 +178,15 @@ def api_create_RSA_pair(request):
         
     user = User.objects.filter(pk=user_id).first()
     if not user:
-        logger.warning("[api_create_RSA_pair] User with id %s does not exist", user_id)
+        keyLog(f"[api_create_RSA_pair] User with id {user_id} does not exist")
         return Response({"message": "User does not exist"}, status=404)
     
     # check if passphrase is correct
     new_passphrase_data = hash_passphrase(input_passphrase, user.passphrase_salt)
-    print (f"[api_create_RSA_pair] new_passphrase_data: {new_passphrase_data}")
-    print (f"[api_create_RSA_pair] user.passphrase_hash: {user.passphrase_hash}")
+    keyLog (f"[api_create_RSA_pair] new_passphrase_data: {new_passphrase_data}")
+    keyLog (f"[api_create_RSA_pair] user.passphrase_hash: {user.passphrase_hash}")
     if new_passphrase_data['hash'] != user.passphrase_hash:
-        logger.warning("[api_create_RSA_pair] Invalid passphrase for user_id: %s", user_id)
+        keyLog(f"[api_create_RSA_pair] Invalid passphrase for user_id: {user_id}")
         return Response({"message": "Invalid credentials"}, status=401)
     
     # AES cipher private key
@@ -227,7 +224,7 @@ def api_create_RSA_pair(request):
 def api_otp_verify(request):
     serializer = OTPVerifySerializer(data=request.data)
     if not serializer.is_valid():
-        logger.error("[OTP] Invalid data: %s", serializer.errors)
+        authLog(f"[OTP] Invalid data: {serializer.errors}")
         return Response(serializer.errors, status=400)
 
     email = serializer.validated_data['email']
@@ -235,19 +232,18 @@ def api_otp_verify(request):
 
     # Check session (comment when testing)
     # if email != request.session.get('login_email'):
-    #     logger.warning("[OTP] Invalid session for %s", email)
+    #     authLog(f"[OTP] Invalid session for {email}")
     #     return Response({"message": "Invalid session"}, status=401)
 
     # Check OTP in database
     latest_otp = OTP.objects.filter(email=email).order_by('-otp_created').first()
     if not latest_otp:
-        logger.warning("[OTP] No OTP found for %s", email)
+        authLog(f"[OTP] No OTP found for {email}")
         return Response({"message": "No OTP found"}, status=404)
 
     if now() > latest_otp.otp_expires:
-        logger.warning("[OTP] Expired OTP for %s", email)
+        authLog(f"[OTP] Expired OTP for {email}")
         return Response({"message": "OTP expired"}, status=401)
-
 
     # Delete OTP and session
     del request.session['login_email']
@@ -255,8 +251,10 @@ def api_otp_verify(request):
 
     user = User.objects.filter(email=email).first()
     if not user:
+        authLog(f"[OTP] No user found for {email}")
         return Response({"message": "User not found"}, status=404)
-    logger.info("[OTP] Successful login for %s", email)
+
+    authLog(f"[OTP] Successful login for {email}")
     return Response({
         "message": "Login successful",
         "user_id": user.id,
@@ -265,13 +263,12 @@ def api_otp_verify(request):
 
 
 
-
 @api_view(['POST'])
 def api_update_user(request):
     """
     This is a simple view that handles user update.
     """
-    logger.info("[Update User] Received data: %s", request.data)
+    profileLog(f"[Update User] Received data: {request.data}")
 
     user_id = request.data.get('user_id')
     name = request.data.get('name')
@@ -281,7 +278,7 @@ def api_update_user(request):
 
     user = User.objects.filter(pk=user_id).first()
     if not user:
-        logger.warning("[Update User] User with id %s does not exist", user_id)
+        profileLog(f"[Update User] User with id {user_id} does not exist")
         return Response({"message": "User does not exist"}, status=404)
 
     if name:
@@ -294,35 +291,33 @@ def api_update_user(request):
         try:
             user.birth_day = datetime.strptime(birth_day, '%Y-%m-%d').replace(tzinfo=timezone.utc)
         except ValueError:
-            logger.error("[Update User] Invalid date format for birth_day: %s", birth_day)
+            profileLog(f"[Update User] Invalid date format for birth_day: {birth_day}")
             return Response({"message": "Invalid date format for birth_day"}, status=400)
     
     user.save()
-    logger.info("[Update User] User updated successfully: %s", user.email)
-    res = {
-            "message": "User updated successfully",
-            "user_id": user.id,
-            "name": user.name,
-            "email": user.email,
-            "phone_number": user.phone_number,
-            "address": user.address,
-        }
-    
+    profileLog(f"[Update User] User updated successfully: {user.email}")
 
-    # handle passphrase change if provided
+    res = {
+        "message": "User updated successfully",
+        "user_id": user.id,
+        "name": user.name,
+        "email": user.email,
+        "phone_number": user.phone_number,
+        "address": user.address,
+    }
+
+    # Handle passphrase change if provided
     curr_passphrase = request.data.get('current_passphrase')
     new_passphrase = request.data.get('new_passphrase')
     if curr_passphrase and new_passphrase:
         response = handle_passphrase_change(user_id, curr_passphrase, new_passphrase)
-        print (f"[api_update_user] response: {response}")
-        
-        if response!= 1:
+        profileLog(f"[Update User] Passphrase change response: {response}")
+
+        if response != 1:
             return response
         else:
             res['message'] += " and passphrase changed successfully"
 
-    
-    
     return Response(res, status=200)
     
     

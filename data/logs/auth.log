@@ -1,0 +1,2 @@
+2025-07-14 20:23:58,760 - auth - INFO - [Register] Received data: {'name': 'ngthequan', 'birth_day': '2004-01-01', 'email': 'ngthequan.relax@gmail.com', 'address': '123 Main St, Springfield', 'phone_number': '123-456-7890', 'passphrase': '12345678aA@'}
+2025-07-14 20:23:58,763 - auth - INFO - [Register] Invalid data: {'email': [ErrorDetail(string='user with this email already exists.', code='unique')]}
