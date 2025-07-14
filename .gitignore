@@ -11,3 +11,5 @@ staticfiles/
 *.sql
 
 venv/
+
+rp/
