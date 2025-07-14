@@ -3,7 +3,7 @@ from statistics import quantiles
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 import logging
 from base64 import b64encode,b64decode
 from django.http import HttpResponse, Http404
@@ -258,11 +258,17 @@ def api_otp_verify(request):
     user = User.objects.filter(email=email).first()
     if not user:
         return Response({"message": "User not found"}, status=404)
+    
+    CustomToken.objects.filter(user=user).delete()
+    token = CustomToken.objects.create(user=user, key=secrets.token_hex(20))
+
     logger.info("[OTP] Successful login for %s", email)
+
     return Response({
         "message": "Login successful",
         "user_id": user.id,
-        "name": user.name
+        "name": user.name,
+        "token": token.key
     }, status=200)
 
 
@@ -627,9 +633,8 @@ def serve_jpg(request):
 
 
 @api_view(['POST'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def sign_file(request):
-    """API ký số tập tin"""
     try:
         if 'file' not in request.FILES:
             logging.info(f"User: {getattr(request.user, 'email', 'AnonymousUser')} - Action: Sign file - Status: Failed - Error: No file provided")
