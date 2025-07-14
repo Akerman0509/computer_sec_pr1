@@ -41,7 +41,10 @@ urlpatterns = [
     
     path('serve_jpg/', views.serve_jpg, name='serve_jpg'),
 
-    
+    # File Encryption
+    path('encrypt-large-file/', views.api_encrypt_large_file, name='encrypt_large_file'),
+    path('key-status/<str:email>/', views.api_key_status, name='key_status'),
+    path('renew-key/', views.api_renew_key, name='renew_key'),
 
     # ADMIN ROUTES
     path('my_admin/<int:user_id>/list_account/', views.api_list_accounts, name='api_list_accounts'),

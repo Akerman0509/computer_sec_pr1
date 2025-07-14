@@ -10,7 +10,7 @@ from django.http import HttpResponse, Http404
 logger = logging.getLogger(__name__)
 from applications.my_app.models import User, Key, OTP, DigitalSignature, CustomToken
 from .serializers import UserRegistrationSerializer, UserLoginSerializer, OTPVerifySerializer
-from applications.commons.utils import hash_passphrase, generate_rsa_keys, AESCipher,derive_aes_key, encrypt_private_with_passphrase, decrypt_private_with_passphrase,encrypt_file_with_metadata, decrypt_file, calculate_file_hash, sign_file_hash, create_signature_file, verify_signature_with_public_key,check_account_active, MyLogger, authLog, keyLog, profileLog
+from applications.commons.utils import hash_passphrase, generate_rsa_keys, AESCipher,derive_aes_key, encrypt_private_with_passphrase, decrypt_private_with_passphrase,encrypt_file_with_metadata, decrypt_file, calculate_file_hash, sign_file_hash, create_signature_file, verify_signature_with_public_key,check_account_active, encrypt_large_file, renew_key, check_key_status, authLog, keyLog, profileLog
 # import redis
 import json
 from django.conf import settings
@@ -29,6 +29,7 @@ import base64
 from django.core.files.base import ContentFile
 from django.core.files.storage import FileSystemStorage
 from PIL import Image
+import shutil
 from pyzbar.pyzbar import decode
 from django.http import FileResponse
 from django.contrib import messages
@@ -36,6 +37,7 @@ from rest_framework.authtoken.models import Token
 import secrets
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.backends import default_backend
+from urllib.parse import quote, unquote
 # Initialize Redis connection
 import redis
 r = redis.Redis(host='localhost', port=6379, db=1)
@@ -455,6 +457,7 @@ def api_decrypt_file(request):
 
 @api_view(['POST'])
 #@login_required
+@permission_classes([AllowAny])
 def generate_qr_code(request):
     user_id = request.data.get("user_id")
     input_passphrase = request.data.get("passphrase")
@@ -547,12 +550,13 @@ def read_qr_code(request):
     }, status=400)
     
     
-    
+
 # 14
 # find public key by email
 
 # Hiển thị kết quả: email, QR code, ngày tạo, thời hạn còn lại/
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def api_public_key_by_email(request, email):
     """
     This view retrieves the public key for a given email.
@@ -578,13 +582,20 @@ def api_public_key_by_email(request, email):
         status = "valid"
         if key.is_expired():
             logger.info("[Get Public Key] Key for user %s is expired", user.email)
-            status = "expired"
+            status = "expired"     
+        safe_email = user.email.replace("@", "")  # loại bỏ @
+        filename = f"qr_{safe_email}.png"
+        qr_path = os.path.join("applications", "data", "qr_codes", filename)
+        encoded_path = quote(qr_path)  
+        qr_url = request.build_absolute_uri(f"/api/serve_jpg/?file_path={encoded_path}")
         res_key = {
             "public_key": key.public_key,
             "created_at": key.created_at.strftime("%d/%m/%Y %H:%M"),
             "expires_at": key.created_at.strftime("%d/%m/%Y %H:%M"),
             "status":status,
-            "expiration_days": key.get_expiration_days()
+            "expiration_days": key.get_expiration_days(),
+            "qr_code_url": qr_url
+            
         }
         res[f"public_key_{counter}"] = res_key
         counter+=1
@@ -593,14 +604,21 @@ def api_public_key_by_email(request, email):
 
 
 
-@api_view(['POST'])
+@api_view(['GET'])
+@permission_classes([AllowAny])
 def serve_jpg(request):
-    file_path = request.data.get('file_path')
-    
-    print(f"[serve_jpg] Received file_path: {file_path}")
+    raw_path = request.GET.get('file_path')
+    print(f"[serve_jpg] Raw file_path: {raw_path}")
+
+    if not raw_path:
+        return Response({"error": "file_path is required"}, status=400)
+
+    file_path = unquote(raw_path)
+    print(f"[serve_jpg] Decoded file_path: {file_path}")
+
     if os.path.exists(file_path):
         return FileResponse(open(file_path, 'rb'), content_type='image/jpeg')
-    return Response({"error": "get image fail"}, status=404)
+    return Response({"error": f"File does not exist at path: {file_path}"}, status=404)
 
 
 @api_view(['POST'])
@@ -894,3 +912,86 @@ def api_change_account_status(request, user_id):
     user.save()
     
     return Response({"message": f"User {user.email} status changed to {new_status}"}, status=200)
+
+
+
+# 12 
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def api_encrypt_large_file(request):
+
+    file = request.FILES.get('file')
+    email = request.data.get('email')
+    if not file or not email:
+        logger.warning("[Encrypt Large File] Missing file or email")
+        return Response({"message": "Missing file or email"}, status=400)
+
+    upload_dir = os.path.join('applications', 'data', 'EncryptLargeFile', 'Upload')
+    encrypted_dir = os.path.join('applications', 'data', 'EncryptLargeFile', 'Encrypted')
+    os.makedirs(upload_dir, exist_ok=True)
+    os.makedirs(encrypted_dir, exist_ok=True)
+
+    # save the uploaded file
+    upload_file_path = os.path.join(upload_dir, file.name)
+    
+    try:
+        with open(upload_file_path, 'wb') as f:
+            for chunk in file.chunks():
+                f.write(chunk)
+        
+        session_key = os.urandom(32)  
+        result = encrypt_large_file(upload_file_path, email, session_key)
+        
+        if result['success']:
+            logger.info(f"[Encrypt Large File] File encryption successful: {file.name}")
+            # Move the encrypted file to the encrypted directory
+            final_output_path = os.path.join(encrypted_dir, f"{file.name}.enc")
+            shutil.move(result['output_file'], final_output_path)
+            return Response({
+                "message": "File encryption successful",
+                "output_file": final_output_path
+            }, status=200)
+        else:
+            logger.error(f"[Encrypt Large File] File encryption failed: {result.get('error', 'Unknown error')}")
+            return Response({
+                "message": "File encryption failed",
+                "error": result.get('error', 'Unknown error')
+            }, status=500)
+    
+    except Exception as e:
+        logger.error(f"[Encrypt Large File] Error processing file: {str(e)}")
+        return Response({
+            "message": "Error processing file",
+            "error": str(e)
+        }, status=500)
+
+# 13
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def api_key_status(request, email):
+    status_data = check_key_status(email)
+    if status_data.get("status") == "Lỗi":
+        logger.error(f"[Key Status] Error checking lock status for {email}: {status_data.get('error')}")
+        return Response({"message": "Error checking lock status", "error": status_data.get("error")}, status=500)
+    logger.info(f"[Key Status] Lock status for {email}: {status_data['status']}")
+    return Response(status_data, status=200)
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def api_renew_key(request):
+    email = request.data.get('email')
+    passphrase = request.data.get('passphrase')
+    if not email or not passphrase:
+        logger.warning("[Renew Key] Missing email or passphrase")
+        return Response({"message": "Missing email or passphrase"}, status=400)
+
+    success = renew_key(email, passphrase)
+    if success:
+        logger.info(f"[Renew Key] Key renewal successful {email}")
+        return Response({"message": "Key renewal successful"}, status=200)
+    logger.error(f"[Renew Key] Key renewal failed for {email}")
+    return Response({"message": "Key renewal failed for"}, status=500)
+    
+    
+    
+    

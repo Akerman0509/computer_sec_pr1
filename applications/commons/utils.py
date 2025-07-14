@@ -20,7 +20,7 @@ from django.core.mail import send_mail
 from Crypto.Protocol.KDF import PBKDF2
 from Crypto.Cipher import PKCS1_OAEP
 from rest_framework.response import Response
-
+from django.utils import timezone
 from applications.my_app.models import User, Key
 
 from cryptography.hazmat.primitives.asymmetric import padding
@@ -28,7 +28,7 @@ from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.backends import default_backend
 from cryptography.exceptions import InvalidSignature
 import base64
-
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 import secrets
 
 
@@ -83,33 +83,49 @@ def validate_passphrase_email(passphrase: str, email: str):
 
 
 class AESCipher:
-    def __init__(self, key: bytes):
+    def __init__(self, key: bytes, mode: str = 'CBC'):
         self.key = key
+        self.mode = mode
+        if mode == 'GCM':
+            self.aesgcm = AESGCM(key)
         
     def encrypt(self, data: bytes) -> str:
-        cipher = AES.new(self.key, AES.MODE_CBC)
-        ct_bytes = cipher.encrypt(pad(data, AES.block_size))
-        iv = b64encode(cipher.iv).decode('utf-8')
-        ct = b64encode(ct_bytes).decode('utf-8')
-        result = json.dumps({'iv':iv, 'ciphertext':ct})
-        # print(result)
-        return result
+        if self.mode == 'GCM':
+            nonce = os.urandom(12)  # Nonce 12 byte cho AES-GCM
+            ciphertext = self.aesgcm.encrypt(nonce, data, None)
+            return json.dumps({
+                'nonce': b64encode(nonce).decode('utf-8'),
+                'ciphertext': b64encode(ciphertext).decode('utf-8')
+            })
+        else:
+            cipher = AES.new(self.key, AES.MODE_CBC)
+            ct_bytes = cipher.encrypt(pad(data, AES.block_size))
+            iv = b64encode(cipher.iv).decode('utf-8')
+            ct = b64encode(ct_bytes).decode('utf-8')
+            result = json.dumps({'iv':iv, 'ciphertext':ct})
+            # print(result)
+            return result
     
     def decrypt(self, encrypted_data):
         try:
             b64 = json.loads(encrypted_data)
-            iv = b64decode(b64['iv'])
-            ct = b64decode(b64['ciphertext'])
-            cipher = AES.new(self.key, AES.MODE_CBC, iv) 
-            # print (f"iv: {iv}")
-            # print (f"ct: {ct}")
-            decrypted = cipher.decrypt(ct)
-            # print (f"[decrypt] Decrypted bytes: {decrypted}")
-            # print ("++++++++++++++++++++++++++++++++++++++++++++++++++")
-            pt = unpad(decrypted, AES.block_size)
-            # print (f"[decrypt] Unpadded plaintext: {pt}")
+            if self.mode == 'GCM':
+                nonce = b64decode(b64['nonce'])
+                ct = b64decode(b64['ciphertext'])
+                return self.aesgcm.decrypt(nonce, ct, None)
+            else:
+                iv = b64decode(b64['iv'])
+                ct = b64decode(b64['ciphertext'])
+                cipher = AES.new(self.key, AES.MODE_CBC, iv) 
+                # print (f"iv: {iv}")
+                # print (f"ct: {ct}")
+                decrypted = cipher.decrypt(ct)
+                # print (f"[decrypt] Decrypted bytes: {decrypted}")
+                # print ("++++++++++++++++++++++++++++++++++++++++++++++++++")
+                pt = unpad(decrypted, AES.block_size)
+                # print (f"[decrypt] Unpadded plaintext: {pt}")
+                return pt
             
-            return pt
         except (ValueError, KeyError) as e:
             print(f"[decrypt] Decryption error: {e}")
             return None
@@ -473,6 +489,128 @@ def check_account_active(user):
     if user.account_status == User.AccountStatus.BLOCKED:
         return True
     else:
+        return False
+    
+
+def encrypt_large_file(file_path: str, email: str, session_key: bytes) -> dict:
+    try:
+        file_size = os.path.getsize(file_path)
+        block_size = 1024 * 1024  # 1MB per block
+        output_file = file_path + '.enc'
+        metadata = {'block_count': 0, 'nonces': [], 'email': email, 'blocks': []}
+
+        if file_size <= 5 * block_size:
+            logger.info(f"File {file_path} less than 5MB, no need to split blocks - {email}")
+            return {"success": False, "message": "File size less than 5MB"}
+
+        blocks = []
+        nonces = []
+        aesgcm = AESCipher(session_key, mode='GCM')
+
+        with open(file_path, 'rb') as f:
+            while True:
+                block = f.read(block_size)
+                if not block:
+                    break
+                encrypted_block = aesgcm.encrypt(block)
+                block_data = json.loads(encrypted_block)
+                blocks.append(block_data['ciphertext'])
+                nonces.append(block_data['nonce'])
+
+        metadata['block_count'] = len(blocks)
+        metadata['nonces'] = nonces
+
+        with open(output_file, 'w') as f:
+            json.dump({'metadata': metadata, 'blocks': blocks}, f, indent=2)
+
+        logger.info(f"File {file_path} divided into {metadata['block_count']} block and encrypt successfully - {email}")
+        return {"success": True, "output_file": output_file}
+
+    except Exception as e:
+        logger.error(f"Error while encrypting file {file_path}: {str(e)} - {email}")
+        return {"success": False, "error": str(e)}
+
+# 13  
+def check_key_status(email: str) -> dict:
+
+    try:
+        user = User.objects.filter(email=email).first()
+        if not user:
+            logger.warning(f"[check_key_status] User not found: {email}")
+            return {"status": "NOT_FOUND", "error": "User does not exist"}
+
+        key = user.keys.first() 
+        if not key:
+            logger.warning(f"[check_key_status] No key found for user: {email}")
+            return {"status": "NOT_FOUND", "error": "No RSA key found"}
+
+        now = timezone.now()
+        # Check key expiration
+        if hasattr(key, 'expires_at') and key.expires_at:
+            if key.expires_at <= now:
+                status = "Expired"
+                details = f"Key expired at {key.expires_at}"
+            elif key.expires_at <= now + timedelta(days=7):
+                status = "Near expiration date"
+                details = f"Key expires soon at {key.expires_at}"
+            else:
+                status = "Valid"
+                details = f"Key is valid until {key.expires_at}"
+        else:
+            status = "Valid"
+            details = "Key has no expiration"
+
+        logger.info(f"[check_key_status] Key status for {email}: {status}")
+        return {
+            "status": status,
+            "created_at": key.created_at if hasattr(key, 'created_at') else None,
+            "expires_at": key.expires_at if hasattr(key, 'expires_at') else None,
+            "details": details
+        }
+
+    except Exception as e:
+        logger.error(f"[check_key_status] Error checking key status for {email}: {str(e)}")
+        return {"status": "Error", "error": str(e)}
+
+def renew_key(email: str, passphrase: str) -> bool:
+
+    try:
+        user = User.objects.filter(email=email).first()
+        if not user:
+            logger.warning(f"User not found {email}")
+            return False
+
+        passphrase_data = hash_passphrase(passphrase, user.passphrase_salt)
+        if passphrase_data['hash'] != user.passphrase_hash:
+            logger.warning(f"Incorrect passphrase for {email}")
+            return False
+
+        private_key_pem, public_key_pem = generate_rsa_keys()
+        private_key_enc = encrypt_private_with_passphrase(
+            private_key_pem, passphrase, user.passphrase_salt.encode('utf-8')
+        )
+        public_key_b64 = b64encode(public_key_pem).decode('utf-8')
+        public_key_data = json.dumps({
+            "public_key": public_key_b64,
+            "created_at": timezone.now().isoformat(),
+            "email": email
+        })
+
+        Key.objects.update_or_create(
+            user=user,
+            defaults={
+                'public_key': public_key_data,
+                'private_key_enc': private_key_enc,
+                'created_at': timezone.now(),
+                'expires_at': timezone.now() + timedelta(days=90)
+            }
+        )
+
+        logger.info(f"RSA key successfully renewed/generated for {email}")
+        return True
+
+    except Exception as e:
+        logger.error(f"Error renewing/generating key for {email}: {str(e)}")
         return False
     
     
