@@ -236,9 +236,9 @@ def api_otp_verify(request):
     otp = serializer.validated_data['otp']
 
     # Check session (comment when testing)
-    # if email != request.session.get('login_email'):
-    #     logger.warning("[OTP] Invalid session for %s", email)
-    #     return Response({"message": "Invalid session"}, status=401)
+    if email != request.session.get('login_email'):
+        logger.warning("[OTP] Invalid session for %s", email)
+        return Response({"message": "Invalid session"}, status=401)
 
     # Check OTP in database
     latest_otp = OTP.objects.filter(email=email).order_by('-otp_created').first()
