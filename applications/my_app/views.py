@@ -475,7 +475,7 @@ def api_decrypt_file(request):
 
 @api_view(['POST'])
 #@login_required
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def generate_qr_code(request):
     user_id = request.data.get("user_id")
     input_passphrase = request.data.get("passphrase")
@@ -535,7 +535,7 @@ def generate_qr_code(request):
 
 @api_view(['POST'])
 # @login_required
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def read_qr_code(request):
     if request.method == 'POST' and request.FILES.get('qr_image'):
         qr_image = request.FILES['qr_image']
@@ -574,7 +574,7 @@ def read_qr_code(request):
 
 # Hiển thị kết quả: email, QR code, ngày tạo, thời hạn còn lại/
 @api_view(['GET'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def api_public_key_by_email(request, email):
     """
     This view retrieves the public key for a given email.
@@ -727,7 +727,7 @@ def sign_file(request):
 
 
 @api_view(['POST'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def verify_signature(request):
     try:
         if hasattr(request, 'user') and hasattr(request.user, 'email'):
@@ -812,45 +812,6 @@ def verify_signature(request):
 
     
 
-@login_required
-def my_signatures(request):
-    signatures = DigitalSignature.objects.filter(signer=request.user).order_by('-created_at')
-    return render(request, 'my_signatures.html', {'signatures': signatures})
-
-@login_required
-def download_signature(request, signature_id):
-    signature = get_object_or_404(DigitalSignature, id=signature_id, signer=request.user)
-    
-    if not os.path.exists(signature.signature_file_path):
-        raise Http404("Signature file does not exist")
-    
-    try:
-        with open(signature.signature_file_path, 'r', encoding='utf-8') as f:
-            content = f.read()
-        
-        response = HttpResponse(content, content_type='application/json')
-        response['Content-Disposition'] = f'attachment; filename="{os.path.basename(signature.signature_file_path)}"'
-        return response
-    except Exception as e:
-        raise Http404(f"Error while downloading file: {str(e)}")
-
-
-@login_required
-def delete_signature(request, signature_id):
-    if request.method == 'POST':
-        signature = get_object_or_404(DigitalSignature, id=signature_id, signer=request.user)
-        
-        if os.path.exists(signature.signature_file_path):
-            os.remove(signature.signature_file_path)
-        
-        signature.delete()
-        
-        #Ghi log
-        
-        messages.success(request, 'Signature deleted successfully!')
-    
-    return redirect('my_signatures')
-
 # Get email passphrase token
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -934,7 +895,7 @@ def api_change_account_status(request, user_id):
 
 # 12 
 @api_view(['POST'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def api_encrypt_large_file(request):
 
     file = request.FILES.get('file')
@@ -984,7 +945,7 @@ def api_encrypt_large_file(request):
 
 # 13
 @api_view(['GET'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def api_key_status(request, email):
     status_data = check_key_status(email)
     if status_data.get("status") == "Lỗi":
@@ -994,7 +955,7 @@ def api_key_status(request, email):
     return Response(status_data, status=200)
 
 @api_view(['POST'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def api_renew_key(request):
     email = request.data.get('email')
     passphrase = request.data.get('passphrase')
