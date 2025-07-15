@@ -22,26 +22,26 @@ POST {{baseUrl}}/login/ HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "phhoangquan@gmail.com",
+  "email": "ngthequan.relax@gmail.com",
   "passphrase": "12345678aA@"
 }
 
 
 ### Verify OTP
-POST http://localhost:8000/api/otp/verify/
+POST {{baseUrl}}/otp/verify/
 Content-Type: application/json
-Cookie: sessionid=q58jsa6tefhpl8k1rnc4tjfqogd9n3l7
+Cookie: sessionid=q1h420fxlj0sgff796k5rvh3rryi4a48
 
 {
-    "email": "phhoangquan@gmail.com",
-    "otp": "124516"
+    "email": "ngthequan.relax@gmail.com",
+    "otp": "532283"
 }
 
 
 #---------- 3. Managing personal RSA keys -----------------
 ### 
 POST {{baseUrl}}/create_rsa_pair/ HTTP/1.1
-Authorization: Token bfc9f3d756a8ac9efeff500a0ab2e9cd057881df
+Authorization: Token 2q0w29gohwrd43u0is4mbiumxdowro5y
 Content-Type: application/json
 
 {
@@ -112,19 +112,20 @@ Content-Type: application/json
 
 }
 
-
+# ---------- 8. QR code -----------------
 ### Create QR
 POST {{baseUrl}}/generate_qr/ HTTP/1.1
-Authorization: Token bfc9f3d756a8ac9efeff500a0ab2e9cd057881df
+Authorization: Token fc261d400c9db5f4b9897448ad1589641af36599
 Content-Type: application/json
 
 {
-    "user_id": 20,
+    "user_id": 8,
     "passphrase": "12345678aA@"
 }
 
 ### Test read QR code 
 POST http://127.0.0.1:8000/api/scan_qr/
+Authorization: Token fc261d400c9db5f4b9897448ad1589641af36599
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
@@ -163,7 +164,7 @@ Content-Type: application/json
 ### Create signature
 POST {{baseUrl}}/sign-file/ HTTP/1.1
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Authorization: Token ed7f8de001a6c59261ca09321aeb05ab7510e746
+Authorization: Token fc261d400c9db5f4b9897448ad1589641af36599
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="file"; filename="test.txt"
@@ -183,7 +184,7 @@ Content-Disposition: form-data; name="passphrase"
 ### Verify signature
 POST {{baseUrl}}/verify-signature/
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Authorization: Token ed7f8de001a6c59261ca09321aeb05ab7510e746
+Authorization: Token fc261d400c9db5f4b9897448ad1589641af36599
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="original_file"; filename="test.txt"
@@ -199,10 +200,10 @@ Content-Type: application/octet-stream
 {
   "file_name": "test.txt",
   "file_hash": "8492ca20ed0c9d673ca814acbdb5cb41b22ea59750cb382173f83a28e4944f94",
-  "signature": "Akn7jx7kKIfg5OEmsJ0SmwTd0qMeECXdjuFtnRvGBZLs/FKB387VOhWh0QxTlflv2Fxr6y2GKYmF3SMpHVESOWqPg4UsRXDEaFJeuM26BMOVqzWFxLDj/zcQwaTZPX01iIxyWd+OUupj4vbcbhogbO3suhQBQyPTCDlQWY9LZPQ8Z4Bj3xy0zfvrlYm8UaMVRStnTE5UsvvqZVrK4gT1A3KA2AAYubznz1hretwgil4Mlt2F03GlVBAEt0TdAodTdPcd1JcQuBfXrwFvCEprFuOEiNhLTvte0dGHnNeo7xS27s/E3vak+ISJpUHa+WB6uw1M6yZjsakRQgX8ZsZYyA==",
+  "signature": "NYVM9fX4bvcSZK+sfB458lVl9/5DoadGJ1cmtmhI7AzXuQgXfCuqiAs7ZROnUFWUy0YncJyMd9TF/HMXppdNZSbslug0+WHpteXzQ/zDqRwgGIISITamfTgnzgBhfuPHsXXlhkCw17IlLSrX8rFpss389IrLxlusiCtawhjUO3Ry8poJJGmHvlt/UX4nPoK2TJRqgtn/1B37QBsnivDWVe/NO6V2LE5oNW3maNdLyv/S3iMawnyA0oxWLHmKJZg0O8xZGUUG37Yr+5CymSWySAvbJbVeUDzzxfw2kJY89c2AXsPZpvgMGqmqjgpXA8xQ9jZHrmto+5TiPyAU5HgQyA==",
   "signer_email": "ngthequan.relax@gmail.com",
   "signer_name": "ngthequan.relax@gmail.com",
-  "signed_at": "2025-07-10T07:36:19.590210+00:00",
+  "signed_at": "2025-07-15T14:38:02.851533+00:00",
   "algorithm": "RSA-PSS with SHA-256"
 }
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
@@ -210,7 +211,7 @@ Content-Type: application/octet-stream
 # ---------- 12. Split large files -----------------
 ### Encrypt large file
 POST {{baseUrl}}/encrypt-large-file/ HTTP/1.1
-Authorization: Token 3568adc9b452706cbc8f3771dd2605924fa0c2cd
+Authorization: Token fc261d400c9db5f4b9897448ad1589641af36599
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
@@ -227,11 +228,11 @@ Content-Type: application/octet-stream
 # ---------- 13. Check key status -----------------
 ### Check key status
 GET {{baseUrl}}/key-status/ngthequan.relax@gmail.com/ HTTP/1.1 Content-Type: application/json
-Authorization: Token 3568adc9b452706cbc8f3771dd2605924fa0c2cd
+Authorization: Token fc261d400c9db5f4b9897448ad1589641af36599
 
 ### Renew key
 POST {{baseUrl}}/renew-key/ HTTP/1.1 
-Authorization: Token 3568adc9b452706cbc8f3771dd2605924fa0c2cd
+Authorization: Token fc261d400c9db5f4b9897448ad1589641af36599
 Content-Type: application/json
 
 { "email": "ngthequan.relax@gmail.com", "passphrase": "12345678aA@" }

@@ -252,6 +252,9 @@ def api_otp_verify(request):
     if not latest_otp:
         authLog(f"[OTP] No OTP found for {email}")
         return Response({"message": "No OTP found"}, status=404)
+    if otp != latest_otp.otp:
+        authLog(f"[OTP] Incorrect OTP for {email}")
+        return Response({"message": "Incorrect OTP"}, status=401)
 
     if now() > latest_otp.otp_expires:
         authLog(f"[OTP] Expired OTP for {email}")
