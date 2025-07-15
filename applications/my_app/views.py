@@ -10,7 +10,7 @@ from django.http import HttpResponse, Http404
 logger = logging.getLogger(__name__)
 from applications.my_app.models import User, Key, OTP, DigitalSignature, CustomToken
 from .serializers import UserRegistrationSerializer, UserLoginSerializer, OTPVerifySerializer
-from applications.commons.utils import hash_passphrase, generate_rsa_keys, AESCipher,derive_aes_key, encrypt_private_with_passphrase, decrypt_private_with_passphrase,encrypt_file_with_metadata, decrypt_file, calculate_file_hash, sign_file_hash, create_signature_file, verify_signature_with_public_key,check_account_active, encrypt_large_file, renew_key, check_key_status, authLog, keyLog, profileLog
+from applications.commons.utils import hash_passphrase, generate_rsa_keys, AESCipher,derive_aes_key, encrypt_private_with_passphrase, decrypt_private_with_passphrase,encrypt_file_with_metadata, decrypt_file, calculate_file_hash, sign_file_hash, create_signature_file, verify_signature_with_public_key,check_account_active, encrypt_large_file, renew_key, check_key_status, authLog, keyLog, profileLog,fileLog, sigLog,adminLog,actionLog
 # import redis
 import json
 from django.conf import settings
@@ -192,8 +192,8 @@ def api_create_RSA_pair(request):
     
     # check if passphrase is correct
     new_passphrase_data = hash_passphrase(input_passphrase, user.passphrase_salt)
-    keyLog (f"[api_create_RSA_pair] new_passphrase_data: {new_passphrase_data}")
-    keyLog (f"[api_create_RSA_pair] user.passphrase_hash: {user.passphrase_hash}")
+    keyLog (f"[api_create_RSA_pair][user_id {user_id}] new_passphrase_data: {new_passphrase_data}")
+    keyLog (f"[api_create_RSA_pair][user_id {user_id}]  user.passphrase_hash: {user.passphrase_hash}")
     if new_passphrase_data['hash'] != user.passphrase_hash:
         keyLog(f"[api_create_RSA_pair] Invalid passphrase for user_id: {user_id}")
         return Response({"message": "Invalid credentials"}, status=401)
@@ -269,7 +269,7 @@ def api_otp_verify(request):
     CustomToken.objects.filter(user=user).delete()
     token = CustomToken.objects.create(user=user, key=secrets.token_hex(20))
 
-    logger.info("[OTP] Successful login for %s", email)
+    authLog("[OTP] Successful login for {email}")
 
     return Response({
         "message": "Login successful",
@@ -296,7 +296,7 @@ def api_update_user(request):
 
     user = User.objects.filter(pk=user_id).first()
     if not user:
-        profileLog(f"[Update User] User with id {user_id} does not exist")
+        profileLog(f"[Update User][user_id {user_id}] User with id {user_id} does not exist")
         return Response({"message": "User does not exist"}, status=404)
 
     if name:
@@ -309,11 +309,11 @@ def api_update_user(request):
         try:
             user.birth_day = datetime.strptime(birth_day, '%Y-%m-%d').replace(tzinfo=timezone.utc)
         except ValueError:
-            profileLog(f"[Update User] Invalid date format for birth_day: {birth_day}")
+            profileLog(f"[Update User][user_id {user_id}] Invalid date format for birth_day: {birth_day}")
             return Response({"message": "Invalid date format for birth_day"}, status=400)
     
     user.save()
-    profileLog(f"[Update User] User updated successfully: {user.email}")
+    profileLog(f"[Update User][user_id {user_id}] User updated successfully: {user.email}")
 
     res = {
         "message": "User updated successfully",
@@ -342,19 +342,19 @@ def api_update_user(request):
 def handle_passphrase_change(user_id, input_passphrase, new_passphrase):
     user = User.objects.filter(pk=user_id).first()
     if not user:
-        logger.warning("[handle_passphrase_change] User with id %s does not exist", user_id)
+        profileLog(f"[handle_passphrase_change] User with id {user_id} does not exist")
         return Response({"message": "User does not exist"}, status=404)
     
-    # check if passphrase is correct
+    # Check if passphrase is correct
     new_passphrase_data = hash_passphrase(input_passphrase, user.passphrase_salt)
     if new_passphrase_data['hash'] != user.passphrase_hash:
-        logger.warning("[handle_passphrase_change] Invalid passphrase for user_id: %s", user_id)
+        profileLog(f"[handle_passphrase_change] Invalid passphrase for user_id: {user_id}")
         return Response({"message": "Invalid credentials"}, status=401)
     
-    # decrypt all private keys of the user
+    # Decrypt all private keys of the user
     keys = Key.objects.filter(user=user)
     if not keys:
-        logger.warning("[handle_passphrase_change] No keys found for user_id: %s", user_id)
+        profileLog(f"[handle_passphrase_change] No keys found for user_id: {user_id}")
         return Response({"message": "No keys found for user"}, status=404)
     
     # AES cipher private key
@@ -365,7 +365,7 @@ def handle_passphrase_change(user_id, input_passphrase, new_passphrase):
         try:
             decrypt = decrypt_private_with_passphrase(key.private_key_enc, input_passphrase, user.passphrase_salt.encode('utf-8'))
             if decrypt is None:
-                logger.error(f"[handle_passphrase_change] Failed to decrypt private key for user_id {user_id}")
+                profileLog(f"[handle_passphrase_change] Failed to decrypt private key for user_id {user_id}")
                 return Response({"error": "Error decrypting private keys"}, status=400)
             
             # Re-encrypt with new passphrase
@@ -373,7 +373,7 @@ def handle_passphrase_change(user_id, input_passphrase, new_passphrase):
             key.private_key_enc  = encrypt_private_with_passphrase(decrypt, new_passphrase, new_salt)
             key.save()
         except Exception as e:
-            logger.error("[handle_passphrase_change] Error decrypting private key for user_id %s: %s", user_id, str(e))
+            profileLog("[handle_passphrase_change] Error decrypting private key for user_id %s: %s", user_id, str(e))
             return Response({"message": "Error decrypting private keys"}, status=500)
         
     # Update user's passphrase salt and hash
@@ -391,7 +391,7 @@ def api_send_encrypted_file(request):
     """
     This view handles sending an encrypted file to a recipient.
     """
-    logger.info("[Send Encrypted File] Received data: %s", request.data)
+    fileLog(f"[Send Encrypted File] Received data: {request.data}")
 
     file_path = request.data.get('file_path')
     sender_email = request.data.get('sender_email')
@@ -400,29 +400,31 @@ def api_send_encrypted_file(request):
     mode = request.data.get('mode', "combined")
 
     if not file_path or not os.path.exists(file_path):
-        logger.error("[Send Encrypted File] File does not exist: %s", file_path)
+        fileLog(f"[Send Encrypted File] File does not exist: {file_path}")
         return Response({"message": "File does not exist"}, status=404)
 
     if not sender_email or not recipient_email:
-        logger.error("[Send Encrypted File] Sender or recipient email is missing")
+        fileLog("[Send Encrypted File] Sender or recipient email is missing")
         return Response({"message": "Sender or recipient email is missing"}, status=400)
     
-    print (f"[Send Encrypted File] sender_email: {sender_email}, recipient_email: {recipient_email}, output_path: {output_path}, mode: {mode}, file_path: {file_path}")
+    fileLog(f"[Send Encrypted File] sender_email: {sender_email}, recipient_email: {recipient_email}, output_path: {output_path}, mode: {mode}, file_path: {file_path}")
 
     try:
-        response = encrypt_file_with_metadata(file_path, sender_email, recipient_email, output_path=output_path, mode = mode)
-        print (f"[Send Encrypted File] Response from encrypt_file_with_metadata: {response}")
+        response = encrypt_file_with_metadata(file_path, sender_email, recipient_email, output_path=output_path, mode=mode)
+        fileLog(f"[Send Encrypted File] Response from encrypt_file_with_metadata: {response}")
+        
         if response is None:
             return Response({"message": "Error encrypting file"}, status=500)
         
         return response
     
     except Exception as e:
-        logger.exception("[Decrypt File] Unexpected error occurred")
+        fileLog(f"[Send Encrypted File] Unexpected error occurred: {str(e)}")
         return Response(
-            {"detail": "An error occurred while decrypting the file.", "error": str(e)},
+            {"detail": "An error occurred while encrypting the file.", "error": str(e)},
             status=500
-    )
+        )
+
     
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -430,51 +432,47 @@ def api_decrypt_file(request):
     """
     This view handles decrypting an encrypted file.
     """
-    logger.info("[Decrypt File] Received data: %s", request.data)
+    fileLog(f"[Decrypt File] Received data: {request.data}")
 
     encrypted_file_path = request.data.get('file_path')
     output_path = request.data.get('output_file_path', None)
     input_passphrase = request.data.get('passphrase', None)
     user_id = request.data.get('user_id', None)
     
-    # check passphrase
+    # Check passphrase
     user = User.objects.filter(pk=user_id).first()
     if not user:
-        logger.warning("[handle_passphrase_change] User with id %s does not exist", user_id)
+        fileLog(f"[Decrypt File] User with id {user_id} does not exist")
         return Response({"message": "User does not exist"}, status=404)
     
-    # check if passphrase is correct
     new_passphrase_data = hash_passphrase(input_passphrase, user.passphrase_salt)
     if new_passphrase_data['hash'] != user.passphrase_hash:
-        logger.warning("[handle_passphrase_change] Invalid passphrase for user_id: %s", user_id)
+        fileLog(f"[Decrypt File] Invalid passphrase for user_id: {user_id}")
         return Response({"message": "Invalid credentials"}, status=401)
+
+    fileLog(f"[Decrypt File] encrypted_file_path: {encrypted_file_path}, output_path: {output_path}")
     
-    
-    
-    print (f"[Decrypt File] encrypted_file_path: {encrypted_file_path}, output_path: {output_path}")
-    try :
+    try:
         if not encrypted_file_path or not os.path.exists(encrypted_file_path):
-            logger.error("[Decrypt File] Encrypted file does not exist: %s", encrypted_file_path)
+            fileLog(f"[Decrypt File] Encrypted file does not exist: {encrypted_file_path}")
             return Response({"message": "Encrypted file does not exist"}, status=404)
 
-        response = decrypt_file(input_passphrase=input_passphrase ,f_input_enc=encrypted_file_path, f_output=output_path)
+        response = decrypt_file(input_passphrase=input_passphrase, f_input_enc=encrypted_file_path, f_output=output_path)
         
         if response is None:
             return Response({"message": "Error decrypting file"}, status=500)
         else:
-            logger.info("[Decrypt File] File decrypted successfully")
+            fileLog(f"[Decrypt File][user_id {user_id}] File decrypted successfully")
             return response
-        
+
     except Exception as e:
-        logger.exception("[Decrypt File] Unexpected error occurred")
+        fileLog(f"[Decrypt File] Unexpected error occurred: {str(e)}")
         return Response(
             {"detail": "An error occurred while decrypting the file.", "error": str(e)},
             status=500
         )
 
-
 @api_view(['POST'])
-#@login_required
 @permission_classes([IsAuthenticated])
 def generate_qr_code(request):
     user_id = request.data.get("user_id")
@@ -510,6 +508,7 @@ def generate_qr_code(request):
         "creation_date": key.created_at.strftime("%Y-%m-%d"),
         "public_key": key.public_key
     })
+    keyLog(f"[Generate QR Code][user_id {user_id}]  QR data: {qr_data}")
 
     qr = qrcode.QRCode(
         version=1,
@@ -534,7 +533,6 @@ def generate_qr_code(request):
     }, status=200)
 
 @api_view(['POST'])
-# @login_required
 @permission_classes([IsAuthenticated])
 def read_qr_code(request):
     if request.method == 'POST' and request.FILES.get('qr_image'):
@@ -579,19 +577,18 @@ def api_public_key_by_email(request, email):
     """
     This view retrieves the public key for a given email.
     """
-    logger.info("[Get Public Key] Received email: %s", email)
-    print (f"[Get Public Key] Received email: {email}")
+    keyLog(f"[Get Public Key] Received email: {email}")
 
     user = User.objects.filter(email=email).first()
     if not user:
-        logger.warning("[Get Public Key] User with email %s does not exist", email)
+        keyLog(f"[Get Public Key][email {email}] User with email {email} does not exist" )
         return Response({"message": "User does not exist"}, status=404)
 
 
 
     keys = Key.objects.filter(user=user.id).order_by('-created_at')
     if not keys:
-        logger.warning("[Get Public Key] User doesnt have any publickey %s", user.email)
+        keyLog(f"[Get Public Key] User doesnt have any publickey {email}")
         return Response({"message": "User doesnt have any publickey"}, status=404)
 
     res = {}
@@ -644,14 +641,14 @@ def serve_jpg(request):
 def sign_file(request):
     try:
         if 'file' not in request.FILES:
-            logging.info(f"User: {getattr(request.user, 'email', 'AnonymousUser')} - Action: Sign file - Status: Failed - Error: No file provided")
+            sigLog(f"User: {getattr(request.user, 'email', 'AnonymousUser')} - Action: Sign file - Status: Failed - Error: No file provided")
             return Response({"error": "Please provide file"}, status=status.HTTP_400_BAD_REQUEST)
 
         uploaded_file = request.FILES['file']
         passphrase = request.data.get('passphrase')
 
         if not passphrase:
-            logging.info(f"User: {getattr(request.user, 'email', 'AnonymousUser')} - Action: Sign file - Status: Failed - Error: No passphrase provided")
+            sigLog(f"User: {getattr(request.user, 'email', 'AnonymousUser')} - Action: Sign file - Status: Failed - Error: No passphrase provided")
             return Response({"error": "Please provide passphrase"}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
@@ -660,7 +657,7 @@ def sign_file(request):
                 logging.info(f"User: {request.user.email} - Action: Sign file - Status: Failed - Error: Key expired")
                 return Response({"error": "Your key has expired"}, status=status.HTTP_400_BAD_REQUEST)
         except Key.DoesNotExist:
-            logging.info(f"User: {request.user.email} - Action: Sign file - Status: Failed - Error: No RSA key")
+            sigLog(f"User: {request.user.email} - Action: Sign file - Status: Failed - Error: No RSA key")
             return Response({"error": "You do not have an RSA key"}, status=status.HTTP_400_BAD_REQUEST)
 
         # read file and hash
@@ -673,7 +670,7 @@ def sign_file(request):
             private_key_bytes = decrypt_private_with_passphrase(user_key.private_key_enc, passphrase, salt)
             private_key = serialization.load_pem_private_key(private_key_bytes, password=None, backend=default_backend())
         except ValueError as e:
-            logging.info(f"User: {request.user.email} - Action: Sign file - Status: Failed - Error: {str(e)}")
+            sigLog(f"User: {request.user.email} - Action: Sign file - Status: Failed - Error: {str(e)}")
             return Response({"error": f"Passphrase is incorrect: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)
 
         # Sign file hash
@@ -711,7 +708,7 @@ def sign_file(request):
             signature_file_path=sig_file_path
         )
 
-        logging.info(f"User: {email} - Action: Sign file - Status: Success - File: {uploaded_file.name}")
+        sigLog(f"User: {email} - Action: Sign file - Status: Success - File: {uploaded_file.name}")
 
         return Response({
             "message": "File signed successfully",
@@ -721,7 +718,7 @@ def sign_file(request):
 
     except Exception as e:
         email = getattr(request.user, 'email', 'AnonymousUser')
-        logging.info(f"User: {email} - Action: Sign file - Status: Failed - Error: {str(e)}")
+        sigLog(f"User: {email} - Action: Sign file - Status: Failed - Error: {str(e)}")
         return Response({"error": f"Error signing file: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
@@ -736,14 +733,14 @@ def verify_signature(request):
             user_email = 'AnonymousUser'
 
         if 'original_file' not in request.FILES or 'signature_file' not in request.FILES:
-            logging.info(f"User: {user_email} - Action: Verify signature - Status: Failed - Error: Missing files")
+            sigLog(f"User: {user_email} - Action: Verify signature - Status: Failed - Error: Missing files")
             return Response({"error": "Please provide both the original file and the signature file."}, status=status.HTTP_400_BAD_REQUEST)
         
         original_file = request.FILES['original_file']
         signature_file = request.FILES['signature_file']
         
         if not signature_file.name.endswith('.sig'):
-            logging.info(f"User: {user_email} - Action: Verify signature - Status: Failed - Error: Invalid signature file format")
+            sigLog(f"User: {user_email} - Action: Verify signature - Status: Failed - Error: Invalid signature file format")
             return Response({"error": "The signature file must have an extension .sig"}, status=status.HTTP_400_BAD_REQUEST)
         
         sig_content = signature_file.read().decode('utf-8')
@@ -763,7 +760,7 @@ def verify_signature(request):
             signer = User.objects.get(email=signature_data['signer_email'])
             signer_key = Key.objects.get(user=signer)
         except (User.DoesNotExist, Key.DoesNotExist):
-            logging.info(f"User: {user_email} - Action: Verify signature - Status: Failed - Error: Public key not found")
+            sigLog(f"User: {user_email} - Action: Verify signature - Status: Failed - Error: Public key not found")
             return Response({
                 "verification_result": "invalid",
                 "reason": "Public key not found"
@@ -788,7 +785,7 @@ def verify_signature(request):
                 "signer_name": signer_name
             }, status=status.HTTP_200_OK)
         else:
-            logging.info(f"User: {user_email} - Action: Verify signature - Status: Failed - Error: Invalid signature")
+            sigLog(f"User: {user_email} - Action: Verify signature - Status: Failed - Error: Invalid signature")
             return Response({
                 "verification_result": "invalid",
                 "reason": "Invalid signature"
@@ -807,7 +804,7 @@ def verify_signature(request):
             user_email = request.user.email
         else:
             user_email = 'AnonymousUser'        
-        logging.info(f"User: {user_email} - Action: Verify signature - Status: Failed - Error: {str(e)}")
+        sigLog(f"User: {user_email} - Action: Verify signature - Status: Failed - Error: {str(e)}")
         return Response({"error": f"Error while verifying signature: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     
@@ -836,14 +833,14 @@ def email_passphrase_token(request):
 
 
 @api_view(['GET'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def api_list_accounts(request, user_id):
     """
     This view lists all accounts.
     """
     admin_user = User.objects.filter(id=user_id, role="Admin").first()
     if not admin_user:
-        logger.warning("[List Accounts] User with id %s is not an admin", user_id)
+        adminLog(f"[List Accounts] User with id {user_id} is not an admin", )
         return Response({"message": "You are not authorized to view this information"}, status=403)
     
     users = User.objects.all().order_by('-created_at')
@@ -863,7 +860,7 @@ def api_list_accounts(request, user_id):
     return Response(res, status=200)
 
 @api_view(['POST'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def api_change_account_status(request, user_id):
     """
     This view changes the status of an account.
@@ -873,7 +870,7 @@ def api_change_account_status(request, user_id):
     
     admin_user = User.objects.filter(id=user_id, role="Admin").first()
     if not admin_user:
-        logger.warning("[Change Account Status] User with id %s is not an admin", user_id)
+        adminLog(f"[Change Account Status] User with id {user_id} is not an admin")
         return Response({"message": "You are not authorized to change account status"}, status=403)
         
     if not target_id or not new_status:
@@ -888,6 +885,7 @@ def api_change_account_status(request, user_id):
     
     user.account_status = User.AccountStatus[new_status]
     user.save()
+    adminLog(f"[Change Account Status] User {user.email} status changed to {new_status}")
     
     return Response({"message": f"User {user.email} status changed to {new_status}"}, status=200)
 
@@ -901,7 +899,7 @@ def api_encrypt_large_file(request):
     file = request.FILES.get('file')
     email = request.data.get('email')
     if not file or not email:
-        logger.warning("[Encrypt Large File] Missing file or email")
+        fileLog(f"[Encrypt Large File][email {email}] Missing file or email")
         return Response({"message": "Missing file or email"}, status=400)
 
     upload_dir = os.path.join('applications', 'data', 'EncryptLargeFile', 'Upload')
@@ -921,7 +919,7 @@ def api_encrypt_large_file(request):
         result = encrypt_large_file(upload_file_path, email, session_key)
         
         if result['success']:
-            logger.info(f"[Encrypt Large File] File encryption successful: {file.name}")
+            fileLog(f"[Encrypt Large File][email {email}] File encryption successful: {file.name}")
             # Move the encrypted file to the encrypted directory
             final_output_path = os.path.join(encrypted_dir, f"{file.name}.enc")
             shutil.move(result['output_file'], final_output_path)
@@ -930,14 +928,14 @@ def api_encrypt_large_file(request):
                 "output_file": final_output_path
             }, status=200)
         else:
-            logger.error(f"[Encrypt Large File] File encryption failed: {result.get('error', 'Unknown error')}")
+            fileLog(f"[Encrypt Large File][email {email}] File encryption failed: {result.get('error', 'Unknown error')}")
             return Response({
                 "message": "File encryption failed",
                 "error": result.get('error', 'Unknown error')
             }, status=500)
     
     except Exception as e:
-        logger.error(f"[Encrypt Large File] Error processing file: {str(e)}")
+        logger.error(f"[Encrypt Large File][email {email}] Error processing file: {str(e)}")
         return Response({
             "message": "Error processing file",
             "error": str(e)
@@ -949,7 +947,7 @@ def api_encrypt_large_file(request):
 def api_key_status(request, email):
     status_data = check_key_status(email)
     if status_data.get("status") == "Lỗi":
-        logger.error(f"[Key Status] Error checking lock status for {email}: {status_data.get('error')}")
+        actionLog(f"[Key Status][email {email}] Error checking lock status for {email}: {status_data.get('error')}")
         return Response({"message": "Error checking lock status", "error": status_data.get("error")}, status=500)
     logger.info(f"[Key Status] Lock status for {email}: {status_data['status']}")
     return Response(status_data, status=200)
@@ -960,14 +958,14 @@ def api_renew_key(request):
     email = request.data.get('email')
     passphrase = request.data.get('passphrase')
     if not email or not passphrase:
-        logger.warning("[Renew Key] Missing email or passphrase")
+        actionLog(f"[Renew Key][email {email}] Missing email or passphrase")
         return Response({"message": "Missing email or passphrase"}, status=400)
 
     success = renew_key(email, passphrase)
     if success:
-        logger.info(f"[Renew Key] Key renewal successful {email}")
+        actionLog(f"[Renew Key][email {email}] Key renewal successful {email}")
         return Response({"message": "Key renewal successful"}, status=200)
-    logger.error(f"[Renew Key] Key renewal failed for {email}")
+    actionLog(f"[Renew Key][email {email}] Key renewal failed for {email}")
     return Response({"message": "Key renewal failed for"}, status=500)
     
     

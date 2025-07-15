@@ -351,3 +351,317 @@ INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:59
 INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
 INFO:auth:[login] Invalid passphrase for user: phhoangquan@gmail.com
 WARNING:django.request:Unauthorized: /api/login/
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+WARNING:django.request:Not Found: /
+WARNING:django.request:Not Found: /favicon.ico
+INFO:auth:[Register] Received data: {'name': 'hollowKnight', 'birth_day': '2004-01-01', 'email': 'hollowKnight@gmail.com', 'address': '123 Main St, Springfield', 'phone_number': '123-456-7890', 'passphrase': '12345678aA@'}
+INFO:auth:[Register] User registered successfully: hollowKnight@gmail.com
+ERROR:django.request:Internal Server Error: /api/login/
+Traceback (most recent call last):
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/connection.py", line 385, in connect_check_health
+    sock = self.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/retry.py", line 87, in call_with_retry
+    return do()
+           ^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/connection.py", line 386, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+            ^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/connection.py", line 797, in _connect
+    raise err
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/connection.py", line 781, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py", line 80, in api_login
+    rate_limiter_status = rate_limiter_wrong_login(request.data.get('email', ''), 0)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py", line 56, in rate_limiter_wrong_login
+    current = r.get(redis_key)
+              ^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name, keys=[name])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/client.py", line 623, in execute_command
+    return self._execute_command(*args, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/client.py", line 629, in _execute_command
+    conn = self.connection or pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/utils.py", line 191, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/connection.py", line 1530, in get_connection
+    connection.connect()
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/connection.py", line 379, in connect
+    self.connect_check_health(check_health=True)
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/connection.py", line 391, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '00:00', 'current_requests': 0}
+INFO:auth:[Login] Received data: {'email': 'hollowKnight@gmail.com', 'passphrase': 'a12345678aA@'}
+INFO:auth:[login] Invalid passphrase for user: hollowKnight@gmail.com
+WARNING:django.request:Unauthorized: /api/login/
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:56', 'current_requests': 1}
+INFO:auth:[Login] Received data: {'email': 'hollowKnight@gmail.com', 'passphrase': 'a12345678aA@'}
+INFO:auth:[login] Invalid passphrase for user: hollowKnight@gmail.com
+WARNING:django.request:Unauthorized: /api/login/
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:50', 'current_requests': 2}
+INFO:auth:[Login] Received data: {'email': 'hollowKnight@gmail.com', 'passphrase': '12345678aA@'}
+INFO:auth:[OTP] Generated OTP for hollowKnight@gmail.com
+INFO:auth:[OTP] Failed to send OTP to hollowKnight@gmail.com: authLog() takes 1 positional argument but 2 were given
+ERROR:django.request:Internal Server Error: /api/login/
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '00:00', 'current_requests': 0}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+INFO:auth:[OTP] Generated OTP for phhoangquan@gmail.com
+INFO:auth:[OTP] Failed to send OTP to phhoangquan@gmail.com: authLog() takes 1 positional argument but 2 were given
+ERROR:django.request:Internal Server Error: /api/login/
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '00:00', 'current_requests': 0}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+INFO:auth:[OTP] Generated OTP for phhoangquan@gmail.com
+INFO:auth:[OTP] Failed to send OTP to phhoangquan@gmail.com: authLog() takes 1 positional argument but 2 were given
+ERROR:django.request:Internal Server Error: /api/login/
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '00:00', 'current_requests': 0}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+INFO:auth:[OTP] Generated OTP for phhoangquan@gmail.com
+INFO:auth:[OTP] Failed to send OTP to phhoangquan@gmail.com: authLog() takes 1 positional argument but 2 were given
+ERROR:django.request:Internal Server Error: /api/login/
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/commons/utils.py changed, reloading.
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '00:00', 'current_requests': 0}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+INFO:auth:[OTP] Generated OTP for phhoangquan@gmail.com
+INFO:auth:[OTP] Sent OTP to phhoangquan@gmail.com
+ERROR:django.request:Internal Server Error: /api/otp/verify/
+Traceback (most recent call last):
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py", line 261, in api_otp_verify
+    del request.session['login_email']
+        ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/contrib/sessions/backends/base.py", line 66, in __delitem__
+    del self._session[key]
+        ~~~~~~~~~~~~~^^^^^
+KeyError: 'login_email'
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '00:00', 'current_requests': 0}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+INFO:auth:[OTP] Generated OTP for phhoangquan@gmail.com
+INFO:auth:[OTP] Sent OTP to phhoangquan@gmail.com
+INFO:auth:[OTP] Successful login for {email}
+WARNING:django.request:Forbidden: /api/generate_qr/
+WARNING:django.request:Forbidden: /api/generate_qr/
+INFO:key:[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : b'ixKAEAbvXHDHueRQ6nk4Mw=='
+INFO:auth:[Generate QR Code] QR data: {"email": "hollowKnight@gmail.com", "creation_date": "2025-07-15", "public_key": "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUEzMmorUi9DS0xOS3FpNzJDM2FYQgo1cDdNcml1enBTSXJndlFkeEl1OWhBZ0Nnb0hFNTU4R0VHbFNFa01SY01peDI0bmhKQXFaOFF2eWh2MzRNcGtoClRFa1o1NEZhN2dKdDFUMXp5Sm96akNnWmhsYkExZDYwOEZFYUZyNlY2K1FtbHdOQ2VWTFRFUjFmTmp6b1lFOTIKcHNuMktvaVVsU0pJWnhDRGNYSnZtVDkvRFFJRzZObXpPTHNpTlBzL2N5SWxlai84RHpjQVZoeWRVOTdFZldLUAo5SS9vMUNsVXRBdVFkdVNGYWM2MkZlUzJiMGtzL0pCVnNOMkplTU5tZ29VYjZSVWNmWkVLZ2FBTGVDU2c1QndiCjYrS2dNbXZMUjVEWWZ1bHJJbGUrNTBIaTZGYTJBNUtsUDZ6VEhBZkNHS28vU3dkN0VRWEVsdXdPQ0FRNjlEWG4Kb1FJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t"}
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:key:[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : b'ixKAEAbvXHDHueRQ6nk4Mw=='
+INFO:key:[Generate QR Code] QR data: {"email": "hollowKnight@gmail.com", "creation_date": "2025-07-15", "public_key": "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUF1TUc1WnQ4NzZVRHRUdjlabDZsSQpZVFhjUjFtd3NjUjFwdVpZWVFUbmVVb3h3SlVqQUdXRnRnR291Ump2SVhUKzB5NWRPVDdBZHpUQnB2ZUhuZVJaCmptNHRvYzAwaWVVYXB5Y2ZTUWxxdTRtL1VkRi90SkJuUTA3U3NMOWZyMXI1SjRBWEgvZ24zdUJZM1BRZ0NkUXAKYTdnTUxsMUdPM3FTM3c3UXU0M1I0TFR5VVRudjFLTkZQZ3ZxWUw0SWtvaXc5cWhMSkQ1TGVhUlcvZmUrbCtxVQpTWXhoMlJORlE2d0pCL2lIeUZpN0x2MkJ3T04xM3NOY3J3SzNyYUlaVVN0Nm0vSDY4ekhPNEVFd0dkakw5TU1MCjZKV2xBb0V0emtNcWZGN1lub2dtSnZLVTJuNWdqakFIcEZpTmJRbWR3dXozc1Z3U0wveWh5MFRob3hzb3JnVjEKdVFJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t"}
+INFO:key:[api_create_RSA_pair] new_passphrase_data: {'salt': 'ixKAEAbvXHDHueRQ6nk4Mw==', 'hash': 'Q4k0cx4lP87DOb7GlJLrBsqcPM60SsftojYZE36pAok='}
+INFO:key:[api_create_RSA_pair] user.passphrase_hash: Q4k0cx4lP87DOb7GlJLrBsqcPM60SsftojYZE36pAok=
+INFO:key:[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : b'ixKAEAbvXHDHueRQ6nk4Mw=='
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:auth:[Register] Received data: {'name': 'hollowKnight', 'birth_day': '2004-01-01', 'email': 'hollowKnight@gmail.com', 'address': '123 Main St, Springfield', 'phone_number': '123-456-7890', 'passphrase': '12345678aA@'}
+INFO:auth:[Register] Invalid data: {'email': [ErrorDetail(string='user with this email already exists.', code='unique')]}
+WARNING:django.request:Bad Request: /api/register/
+INFO:auth:[Register] Received data: {'name': 'hollowKnight2', 'birth_day': '2004-01-01', 'email': 'hollowKnight@gmail.com', 'address': '123 Main St, Springfield', 'phone_number': '123-456-7890', 'passphrase': '12345678aA@'}
+INFO:auth:[Register] Invalid data: {'email': [ErrorDetail(string='user with this email already exists.', code='unique')]}
+WARNING:django.request:Bad Request: /api/register/
+INFO:auth:[Register] Received data: {'name': 'hollowKnight', 'birth_day': '2004-01-01', 'email': 'hollowKnight2@gmail.com', 'address': '123 Main St, Springfield', 'phone_number': '123-456-7890', 'passphrase': '12345678aA@'}
+INFO:auth:[Register] User registered successfully: hollowKnight2@gmail.com
+INFO:key:[api_create_RSA_pair][user_id 20] new_passphrase_data: {'salt': 'ixKAEAbvXHDHueRQ6nk4Mw==', 'hash': 'Q4k0cx4lP87DOb7GlJLrBsqcPM60SsftojYZE36pAok='}
+INFO:key:[api_create_RSA_pair][user_id 20]  user.passphrase_hash: Q4k0cx4lP87DOb7GlJLrBsqcPM60SsftojYZE36pAok=
+INFO:key:[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : b'ixKAEAbvXHDHueRQ6nk4Mw=='
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/commons/utils.py changed, reloading.
+INFO:key:[api_create_RSA_pair][user_id 20] new_passphrase_data: {'salt': 'ixKAEAbvXHDHueRQ6nk4Mw==', 'hash': 'Q4k0cx4lP87DOb7GlJLrBsqcPM60SsftojYZE36pAok='}
+INFO:key:[api_create_RSA_pair][user_id 20]  user.passphrase_hash: Q4k0cx4lP87DOb7GlJLrBsqcPM60SsftojYZE36pAok=
+INFO:key:[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : b'ixKAEAbvXHDHueRQ6nk4Mw=='
+INFO:key:[api_create_RSA_pair][user_id 20] new_passphrase_data: {'salt': 'ixKAEAbvXHDHueRQ6nk4Mw==', 'hash': 'Q4k0cx4lP87DOb7GlJLrBsqcPM60SsftojYZE36pAok='}
+INFO:key:[api_create_RSA_pair][user_id 20]  user.passphrase_hash: Q4k0cx4lP87DOb7GlJLrBsqcPM60SsftojYZE36pAok=
+INFO:key:[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : b'ixKAEAbvXHDHueRQ6nk4Mw=='
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/commons/utils.py changed, reloading.
+INFO:key:[api_create_RSA_pair][user_id 20] new_passphrase_data: {'salt': 'ixKAEAbvXHDHueRQ6nk4Mw==', 'hash': 'Q4k0cx4lP87DOb7GlJLrBsqcPM60SsftojYZE36pAok='}
+INFO:key:[api_create_RSA_pair][user_id 20]  user.passphrase_hash: Q4k0cx4lP87DOb7GlJLrBsqcPM60SsftojYZE36pAok=
+INFO:key:[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : b'ixKAEAbvXHDHueRQ6nk4Mw=='
+INFO:key:[Generate QR Code][user_id 20]  QR data: {"email": "hollowKnight@gmail.com", "creation_date": "2025-07-15", "public_key": "{\"public_key\": \"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFrRG83QTZJQlk5ZFVPR0pBcDdUUApMOFpyZ1B2a09zS21keHB0eWljWjFGQS9LOUFDUTVhNmsvcnVGakVIU0JhakNvaFFnYkgyUk1oOHJ5Vk9uWUxTCm5qdVZEUnYxRHVBZmllamhGTUpWYzJoekFxeU1MQTd2V1ZYVWsyejZGSTZ3WkNYd004M0VIT1BNUEV0K0szWU4KRE5EUVJmZ3FEY1hRWHRXOHJkRmlqeU40M0FYR0thbkRhSnJBaTdLYjNWcTZZeVg3RFZRaUZXRThIbHBwZlFrVApJY2pCMjZQYURYSDZhM3NJZm0vYWRJT1c0QnpYcmEyaGhvNUR1U0JCV3FOakZLU0ljSTNDOCtZaUZURkgwR3RUCnZlV1lmc0FlV25WemExeE9WNmI2U0VFTW1SczBNZ2Nra21Cb3BhSmh0UWpYWlMrOW1vekFhN2g3V0JNZlB1NjYKV3dJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t\", \"created_at\": \"2025-07-15T13:42:47.929697+00:00\", \"email\": \"hollowKnight@gmail.com\"}"}
+WARNING:django.request:Bad Request: /api/user/update/
+WARNING:django.request:Bad Request: /api/user/update/
+INFO:profile:[Update User] Received data: {'user_id': 20, 'name': 'hollowKnight Gamer', 'current_passphrase': '12345678aA@', 'new_passphrase': '87654321aA@'}
+INFO:profile:[Update User] User updated successfully: hollowKnight@gmail.com
+INFO:key:[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : tfIFXkqoSL2OSfffT/floQ==
+INFO:key:[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : tfIFXkqoSL2OSfffT/floQ==
+INFO:key:[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : tfIFXkqoSL2OSfffT/floQ==
+INFO:key:[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : tfIFXkqoSL2OSfffT/floQ==
+INFO:key:[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : tfIFXkqoSL2OSfffT/floQ==
+INFO:key:[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : tfIFXkqoSL2OSfffT/floQ==
+INFO:profile:[Update User] Passphrase change response: 1
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:profile:[Update User] Received data: {'user_id': 20, 'name': 'hollowKnight Gamer', 'current_passphrase': '87654321aA@', 'new_passphrase': '12345678aA@'}
+INFO:profile:[Update User][user_id 20] User updated successfully: hollowKnight@gmail.com
+INFO:key:[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : fg0rCb/FcU/wjf24aVambA==
+INFO:key:[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : fg0rCb/FcU/wjf24aVambA==
+INFO:key:[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : fg0rCb/FcU/wjf24aVambA==
+INFO:key:[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : fg0rCb/FcU/wjf24aVambA==
+INFO:key:[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : fg0rCb/FcU/wjf24aVambA==
+INFO:key:[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : fg0rCb/FcU/wjf24aVambA==
+INFO:profile:[Update User] Passphrase change response: 1
+WARNING:django.request:Forbidden: /api/send_encrypted_file/
+INFO:file:[Send Encrypted File] Received data: {'file_path': '/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf', 'sender_email': 'phhoangquan@gmail.com', 'recipient_email': 'akerman0509@gmail.com', 'mode': 'split'}
+INFO:file:[Send Encrypted File] sender_email: phhoangquan@gmail.com, recipient_email: akerman0509@gmail.com, output_path: None, mode: split, file_path: /home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf
+INFO:file:[Send Encrypted File] Response from encrypt_file_with_metadata: <Response status_code=200, "text/html; charset=utf-8">
+INFO:file:[Decrypt File] Received data: {'user_id': 17, 'passphrase': '12345678aA@', 'file_path': '/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf.enc'}
+INFO:file:[Decrypt File] encrypted_file_path: /home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf.enc, output_path: None
+INFO:file:[Decrypt File] File decrypted successfully
+WARNING:django.request:Forbidden: /api/generate_qr/
+INFO:key:[Generate QR Code][user_id 20]  QR data: {"email": "hollowKnight@gmail.com", "creation_date": "2025-07-15", "public_key": "{\"public_key\": \"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFrRG83QTZJQlk5ZFVPR0pBcDdUUApMOFpyZ1B2a09zS21keHB0eWljWjFGQS9LOUFDUTVhNmsvcnVGakVIU0JhakNvaFFnYkgyUk1oOHJ5Vk9uWUxTCm5qdVZEUnYxRHVBZmllamhGTUpWYzJoekFxeU1MQTd2V1ZYVWsyejZGSTZ3WkNYd004M0VIT1BNUEV0K0szWU4KRE5EUVJmZ3FEY1hRWHRXOHJkRmlqeU40M0FYR0thbkRhSnJBaTdLYjNWcTZZeVg3RFZRaUZXRThIbHBwZlFrVApJY2pCMjZQYURYSDZhM3NJZm0vYWRJT1c0QnpYcmEyaGhvNUR1U0JCV3FOakZLU0ljSTNDOCtZaUZURkgwR3RUCnZlV1lmc0FlV25WemExeE9WNmI2U0VFTW1SczBNZ2Nra21Cb3BhSmh0UWpYWlMrOW1vekFhN2g3V0JNZlB1NjYKV3dJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t\", \"created_at\": \"2025-07-15T13:42:47.929697+00:00\", \"email\": \"hollowKnight@gmail.com\"}"}
+WARNING:django.request:Forbidden: /api/public_key_by_email/phhoangquan@gmail.com/
+INFO:applications.my_app.views:[Get Public Key] Received email: phhoangquan@gmail.com
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:key:[Generate QR Code][user_id 20]  QR data: {"email": "hollowKnight@gmail.com", "creation_date": "2025-07-15", "public_key": "{\"public_key\": \"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFrRG83QTZJQlk5ZFVPR0pBcDdUUApMOFpyZ1B2a09zS21keHB0eWljWjFGQS9LOUFDUTVhNmsvcnVGakVIU0JhakNvaFFnYkgyUk1oOHJ5Vk9uWUxTCm5qdVZEUnYxRHVBZmllamhGTUpWYzJoekFxeU1MQTd2V1ZYVWsyejZGSTZ3WkNYd004M0VIT1BNUEV0K0szWU4KRE5EUVJmZ3FEY1hRWHRXOHJkRmlqeU40M0FYR0thbkRhSnJBaTdLYjNWcTZZeVg3RFZRaUZXRThIbHBwZlFrVApJY2pCMjZQYURYSDZhM3NJZm0vYWRJT1c0QnpYcmEyaGhvNUR1U0JCV3FOakZLU0ljSTNDOCtZaUZURkgwR3RUCnZlV1lmc0FlV25WemExeE9WNmI2U0VFTW1SczBNZ2Nra21Cb3BhSmh0UWpYWlMrOW1vekFhN2g3V0JNZlB1NjYKV3dJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t\", \"created_at\": \"2025-07-15T13:42:47.929697+00:00\", \"email\": \"hollowKnight@gmail.com\"}"}
+INFO:key:[Get Public Key] Received email: {email}
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:key:[Get Public Key] Received email: {email}
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:key:[Get Public Key] Received email: phhoangquan@gmail.com
+INFO:file:[Send Encrypted File] Received data: {'file_path': '/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf', 'sender_email': 'phhoangquan@gmail.com', 'recipient_email': 'akerman0509@gmail.com', 'mode': 'combined'}
+INFO:file:[Send Encrypted File] sender_email: phhoangquan@gmail.com, recipient_email: akerman0509@gmail.com, output_path: None, mode: combined, file_path: /home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf
+INFO:file:[Send Encrypted File] Response from encrypt_file_with_metadata: <Response status_code=200, "text/html; charset=utf-8">
+INFO:file:[Send Encrypted File] Received data: {'file_path': '/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf', 'sender_email': 'phhoangquan@gmail.com', 'recipient_email': 'akerman0509@gmail.com', 'mode': 'combined'}
+INFO:file:[Send Encrypted File] sender_email: phhoangquan@gmail.com, recipient_email: akerman0509@gmail.com, output_path: None, mode: combined, file_path: /home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf
+INFO:file:[Send Encrypted File] Response from encrypt_file_with_metadata: <Response status_code=200, "text/html; charset=utf-8">
+INFO:file:[Decrypt File] Received data: {'user_id': 17, 'passphrase': '12345678aA@', 'file_path': '/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf.enc'}
+INFO:file:[Decrypt File] encrypted_file_path: /home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf.enc, output_path: None
+INFO:file:[Decrypt File] File decrypted successfully
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:file:[Decrypt File] Received data: {'user_id': 17, 'passphrase': '12345678aA@', 'file_path': '/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf.enc'}
+INFO:file:[Decrypt File] encrypted_file_path: /home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf.enc, output_path: None
+INFO:file:[Decrypt File][user_id 17] File decrypted successfully
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/commons/utils.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/commons/utils.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/commons/utils.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.

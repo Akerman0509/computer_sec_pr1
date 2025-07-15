@@ -1,6 +1,3 @@
-2025-07-15 02:19:30,200 - profile - INFO - [Update User] Received data: {'user_id': 19, 'name': 'hollowKnigh Gamer', 'current_passphrase': '12345678aA@', 'new_passphrase': '87654321aA@'}
-2025-07-15 02:19:30,205 - profile - INFO - [Update User] User updated successfully: hollowKnight@gmail.com
-2025-07-15 02:19:30,207 - profile - INFO - [Update User] Passphrase change response: <Response status_code=404, "text/html; charset=utf-8">
-2025-07-15 02:20:02,691 - profile - INFO - [Update User] Received data: {'user_id': 19, 'name': 'hollowKnigh Gamer', 'current_passphrase': '12345678aA@', 'new_passphrase': '87654321aA@'}
-2025-07-15 02:20:02,694 - profile - INFO - [Update User] User updated successfully: hollowKnight@gmail.com
-2025-07-15 02:20:02,782 - profile - INFO - [Update User] Passphrase change response: 1
+2025-07-15 20:48:05 - profile - INFO - [Update User] Received data: {'user_id': 20, 'name': 'hollowKnight Gamer', 'current_passphrase': '87654321aA@', 'new_passphrase': '12345678aA@'}
+2025-07-15 20:48:05 - profile - INFO - [Update User][user_id 20] User updated successfully: hollowKnight@gmail.com
+2025-07-15 20:48:05 - profile - INFO - [Update User] Passphrase change response: 1

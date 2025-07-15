@@ -1,0 +1,18 @@
+2025-07-15 20:49:37 - file - INFO - [Send Encrypted File] Received data: {'file_path': '/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf', 'sender_email': 'phhoangquan@gmail.com', 'recipient_email': 'akerman0509@gmail.com', 'mode': 'split'}
+2025-07-15 20:49:37 - file - INFO - [Send Encrypted File] sender_email: phhoangquan@gmail.com, recipient_email: akerman0509@gmail.com, output_path: None, mode: split, file_path: /home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf
+2025-07-15 20:49:37 - file - INFO - [Send Encrypted File] Response from encrypt_file_with_metadata: <Response status_code=200, "text/html; charset=utf-8">
+2025-07-15 20:50:19 - file - INFO - [Decrypt File] Received data: {'user_id': 17, 'passphrase': '12345678aA@', 'file_path': '/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf.enc'}
+2025-07-15 20:50:19 - file - INFO - [Decrypt File] encrypted_file_path: /home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf.enc, output_path: None
+2025-07-15 20:50:19 - file - INFO - [Decrypt File] File decrypted successfully
+2025-07-15 21:08:02 - file - INFO - [Send Encrypted File] Received data: {'file_path': '/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf', 'sender_email': 'phhoangquan@gmail.com', 'recipient_email': 'akerman0509@gmail.com', 'mode': 'combined'}
+2025-07-15 21:08:02 - file - INFO - [Send Encrypted File] sender_email: phhoangquan@gmail.com, recipient_email: akerman0509@gmail.com, output_path: None, mode: combined, file_path: /home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf
+2025-07-15 21:08:02 - file - INFO - [Send Encrypted File] Response from encrypt_file_with_metadata: <Response status_code=200, "text/html; charset=utf-8">
+2025-07-15 21:08:12 - file - INFO - [Send Encrypted File] Received data: {'file_path': '/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf', 'sender_email': 'phhoangquan@gmail.com', 'recipient_email': 'akerman0509@gmail.com', 'mode': 'combined'}
+2025-07-15 21:08:12 - file - INFO - [Send Encrypted File] sender_email: phhoangquan@gmail.com, recipient_email: akerman0509@gmail.com, output_path: None, mode: combined, file_path: /home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf
+2025-07-15 21:08:12 - file - INFO - [Send Encrypted File] Response from encrypt_file_with_metadata: <Response status_code=200, "text/html; charset=utf-8">
+2025-07-15 21:08:46 - file - INFO - [Decrypt File] Received data: {'user_id': 17, 'passphrase': '12345678aA@', 'file_path': '/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf.enc'}
+2025-07-15 21:08:46 - file - INFO - [Decrypt File] encrypted_file_path: /home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf.enc, output_path: None
+2025-07-15 21:08:46 - file - INFO - [Decrypt File] File decrypted successfully
+2025-07-15 21:09:50 - file - INFO - [Decrypt File] Received data: {'user_id': 17, 'passphrase': '12345678aA@', 'file_path': '/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf.enc'}
+2025-07-15 21:09:50 - file - INFO - [Decrypt File] encrypted_file_path: /home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/pr1.pdf.enc, output_path: None
+2025-07-15 21:09:50 - file - INFO - [Decrypt File][user_id 17] File decrypted successfully

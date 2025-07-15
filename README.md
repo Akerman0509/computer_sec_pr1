@@ -5,13 +5,7 @@
 - Redis: 6.0 trở lên
 
 **Các thư viện Python**
-- django
-- djangorestframework
-- mysqlclient
-- cryptography
-- qrcode
-- pyzbar
-- redis
+chạy lệnh `pip install -r requirements.txt` để cài đặt các thư viện cần thiết
 
 **Cấu trúc dự án**
 Thư mục chính: computer_sec_pr1

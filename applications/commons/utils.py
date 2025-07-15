@@ -103,7 +103,6 @@ class AESCipher:
             iv = b64encode(cipher.iv).decode('utf-8')
             ct = b64encode(ct_bytes).decode('utf-8')
             result = json.dumps({'iv':iv, 'ciphertext':ct})
-            # print(result)
             return result
     
     def decrypt(self, encrypted_data):
@@ -117,13 +116,8 @@ class AESCipher:
                 iv = b64decode(b64['iv'])
                 ct = b64decode(b64['ciphertext'])
                 cipher = AES.new(self.key, AES.MODE_CBC, iv) 
-                # print (f"iv: {iv}")
-                # print (f"ct: {ct}")
                 decrypted = cipher.decrypt(ct)
-                # print (f"[decrypt] Decrypted bytes: {decrypted}")
-                # print ("++++++++++++++++++++++++++++++++++++++++++++++++++")
                 pt = unpad(decrypted, AES.block_size)
-                # print (f"[decrypt] Unpadded plaintext: {pt}")
                 return pt
             
         except (ValueError, KeyError) as e:
@@ -137,6 +131,9 @@ SALT_SIZE = 16
 ITERATIONS = 100000 # Số lần lặp cho PBKDF2, tăng tính bảo mật
 RSA_BITS = 2048 # Yêu cầu: Tạo cặp khoá RSA (2048 bit).
 
+logging.basicConfig(filename='data/logs/security.log', level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 
 def generate_rsa_keys():
     """Tạo một cặp khóa RSA 2048 bit."""
@@ -146,8 +143,7 @@ def generate_rsa_keys():
     return private_key_pem, public_key_pem
 
 
-logging.basicConfig(filename='data/logs/security.log', level=logging.INFO)
-logger = logging.getLogger(__name__)
+
 
 def send_otp(email, otp):
     """Gửi OTP qua email."""
@@ -159,10 +155,10 @@ def send_otp(email, otp):
             recipient_list=[email],
             fail_silently=False,
         )
-        logger.info("[OTP] Sent OTP to %s", email)
+        authLog(f"[OTP] Sent OTP to {email}" )
         return True
     except Exception as e:
-        logger.error("[OTP] Failed to send OTP to %s: %s", email, str(e))
+        authLog(f"[OTP] Failed to send OTP to {email}: {str(e)}")
         return False
 
 def generate_otp(email):
@@ -175,7 +171,7 @@ def generate_otp(email):
         otp_created=created_at,
         otp_expires=expires_at,
     )
-    logger.info("[OTP] Generated OTP for %s", email)
+    authLog(f"[OTP] Generated OTP for {email}" )
     return otp
 
 def derive_aes_key(passphrase: str, salt: bytes, key_len=32) -> bytes:
@@ -186,14 +182,14 @@ def encrypt_private_with_passphrase(private_key_pem: bytes, passphrase: str, sal
 ) -> str:
     """Encrypt the private key with the given passphrase and salt."""
     
-    print (f"[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : {salt}")
+    keyLog (f"[encrypt_private_with_passphrase] Received salt in encrypt_private_with_passphrase : {salt}")
     try :
         key = derive_aes_key(passphrase, salt)
         aes_agent = AESCipher(key)
         res = aes_agent.encrypt(private_key_pem)
         return res
     except Exception as e:
-        print(f"[encrypt_private_with_passphrase] Error encrypting private key: {e}")
+        keyLog(f"[encrypt_private_with_passphrase] Error encrypting private key: {e}")
         return None
 
 
@@ -614,16 +610,29 @@ def renew_key(email: str, passphrase: str) -> bool:
         return False
     
     
+import pytz  # ✅ Import this
+
+class VNFormatter(logging.Formatter):
+    def formatTime(self, record, datefmt=None):
+        # Convert to Vietnam timezone
+        dt = datetime.fromtimestamp(record.created, pytz.timezone("Asia/Ho_Chi_Minh"))
+        if datefmt:
+            return dt.strftime(datefmt)
+        else:
+            return dt.strftime("%Y-%m-%d %H:%M:%S")
+
 class MyLogger:
     def __init__(self, name, filename):
         self.logger = logging.getLogger(name)
         self.logger.setLevel(logging.INFO)
 
-        # Prevent duplicate handlers when same logger name is reused
         if not self.logger.handlers:
             os.makedirs(os.path.dirname(filename), exist_ok=True)
             handler = logging.FileHandler(filename)
-            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            formatter = VNFormatter(
+                '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                datefmt='%Y-%m-%d %H:%M:%S'
+            )
             handler.setFormatter(formatter)
             self.logger.addHandler(handler)
 
@@ -643,4 +652,20 @@ def keyLog(message):
 
 def profileLog(message):
     logger = MyLogger("profile", "data/logs/profile.log")
+    logger.log(message)
+
+def fileLog(message):
+    logger = MyLogger("file", "data/logs/file.log")
+    logger.log(message)
+    
+def sigLog(message):
+    logger = MyLogger("signature", "data/logs/signature.log")
+    logger.log(message)
+    
+def adminLog(message):
+    logger = MyLogger("admin", "data/logs/admin.log")
+    logger.log(message)
+    
+def actionLog(message):
+    logger = MyLogger("action", "data/logs/action.log")
     logger.log(message)
