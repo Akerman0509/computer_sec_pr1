@@ -194,6 +194,7 @@ Content-Type: application/json
 # ---------- 14. Search public key by email -----------------
 ### search public key
 GET {{baseUrl}}/public_key_by_email/ngthequan.relax@gmail.com HTTP/1.1
+Authorization: Token 3568adc9b452706cbc8f3771dd2605924fa0c2cd
 
 
 
