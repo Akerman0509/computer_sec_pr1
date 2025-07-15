@@ -23,7 +23,7 @@ Content-Type: application/json
 
 {
   "email": "phhoangquan@gmail.com",
-  "passphrase": "12345678aA@"
+  "passphrase": "a12345678aA@"
 }
 
 
@@ -45,7 +45,7 @@ POST {{baseUrl}}/create_rsa_pair/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "user_id": 14,
+    "user_id": 	17,
     "passphrase": "12345678aA@"
 }
 ### 
@@ -53,8 +53,8 @@ POST {{baseUrl}}/user/update/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "user_id": 13,
-    "name": "Chitoge Kirisaki hihi",
+    "user_id": 19,
+    "name": "hollowKnigh Gamer",
     "current_passphrase": "12345678aA@",
     "new_passphrase": "87654321aA@"
 }
@@ -70,9 +70,8 @@ Content-Type: application/json
 {
     "file_path": "/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/img1.jpg",
     "sender_email": "phhoangquan@gmail.com",
-    "recipient_email": "Chitoge@gmail.com",
+    "recipient_email": "akerman0509@gmail.com",
     "mode": "split"
-
 }
 
 
@@ -81,7 +80,7 @@ POST {{baseUrl}}/decrypt_file/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "user_id":15,
+    "user_id":17,
     "passphrase": "12345678aA@",
     "file_path": "/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/img1.jpg.enc"
 
@@ -110,7 +109,7 @@ Content-Type: image/png
 
 
 ### search public key
-GET {{baseUrl}}/public_key_by_email/ngthequan.relax@gmail.com HTTP/1.1
+GET {{baseUrl}}/public_key_by_email/phhoangquan@gmail.com HTTP/1.1
 
 
 ###
@@ -203,8 +202,8 @@ POST {{baseUrl}}/my_admin/17/change_account_status/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "target_id":14,
-    "new_status": "ACTIVE" 
+    "target_id":19,
+    "new_status": "BLOCKED" 
 }
 ### BLOCKED / ACTIVE
 

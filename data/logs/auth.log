@@ -12,3 +12,55 @@
 2025-07-14 14:29:29,744 - auth - INFO - [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
 2025-07-14 14:43:57,152 - auth - INFO - [Login] Rate limiter status: {'status': 'allowed', 'time_left': '00:00'}
 2025-07-14 14:43:57,153 - auth - INFO - [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+2025-07-14 14:51:17,415 - auth - INFO - [Login] Rate limiter status: {'status': 'allowed', 'time_left': '00:00'}
+2025-07-14 14:51:17,415 - auth - INFO - [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+2025-07-15 03:16:15,568 - auth - INFO - [Login] Rate limiter status: {'status': 'allowed', 'time_left': '00:00'}
+2025-07-15 03:16:15,568 - auth - INFO - [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+2025-07-15 03:16:15,595 - auth - INFO - [login] Invalid passphrase for user: phhoangquan@gmail.com
+2025-07-15 03:16:17,034 - auth - INFO - [Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:59'}
+2025-07-15 03:16:17,034 - auth - INFO - [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+2025-07-15 03:16:17,037 - auth - INFO - [login] Invalid passphrase for user: phhoangquan@gmail.com
+2025-07-15 03:16:17,669 - auth - INFO - [Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:58'}
+2025-07-15 03:16:17,669 - auth - INFO - [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+2025-07-15 03:16:17,672 - auth - INFO - [login] Invalid passphrase for user: phhoangquan@gmail.com
+2025-07-15 03:16:18,253 - auth - INFO - [Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:57'}
+2025-07-15 03:16:18,253 - auth - INFO - [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+2025-07-15 03:16:18,256 - auth - INFO - [login] Invalid passphrase for user: phhoangquan@gmail.com
+2025-07-15 03:16:18,841 - auth - INFO - [Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:57'}
+2025-07-15 03:16:18,841 - auth - INFO - [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+2025-07-15 03:16:18,844 - auth - INFO - [login] Invalid passphrase for user: phhoangquan@gmail.com
+2025-07-15 03:16:19,550 - auth - INFO - [Login] Rate limiter status: {'status': 'blocked', 'time_left': '04:56'}
+2025-07-15 03:16:19,550 - auth - INFO - [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+2025-07-15 03:16:20,894 - auth - INFO - [Login] Rate limiter status: {'status': 'blocked', 'time_left': '04:55'}
+2025-07-15 03:16:20,894 - auth - INFO - [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+2025-07-15 03:16:39,283 - auth - INFO - [Login] Rate limiter status: {'status': 'blocked', 'time_left': '04:36'}
+2025-07-15 03:16:39,283 - auth - INFO - [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+2025-07-15 04:05:39,402 - auth - INFO - [Login] Rate limiter status: {'status': 'allowed', 'time_left': '00:00', 'current_requests': 0}
+2025-07-15 04:05:39,402 - auth - INFO - [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+2025-07-15 04:05:39,432 - auth - INFO - [login] Invalid passphrase for user: phhoangquan@gmail.com
+2025-07-15 04:06:09,234 - auth - INFO - [Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:30', 'current_requests': 1}
+2025-07-15 04:06:09,234 - auth - INFO - [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+2025-07-15 04:06:09,262 - auth - INFO - [login] Invalid passphrase for user: phhoangquan@gmail.com
+2025-07-15 04:06:28,299 - auth - INFO - [Login] Rate limiter status: {'status': 'allowed', 'time_left': '00:00', 'current_requests': 0}
+2025-07-15 04:06:28,299 - auth - INFO - [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+2025-07-15 04:06:28,302 - auth - INFO - [login] Invalid passphrase for user: phhoangquan@gmail.com
+2025-07-15 04:07:18,075 - auth - INFO - [Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:10', 'current_requests': 1}
+2025-07-15 04:07:18,076 - auth - INFO - [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+2025-07-15 04:07:18,102 - auth - INFO - [login] Invalid passphrase for user: phhoangquan@gmail.com
+2025-07-15 04:07:19,102 - auth - INFO - [Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:09', 'current_requests': 2}
+2025-07-15 04:07:19,102 - auth - INFO - [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+2025-07-15 04:07:19,105 - auth - INFO - [login] Invalid passphrase for user: phhoangquan@gmail.com
+2025-07-15 04:07:19,536 - auth - INFO - [Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:09', 'current_requests': 3}
+2025-07-15 04:07:19,536 - auth - INFO - [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+2025-07-15 04:07:19,538 - auth - INFO - [login] Invalid passphrase for user: phhoangquan@gmail.com
+2025-07-15 04:07:19,925 - auth - INFO - [Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:08', 'current_requests': 4}
+2025-07-15 04:07:19,925 - auth - INFO - [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+2025-07-15 04:07:19,927 - auth - INFO - [login] Invalid passphrase for user: phhoangquan@gmail.com
+2025-07-15 04:07:20,374 - auth - INFO - [Login] Rate limiter status: {'status': 'blocked', 'time_left': '04:08', 'current_requests': 5}
+2025-07-15 04:07:20,374 - auth - INFO - [Login] Too many wrong attempts for email: phhoangquan@gmail.com
+2025-07-15 04:07:28,308 - auth - INFO - [Login] Rate limiter status: {'status': 'allowed', 'time_left': '00:00', 'current_requests': 0}
+2025-07-15 04:07:28,308 - auth - INFO - [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+2025-07-15 04:07:28,312 - auth - INFO - [login] Invalid passphrase for user: phhoangquan@gmail.com
+2025-07-15 04:07:28,866 - auth - INFO - [Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:59', 'current_requests': 1}
+2025-07-15 04:07:28,866 - auth - INFO - [Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+2025-07-15 04:07:28,869 - auth - INFO - [login] Invalid passphrase for user: phhoangquan@gmail.com

@@ -51,6 +51,8 @@ class User(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
     
+    def is_authenticated(self):
+        return True
 
 def get_default_expiration():
     """Returns the current time + 90 days."""

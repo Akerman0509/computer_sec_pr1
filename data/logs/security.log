@@ -137,3 +137,217 @@ INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '00:00
 INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
 INFO:applications.commons.utils:[OTP] Generated OTP for phhoangquan@gmail.com
 INFO:applications.commons.utils:[OTP] Sent OTP to phhoangquan@gmail.com
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/models.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '00:00'}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': '12345678aA@'}
+INFO:applications.commons.utils:[OTP] Generated OTP for phhoangquan@gmail.com
+INFO:applications.commons.utils:[OTP] Sent OTP to phhoangquan@gmail.com
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:key:[api_create_RSA_pair] new_passphrase_data: {'salt': 'Orjx5CUGReRNrPHFlGah3Q==', 'hash': '9gDan6a9DZ96dSd6z04nFPBw6Z7vNYD0OZzVkSe8dXk='}
+INFO:key:[api_create_RSA_pair] user.passphrase_hash: 9gDan6a9DZ96dSd6z04nFPBw6Z7vNYD0OZzVkSe8dXk=
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/models.py changed, reloading.
+WARNING:django.request:Not Found: /
+WARNING:django.request:Not Found: /favicon.ico
+WARNING:django.request:Forbidden: /api/user/update/
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:profile:[Update User] Received data: {'user_id': 19, 'name': 'hollowKnigh Gamer', 'current_passphrase': '12345678aA@', 'new_passphrase': '87654321aA@'}
+INFO:profile:[Update User] User updated successfully: hollowKnight@gmail.com
+WARNING:applications.my_app.views:[handle_passphrase_change] No keys found for user_id: 19
+INFO:profile:[Update User] Passphrase change response: <Response status_code=404, "text/html; charset=utf-8">
+WARNING:django.request:Not Found: /api/user/update/
+INFO:key:[api_create_RSA_pair] new_passphrase_data: {'salt': 'Ov4Ya2jOzHPO6zextHYXvw==', 'hash': 'A7XFtVgWRE+C2LU5H0DGVsNiV1RfFdAii/r/3p+FsxI='}
+INFO:key:[api_create_RSA_pair] user.passphrase_hash: A7XFtVgWRE+C2LU5H0DGVsNiV1RfFdAii/r/3p+FsxI=
+INFO:profile:[Update User] Received data: {'user_id': 19, 'name': 'hollowKnigh Gamer', 'current_passphrase': '12345678aA@', 'new_passphrase': '87654321aA@'}
+INFO:profile:[Update User] User updated successfully: hollowKnight@gmail.com
+INFO:profile:[Update User] Passphrase change response: 1
+WARNING:django.request:Forbidden: /api/send_encrypted_file/
+WARNING:django.request:Forbidden: /api/send_encrypted_file/
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:applications.my_app.views:[Send Encrypted File] Received data: {'file_path': '/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/img1.jpg', 'sender_email': 'phhoangquan@gmail.com', 'recipient_email': 'Chitoge@gmail.com', 'mode': 'split'}
+ERROR:applications.my_app.views:[Decrypt File] Unexpected error occurred
+Traceback (most recent call last):
+  File "/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py", line 407, in api_send_encrypted_file
+    response = encrypt_file_with_metadata(file_path, sender_email, recipient_email, output_path=output_path, mode = mode)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/commons/utils.py", line 240, in encrypt_file_with_metadata
+    raise ValueError(f"Recipient with email {recipient_email} does not exist.")
+ValueError: Recipient with email Chitoge@gmail.com does not exist.
+ERROR:django.request:Internal Server Error: /api/send_encrypted_file/
+INFO:key:[api_create_RSA_pair] new_passphrase_data: {'salt': 'azH/iZiwosRXT/OH9+LBMQ==', 'hash': '/8KOdtE3P9/UGpRpDc9vrK1cMqSW9EbydNQuHCkidZQ='}
+INFO:key:[api_create_RSA_pair] user.passphrase_hash: /8KOdtE3P9/UGpRpDc9vrK1cMqSW9EbydNQuHCkidZQ=
+INFO:applications.my_app.views:[Send Encrypted File] Received data: {'file_path': '/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/img1.jpg', 'sender_email': 'phhoangquan@gmail.com', 'recipient_email': 'akerman0509@gmail.com', 'mode': 'split'}
+INFO:applications.my_app.views:[Send Encrypted File] Received data: {'file_path': '/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/img1.jpg', 'sender_email': 'phhoangquan@gmail.com', 'recipient_email': 'akerman0509@gmail.com', 'mode': 'split'}
+WARNING:django.request:Forbidden: /api/decrypt_file/
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:applications.my_app.views:[Decrypt File] Received data: {'user_id': 17, 'passphrase': '12345678aA@', 'file_path': '/home/akerman0509/semester_3_2025/ComputerSec/project1/my_stuff/img1.jpg.enc'}
+INFO:applications.my_app.views:[Decrypt File] File decrypted successfully
+INFO:applications.my_app.views:[Get Public Key] Received email: ngthequan.relax@gmail.com
+WARNING:applications.my_app.views:[Get Public Key] User doesnt have any publickey ngthequan.relax@gmail.com
+WARNING:django.request:Not Found: /api/public_key_by_email/ngthequan.relax@gmail.com/
+INFO:applications.my_app.views:[Get Public Key] Received email: ngthequan.relax@gmail.com
+WARNING:applications.my_app.views:[Get Public Key] User doesnt have any publickey ngthequan.relax@gmail.com
+WARNING:django.request:Not Found: /api/public_key_by_email/ngthequan.relax@gmail.com/
+INFO:applications.my_app.views:[Get Public Key] Received email: 	phhoangquan@gmail.com
+WARNING:applications.my_app.views:[Get Public Key] User with email 	phhoangquan@gmail.com does not exist
+WARNING:django.request:Not Found: /api/public_key_by_email/	phhoangquan@gmail.com/
+INFO:applications.my_app.views:[Get Public Key] Received email: phhoangquan@gmail.com
+WARNING:django.request:Not Found: /favicon.ico
+INFO:applications.my_app.views:[Get Public Key] Received email: phhoangquan@gmail.com
+INFO:applications.my_app.views:[Get Public Key] Received email: phhoangquan@gmail.com
+ERROR:django.request:Internal Server Error: /api/login/
+Traceback (most recent call last):
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/connection.py", line 385, in connect_check_health
+    sock = self.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/retry.py", line 87, in call_with_retry
+    return do()
+           ^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/connection.py", line 386, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+            ^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/connection.py", line 797, in _connect
+    raise err
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/connection.py", line 781, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/.local/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py", line 79, in api_login
+    rate_limiter_status = rate_limiter_wrong_login(request.data.get('email', ''), 0)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py", line 56, in rate_limiter_wrong_login
+    current = r.get(redis_key)
+              ^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/commands/core.py", line 1829, in get
+    return self.execute_command("GET", name, keys=[name])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/client.py", line 623, in execute_command
+    return self._execute_command(*args, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/client.py", line 629, in _execute_command
+    conn = self.connection or pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/utils.py", line 191, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/connection.py", line 1530, in get_connection
+    connection.connect()
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/connection.py", line 379, in connect
+    self.connect_check_health(check_health=True)
+  File "/home/akerman0509/anaconda3/envs/myenv1/lib/python3.12/site-packages/redis/connection.py", line 391, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '00:00'}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+INFO:auth:[login] Invalid passphrase for user: phhoangquan@gmail.com
+WARNING:django.request:Unauthorized: /api/login/
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:59'}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+INFO:auth:[login] Invalid passphrase for user: phhoangquan@gmail.com
+WARNING:django.request:Unauthorized: /api/login/
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:58'}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+INFO:auth:[login] Invalid passphrase for user: phhoangquan@gmail.com
+WARNING:django.request:Unauthorized: /api/login/
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:57'}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+INFO:auth:[login] Invalid passphrase for user: phhoangquan@gmail.com
+WARNING:django.request:Unauthorized: /api/login/
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:57'}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+INFO:auth:[login] Invalid passphrase for user: phhoangquan@gmail.com
+WARNING:django.request:Unauthorized: /api/login/
+INFO:auth:[Login] Rate limiter status: {'status': 'blocked', 'time_left': '04:56'}
+INFO:auth:[Login] Too many wrong attempts for email: phhoangquan@gmail.com
+WARNING:django.request:Too Many Requests: /api/login/
+INFO:auth:[Login] Rate limiter status: {'status': 'blocked', 'time_left': '04:55'}
+INFO:auth:[Login] Too many wrong attempts for email: phhoangquan@gmail.com
+WARNING:django.request:Too Many Requests: /api/login/
+INFO:auth:[Login] Rate limiter status: {'status': 'blocked', 'time_left': '04:36'}
+INFO:auth:[Login] Too many wrong attempts for email: phhoangquan@gmail.com
+WARNING:django.request:Too Many Requests: /api/login/
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '00:00', 'current_requests': 0}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+INFO:auth:[login] Invalid passphrase for user: phhoangquan@gmail.com
+WARNING:django.request:Unauthorized: /api/login/
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:30', 'current_requests': 1}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+INFO:auth:[login] Invalid passphrase for user: phhoangquan@gmail.com
+WARNING:django.request:Unauthorized: /api/login/
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '00:00', 'current_requests': 0}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+INFO:auth:[login] Invalid passphrase for user: phhoangquan@gmail.com
+WARNING:django.request:Unauthorized: /api/login/
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:django.utils.autoreload:/home/akerman0509/semester_3_2025/ComputerSec/project1/applications/my_app/views.py changed, reloading.
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:10', 'current_requests': 1}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+INFO:auth:[login] Invalid passphrase for user: phhoangquan@gmail.com
+WARNING:django.request:Unauthorized: /api/login/
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:09', 'current_requests': 2}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+INFO:auth:[login] Invalid passphrase for user: phhoangquan@gmail.com
+WARNING:django.request:Unauthorized: /api/login/
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:09', 'current_requests': 3}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+INFO:auth:[login] Invalid passphrase for user: phhoangquan@gmail.com
+WARNING:django.request:Unauthorized: /api/login/
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:08', 'current_requests': 4}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+INFO:auth:[login] Invalid passphrase for user: phhoangquan@gmail.com
+WARNING:django.request:Unauthorized: /api/login/
+INFO:auth:[Login] Rate limiter status: {'status': 'blocked', 'time_left': '04:08', 'current_requests': 5}
+INFO:auth:[Login] Too many wrong attempts for email: phhoangquan@gmail.com
+WARNING:django.request:Too Many Requests: /api/login/
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '00:00', 'current_requests': 0}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+INFO:auth:[login] Invalid passphrase for user: phhoangquan@gmail.com
+WARNING:django.request:Unauthorized: /api/login/
+INFO:auth:[Login] Rate limiter status: {'status': 'allowed', 'time_left': '04:59', 'current_requests': 1}
+INFO:auth:[Login] Received data: {'email': 'phhoangquan@gmail.com', 'passphrase': 'a12345678aA@'}
+INFO:auth:[login] Invalid passphrase for user: phhoangquan@gmail.com
+WARNING:django.request:Unauthorized: /api/login/

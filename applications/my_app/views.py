@@ -3,7 +3,7 @@ from statistics import quantiles
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 import logging
 from base64 import b64encode,b64decode
 from django.http import HttpResponse, Http404
@@ -66,7 +66,8 @@ def rate_limiter_wrong_login(email, counter=1):
         status = "allowed"
     return {
         "status": status,
-        "time_left": time_format
+        "time_left": time_format,
+        "current_requests": int(current) if current else 0
     }
 
 
@@ -103,7 +104,9 @@ def api_login(request):
     if not user:
         authLog(f"[login] User with email {email} does not exist")
         rate_limiter_wrong_login(email)
-        return Response({"message": "User does not exist"}, status=404)
+        return Response({"message": "User does not exist",
+                         "wrong_attemps": rate_limiter_status["current_requests"]  +1
+                         }, status=404)
     # check if passphrase is correct
     new_passphrase_data = hash_passphrase(input_passphrase, user.passphrase_salt)
     print (f"[login] new_passphrase_data: {new_passphrase_data}")
@@ -111,7 +114,10 @@ def api_login(request):
     if new_passphrase_data['hash'] != user.passphrase_hash:
         rate_limiter_wrong_login(email)
         authLog(f"[login] Invalid passphrase for user: {email}")
-        return Response({"message": "Invalid credentials"}, status=401)
+        return Response({"message": "Invalid credentials",
+                         "wrong_attemps": rate_limiter_status["current_requests"] + 1
+                         
+                         }, status=401)
     
     # if account blocked
     if check_account_active(user):
@@ -169,6 +175,7 @@ def api_register(request):
 
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def api_create_RSA_pair(request):
     
     private_key_pem, public_key_pem = generate_rsa_keys()
@@ -221,6 +228,9 @@ def api_create_RSA_pair(request):
 
 
 
+
+
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def api_otp_verify(request):
@@ -255,17 +265,23 @@ def api_otp_verify(request):
     if not user:
         authLog(f"[OTP] No user found for {email}")
         return Response({"message": "User not found"}, status=404)
+    
+    CustomToken.objects.filter(user=user).delete()
+    token = CustomToken.objects.create(user=user, key=secrets.token_hex(20))
 
-    authLog(f"[OTP] Successful login for {email}")
+    logger.info("[OTP] Successful login for %s", email)
+
     return Response({
         "message": "Login successful",
         "user_id": user.id,
-        "name": user.name
+        "name": user.name,
+        "token": token.key
     }, status=200)
 
 
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def api_update_user(request):
     """
     This is a simple view that handles user update.
@@ -370,6 +386,7 @@ def handle_passphrase_change(user_id, input_passphrase, new_passphrase):
 
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def api_send_encrypted_file(request):
     """
     This view handles sending an encrypted file to a recipient.
@@ -408,6 +425,7 @@ def api_send_encrypted_file(request):
     )
     
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def api_decrypt_file(request):
     """
     This view handles decrypting an encrypted file.
@@ -622,9 +640,8 @@ def serve_jpg(request):
 
 
 @api_view(['POST'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def sign_file(request):
-    """API ký số tập tin"""
     try:
         if 'file' not in request.FILES:
             logging.info(f"User: {getattr(request.user, 'email', 'AnonymousUser')} - Action: Sign file - Status: Failed - Error: No file provided")
