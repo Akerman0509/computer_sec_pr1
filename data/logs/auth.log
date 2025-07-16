@@ -15,3 +15,8 @@
 2025-07-15 13:36:44,536 - auth - INFO - [Register] Invalid data: {'email': [ErrorDetail(string='user with this email already exists.', code='unique')]}
 2025-07-15 13:36:55,541 - auth - INFO - [Register] Received data: {'name': 'hollowKnight', 'birth_day': '2004-01-01', 'email': 'hollowKnight2@gmail.com', 'address': '123 Main St, Springfield', 'phone_number': '123-456-7890', 'passphrase': '12345678aA@'}
 2025-07-15 13:36:55,545 - auth - INFO - [Register] User registered successfully: hollowKnight2@gmail.com
+2025-07-16 13:16:58 - auth - INFO - [Login] Rate limiter status: {'status': 'allowed', 'time_left': '00:00', 'current_requests': 0}
+2025-07-16 13:16:58 - auth - INFO - [Login] Received data: {'email': 'akerman0509@gmail.com', 'passphrase': '12345678aA@'}
+2025-07-16 13:16:58 - auth - INFO - [OTP] Generated OTP for akerman0509@gmail.com
+2025-07-16 13:17:12 - auth - INFO - [OTP] Sent OTP to akerman0509@gmail.com
+2025-07-16 13:17:48 - auth - INFO - [OTP] Successful login for {email}

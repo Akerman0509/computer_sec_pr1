@@ -969,5 +969,30 @@ def api_renew_key(request):
     return Response({"message": "Key renewal failed for"}, status=500)
     
     
+@api_view(['GET'])
+def api_get_log(request,user_id, log_type):
+    """
+    This view retrieves the log file.
+    """
+    # check user is admin
+    user = User.objects.filter(id=user_id, role="Admin").first()
+    if not user:
+        adminLog(f"[Get Log] User with id {user_id} is not an admin")
+        return Response({"message": "You are not authorized to view this log"}, status=403)
+    
+    # check log_type in auth, profile, file, key, action, sig
+    valid_log_types = ['auth', 'profile', 'file', 'key', 'action', 'sig', 'admin']
+    if log_type not in valid_log_types:
+        return Response({"error": "Invalid log type"}, status=400)
+    
+    log_file_path = os.path.join(settings.BASE_DIR, 'data', 'logs', f"{log_type}.log")
+    
+    if not os.path.exists(log_file_path):
+        return Response({"error": "Log file does not exist"}, status=404)
     
     
+    with open(log_file_path, 'r') as log_file:
+        log_lines = log_file.readlines()
+    file_name = f"{log_type}_log"
+    
+    return Response({file_name: log_lines}, status=200)

@@ -13,3 +13,5 @@ staticfiles/
 venv/
 
 rp/
+
+api.http
